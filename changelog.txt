@@ -1,0 +1,13 @@
+Log para el projecto de DBD
+
+Version actual 0.0.1
+
+Cambios version 0.0.0 -> 0.0.1
+Contribuyentes: Vicente Rivera
+- Agregado tablas: Usuario, Transaccion, Vuelo
+- Agregado rutas: '/', '/{cualquier_ruta}'
+- Se cambio el nombre a DBD project (temporal)
+
+todo: 
+- tablas Auto, Aerolinea, etc
+- conectar con Postgresql (parece ser necesario usar xampp o laragon)

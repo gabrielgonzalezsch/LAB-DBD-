@@ -1,6 +1,6 @@
 Log para el projecto de DBD
 
-Version actual 0.0.1
+Version actual 0.0.11
 
 Cambios version 0.0.0 -> 0.0.1
 Contribuyentes: Vicente Rivera
@@ -8,6 +8,15 @@ Contribuyentes: Vicente Rivera
 - Agregado rutas: '/', '/{cualquier_ruta}'
 - Se cambio el nombre a DBD project (temporal)
 
-todo: 
+To do: 
 - tablas Auto, Aerolinea, etc
 - conectar con Postgresql (parece ser necesario usar xampp o laragon)
+
+Cambios version 0.0.1 -> 0.0.11
+Contribuyentes: Vicente Rivera (sigo esperando que se animen a empezar)
+- Agregado un intento de injeccion de datos con un login
+- Agregado ruta: '/test' para realizar el login
+- Agregado modelo MVC para el login
+
+To do:
+- Arreglar el problema de autorizacion que lanza al no ser valida la contrasena  para la DB

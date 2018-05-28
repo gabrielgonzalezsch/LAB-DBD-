@@ -14,8 +14,18 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::get('/{user}', 'ControladorPaginas@say');
+//Route::get('/{user}', 'ControladorPaginas@say');
 
 Route::get('/test/{name}', function ($name){
     return '<h1>Invocaste a '.$name.'...</h1>';
 });
+
+Route::get('/insertTest', function(){
+    return view('userInsertTest');
+});
+
+Route::post('/insert', 'ControllerInsertTest@insert');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

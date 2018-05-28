@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransaccionTable extends Migration
+class CreateTransaccionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateTransaccionTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaccion', function (Blueprint $table) {
-            $table->increments('id_transaccion');
-            $table->interger('id_usuario')->references('id_usuario')->on('usuario');
-            $table->bigInterger('monto');
+        Schema::create('transacciones', function (Blueprint $table) {
+            $table->increments('ID_transaccion');
+            //$table->primary('ID_transaccion');
+            $table->integer('ID_usuario')->references('ID_usuario')->on('usuarios');
+            $table->bigInteger('monto');
             $table->boolean('ya_cancelado');
             $table->date('fecha_compra');
             $table->time('hora_compra');
-            $table->smallInterger('numero_cuenta_compra');
+            $table->smallInteger('numero_cuenta_compra');
             $table->text('descripcion');
-            //$table->timestamps();
+            $table->timestamps();
         });
     }
 
@@ -33,6 +34,6 @@ class CreateTransaccionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaccion');
+        Schema::dropIfExists('transacciones');
     }
 }

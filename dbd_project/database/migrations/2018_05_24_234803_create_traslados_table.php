@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrasladoTable extends Migration
+class CreateTrasladosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreateTrasladoTable extends Migration
      */
     public function up()
     {
-        Schema::create('traslado', function (Blueprint $table) {
+        Schema::create('traslados', function (Blueprint $table) {
             $table->increments('ID_traslado');
+            //$table->primary('ID_traslado');
             $table->string('tipo_vehiculo');
             $table->string('patente');
             $table->string('pais');
             $table->string('ciudad');
             $table->time('hora_inicio_servicio');
             $table->time('hora_fin_servicio');
-            $table->smallInterger('cap_pasajeros');
-            $table->interger('tarifa_por_kilometro');
-            $table->interger('descuento');
+            $table->smallInteger('cap_pasajeros');
+            $table->integer('tarifa_por_kilometro');
+            $table->integer('descuento');
+            $table->timestamps();
         });
     }
 
@@ -34,6 +36,6 @@ class CreateTrasladoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('traslado');
+        Schema::dropIfExists('traslados');
     }
 }

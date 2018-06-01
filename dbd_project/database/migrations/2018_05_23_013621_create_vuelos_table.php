@@ -17,9 +17,9 @@ class CreateVuelosTable extends Migration
             $table->increments('ID_vuelo');
             //$table->primary('ID_vuelo');
             //$table->interger('ID_aerolinea')->references('ID_aerolinea')->on('aerolinea');
-            $table->string('nombre_avion');
-            $table->string('aeropuerto_origen');
-            $table->string('aeropuerto_destino');
+            $table->string('nombre_avion', 30);
+            $table->string('aeropuerto_origen', 10);
+            $table->string('aeropuerto_destino', 10);
             $table->time('hora_salida');
             $table->time('hora_llegada');
             $table->date('fecha_salida');

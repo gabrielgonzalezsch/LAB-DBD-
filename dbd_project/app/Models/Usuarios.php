@@ -8,8 +8,8 @@ use App\User;
 class Usuarios extends Model
 {
     //
-
     protected $table = 'usuarios';
     protected $primaryKey = 'ID_usuario';
-    protected $connection = 'pgsql';
+    //protected $connection = 'pgsql';
+    //$db = DB::connection($connection)
 }

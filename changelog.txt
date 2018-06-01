@@ -4,7 +4,7 @@ Version actual 0.0.11
 
 Cambios version 0.0.0 -> 0.0.1
 Contribuyentes: Vicente Rivera
-- Agregado tablas: Usuario, Transaccion, Vuelo
+- Agregado tablas: Usuarios, Transacciones, Vuelos
 - Agregado rutas: '/', '/{cualquier_ruta}'
 - Se cambio el nombre a DBD project (temporal)
 
@@ -20,3 +20,12 @@ Contribuyentes: Vicente Rivera (sigo esperando que se animen a empezar)
 
 To do:
 - Arreglar el problema de autorizacion que lanza al no ser valida la contrasena  para la DB
+
+Cambios version 0.0.11 -> 0.0.2
+Contribuyentes: Vicente Rivera (de verdad nadie quiere trabajar? con o sin paro hay que entregar algo)
+- Arreglado el problema del error de contrasena. Se pueden agregar usuarios correctamente (falta mejorar login)
+- Agregado tabla Autos
+- Agregado un archivo homestead-up.bat para abrir el virtualbox mas rapido
+
+To do:
+- Esperar que termine el paro para que empiecen a trabajar...

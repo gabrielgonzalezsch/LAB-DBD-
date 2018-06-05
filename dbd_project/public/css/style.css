@@ -1,0 +1,70 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-image: url("/images/home-bg.jpg");
+  height: 100vh;
+  background-size:auto;
+  background-position: center;
+}
+
+.title-logo h1{
+  color: darkorange;
+  font-family: "Palatino", serif;
+  font-size: 70px;
+  margin-left: 30px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 5px;
+  font-weight: bold;
+}
+
+.button{
+  border: 3px solid black;
+  padding: 2px 2px 2px 2px;
+  background-color: white;
+  color: black;
+  display: inline;
+}
+
+.main_navigator{
+  float: left;
+  list-style: none;
+  margin-top: 20px;
+}
+
+.main_navigator li{
+  display: inline-block;
+  margin: 10;
+}
+
+.main_navigator li a{
+  color: white;
+  padding: 5px 10px;
+  font-family: "Georgia", serif;
+}
+
+.row{
+  max-width: 2000px;
+  margin-top: 30px;
+}
+.main_navigator li.active {
+  border: 1px solid green;
+}
+
+.main_navigator li:hover {
+  background-color: darkorange;
+  transition: all 0.5s ease-in;
+  border: 2px solid black;
+}
+
+.loginTable table{
+  margin: 20px 20px 20px 20px;
+}
+
+.loginTable table td{
+  color: white;
+  padding: 4px 4px 4px 4px;
+}

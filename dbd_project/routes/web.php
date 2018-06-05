@@ -11,21 +11,21 @@
 |
 */
 Route::get('/', function(){
-    return view('welcome');
+    return view('homepage');
 });
 
 //Route::get('/{user}', 'ControladorPaginas@say');
 
-Route::get('/test/{name}', function ($name){
-    return '<h1>Invocaste a '.$name.'...</h1>';
+Route::get('/admin', function(){
+    return view('admin');
 });
 
-Route::get('/insertTest', function(){
-    return view('userInsertTest');
+Route::get('/vuelo', function(){
+    return view('vuelo');
 });
 
-Route::post('/insert', 'ControllerInsertTest@insert');
+Route::post('/insert', 'ControllerInsertAdmin@insert');
+Route::post('/insertVuelo', 'ControllerInsertVuelo@insert');
+
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

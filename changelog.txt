@@ -29,3 +29,13 @@ Contribuyentes: Vicente Rivera (de verdad nadie quiere trabajar? con o sin paro 
 
 To do:
 - Esperar que termine el paro para que empiecen a trabajar...
+
+Cambios version 0.0.2 -> 0.0.3	06/06/18
+Contribuyentes: Vicente Rivera (...........)
+- Colocado un diseno temporal en front-end para el homepage
+- Agregado un insertor de vuelos (aun no probado)
+
+To do:
+- Agregar un insertor para todo
+- Poblar la base de datos
+- Hacer funciones en el model y controladores para probar el uso de la DB

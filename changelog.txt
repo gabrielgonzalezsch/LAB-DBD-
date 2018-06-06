@@ -39,3 +39,8 @@ To do:
 - Agregar un insertor para todo
 - Poblar la base de datos
 - Hacer funciones en el model y controladores para probar el uso de la DB
+
+Cambios version 0.0.3 -> 0.0.31 06/06/18
+Contribuyentes: Vicente Rivera
+- Bugfixes para insertar un vuelo
+- Se mejoro el front end para mostrar dropdowns

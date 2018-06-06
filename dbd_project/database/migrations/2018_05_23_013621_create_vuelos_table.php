@@ -15,7 +15,6 @@ class CreateVuelosTable extends Migration
     {
         Schema::create('vuelos', function (Blueprint $table) {
             $table->increments('ID_vuelo');
-            //$table->primary('ID_vuelo');
             //$table->interger('ID_aerolinea')->references('ID_aerolinea')->on('aerolinea');
             $table->string('nombre_avion', 30);
             $table->string('aeropuerto_origen', 10);
@@ -30,7 +29,7 @@ class CreateVuelosTable extends Migration
             $table->smallInteger('cap_equipaje');
             //$table->string('formato_vuelo'); Saco formato vuelo, no estoy seguro si sirve de algo
             $table->Integer('descuento');
-            $table->Integer('valor_turista');  //Separe precios para cada tipo asiento
+            $table->Integer('valor_turista');
             $table->Integer('valor_ejecutivo');
             $table->Integer('valor_primera_clase');
             $table->timestamps();

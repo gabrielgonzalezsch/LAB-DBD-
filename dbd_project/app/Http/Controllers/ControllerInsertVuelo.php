@@ -14,7 +14,7 @@ class ControllerInsertVuelo extends Controller
       'password' => 'required',
       'email' =>'required'
     ]);*/
-      $n_vuelo = $req->input('n_vuelo');
+      $n_vuelo = $req->input('n_avion');
       $a_destino = $req->input('a_origen');
       $a_origen = $req->input('a_destino');
       $horaS = $req->input('h_salida');
@@ -31,7 +31,7 @@ class ControllerInsertVuelo extends Controller
       $precio_p = $req->input('p_primera_clase');
 
       $array = array(
-      'nombre_avion'=>,
+      'nombre_avion'=> $n_vuelo,
       'aeropuerto_origen'=> $a_origen,
       'aeropuerto_destino'=> $a_destino,
       'hora_salida'=>$horaS,
@@ -43,9 +43,9 @@ class ControllerInsertVuelo extends Controller
       'cap_ejecutivo'=> $cap_e,
       'cap_primera_clase'=> $cap_p,
       'descuento'=> $desc,
-      'precio_turista'=> $precio_t,
-      'precio_ejecutivo'=> $precio_e,
-      'precio_primera_clase'=> $precio_p,
+      'valor_turista'=> $precio_t,
+      'valor_ejecutivo'=> $precio_e,
+      'valor_primera_clase'=> $precio_p,
       'created_at'=>date('Y-m-d H:i:s'),
       'updated_at'=>date('Y-m-d H:i:s')
       );

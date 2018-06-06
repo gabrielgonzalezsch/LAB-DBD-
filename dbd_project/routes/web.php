@@ -25,7 +25,7 @@ Route::get('/vuelo', function(){
 });
 
 Route::post('/insert', 'ControllerInsertAdmin@insert');
-Route::post('/insertVuelo', 'ControllerInsertVuelo@insert');
+Route::post('/insert-vuelo', 'ControllerInsertVuelo@insert');
 
 
 Auth::routes();

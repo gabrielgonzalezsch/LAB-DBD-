@@ -29,35 +29,44 @@ header {
   display: inline;
 }
 
-.main_navigator{
+.navigator ul li{
   float: left;
   list-style: none;
-  margin-top: 20px;
-}
-
-.main_navigator li{
-  display: inline-block;
   margin: 10;
-}
-
-.main_navigator li a{
-  color: white;
-  padding: 5px 10px;
+  font-size: 20px;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
   font-family: "Georgia", serif;
 }
 
-.row{
-  max-width: 2000px;
-  margin-top: 30px;
-}
-.main_navigator li.active {
-  border: 1px solid green;
+.navigator ul li a{
+  text-shadow: 10px;
+  color: white;
+  text-decoration: none;
+  display: block;
 }
 
-.main_navigator li:hover {
+.navigator ul li a:hover{
   background-color: darkorange;
   transition: all 0.5s ease-in;
-  border: 2px solid black;
+  border: 1px solid black;
+}
+
+.navigator ul li:hover ul li{
+  display: block;
+}
+
+.navigator ul li ul{
+    background-color: orange;
+    margin-bottom: 30px;
+    list-style: disc;
+}
+
+.navigator ul li ul li{
+  width: 200px;
+  display: none;
 }
 
 .loginTable table{

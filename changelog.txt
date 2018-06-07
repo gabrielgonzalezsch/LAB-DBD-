@@ -1,34 +1,20 @@
 Log para el projecto de DBD
+Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.0.11
+Version actual 0.0.4
 
-Cambios version 0.0.0 -> 0.0.1
+Cambios version 0.0.31 -> 0.0.4 06/06/18
+Contribuyentes: Vicente Rivera (Porfin creia que alguien iba a ayudar y no pasa nada)
+- Agregado "Ver vuelos" para mostrar todos los vuelos ingresados en la DB (front-end por defecto, hay que cambiarlo)
+
+To do:
+- Repetir lo que esta de vuelos para todas las otras partes de la pagina (autos, traslados, hoteles, habitaciones)
+
+Cambios version 0.0.3 -> 0.0.31 06/06/18
 Contribuyentes: Vicente Rivera
-- Agregado tablas: Usuarios, Transacciones, Vuelos
-- Agregado rutas: '/', '/{cualquier_ruta}'
-- Se cambio el nombre a DBD project (temporal)
+- Bugfixes para insertar un vuelo
+- Se mejoro el front end para mostrar dropdowns
 
-To do: 
-- tablas Auto, Aerolinea, etc
-- conectar con Postgresql (parece ser necesario usar xampp o laragon)
-
-Cambios version 0.0.1 -> 0.0.11
-Contribuyentes: Vicente Rivera (sigo esperando que se animen a empezar)
-- Agregado un intento de injeccion de datos con un login
-- Agregado ruta: '/test' para realizar el login
-- Agregado modelo MVC para el login
-
-To do:
-- Arreglar el problema de autorizacion que lanza al no ser valida la contrasena  para la DB
-
-Cambios version 0.0.11 -> 0.0.2
-Contribuyentes: Vicente Rivera (de verdad nadie quiere trabajar? con o sin paro hay que entregar algo)
-- Arreglado el problema del error de contrasena. Se pueden agregar usuarios correctamente (falta mejorar login)
-- Agregado tabla Autos
-- Agregado un archivo homestead-up.bat para abrir el virtualbox mas rapido
-
-To do:
-- Esperar que termine el paro para que empiecen a trabajar...
 
 Cambios version 0.0.2 -> 0.0.3	06/06/18
 Contribuyentes: Vicente Rivera (...........)
@@ -40,7 +26,31 @@ To do:
 - Poblar la base de datos
 - Hacer funciones en el model y controladores para probar el uso de la DB
 
-Cambios version 0.0.3 -> 0.0.31 06/06/18
+Cambios version 0.0.11 -> 0.0.2
+Contribuyentes: Vicente Rivera (de verdad nadie quiere trabajar? con o sin paro hay que entregar algo)
+- Arreglado el problema del error de contrasena. Se pueden agregar usuarios correctamente (falta mejorar login)
+- Agregado tabla Autos
+- Agregado un archivo homestead-up.bat para abrir el virtualbox mas rapido
+
+To do:
+- Esperar que termine el paro para que empiecen a trabajar...
+
+
+Cambios version 0.0.1 -> 0.0.11
+Contribuyentes: Vicente Rivera (sigo esperando que se animen a empezar)
+- Agregado un intento de injeccion de datos con un login
+- Agregado ruta: '/test' para realizar el login
+- Agregado modelo MVC para el login
+
+To do:
+- Arreglar el problema de autorizacion que lanza al no ser valida la contrasena  para la DB
+
+Cambios version 0.0.0 -> 0.0.1
 Contribuyentes: Vicente Rivera
-- Bugfixes para insertar un vuelo
-- Se mejoro el front end para mostrar dropdowns
+- Agregado tablas: Usuarios, Transacciones, Vuelos
+- Agregado rutas: '/', '/{cualquier_ruta}'
+- Se cambio el nombre a DBD project (temporal)
+
+To do: 
+- tablas Auto, Aerolinea, etc
+- conectar con Postgresql (parece ser necesario usar xampp o laragon)

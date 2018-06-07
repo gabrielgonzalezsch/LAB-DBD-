@@ -20,12 +20,17 @@ Route::get('/admin', function(){
     return view('admin');
 });
 
-Route::get('/vuelo', function(){
+/*Route::get('/vuelo', function(){
     return view('vuelo');
-});
+});*/
 
 Route::post('/insert', 'ControllerInsertAdmin@insert');
-Route::post('/insert-vuelo', 'ControllerInsertVuelo@insert');
+
+Route::get('/insertar-vuelos', function(){
+  return view('vuelo');
+});
+
+Route::resource('vuelos', 'ControllerVuelos');
 
 
 Auth::routes();

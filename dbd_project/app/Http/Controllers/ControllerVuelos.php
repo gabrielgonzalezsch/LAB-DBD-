@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vuelos;
 
-class ControllerInsertVuelo extends Controller
+class ControllerVuelos extends Controller
 {
-  function insert(Request $req){
+  public function index(){
+      $vuelos = Vuelos::orderBy('valor_turista', 'asc')->paginate(1); //Cambiar a ordenarlos segun criterios
+      return view('vuelos.buscar-vuelos')->with('vuelos', $vuelos);
+  }
+
+  public function store(Request $req){
 
       /*$this->validator($req, [
       'username' => 'required',
@@ -52,5 +57,37 @@ class ControllerInsertVuelo extends Controller
 
       Vuelos::insert($array);
       echo "Success!";
+  }
+
+  public function show($id){
+    $vuelo = Vuelos::find($id);
+    $fechaS = $vuelo->fecha_salida;
+    $fechaL = $vuelo->fecha_llegada;
+    $horaS = $vuelo->hora_salida;
+    $horaL = $vuelo->hora_llegada;
+    $dateTimeLlegada = date('Y-m-d H:i:s', strtotime("$fechaS $horaS"));
+    $dateTimeSalida = date('Y-m-d H:i:s', strtotime("$fechaL $horaL"));
+    $tiempoViaje = $this->timeDiff($dateTimeSalida, $dateTimeLlegada);
+    //echo "Horas: ".$tiempoViaje;
+    return view('vuelos.detalle-vuelo')->with('vuelo', $vuelo)->with('horas', $tiempoViaje);
+  }
+
+  function timeDiff($firstTime,$lastTime){
+    $firstTime=strtotime($firstTime);
+    $lastTime=strtotime($lastTime);
+    $timeDiff=($lastTime-$firstTime)/3600;
+    return $timeDiff;
+  }
+
+  public function edit($id){
+
+  }
+
+  public function update(Request $request, $id){
+
+  }
+
+  public function destroy($id){
+
   }
 }

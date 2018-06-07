@@ -12,66 +12,66 @@
           </div>
             <div class="navigator">
                 <ul>
-                  <li><a href=""> Log in </a>
+                  <li><a href="#"> Log in </a>
                     <ul>
                       <li>
-                        <a href=""> Agregar usuario normal</a>
+                        <a href="#"> Agregar usuario normal</a>
                         <a href="/admin"> Agregar administrador</a>
-                        <a href=""> Agregar usuario guest</a>
+                        <a href="#"> Agregar usuario guest</a>
                       </li>
                     </ul>
                   </li>
-                  <li><a href=""> Vuelos </a>
+                  <li><a href="#"> Vuelos </a>
                     <ul>
                       <li>
-                        <a href="/vuelo"> Agregar vuelo</a>
-                        <a href=""> Ver vuelos</a>
-                        <a href=""> Buscar vuelos</a>
+                        <a href="/insertar-vuelos"> Agregar vuelo</a>
+                        <a href="/vuelos"> Ver vuelos</a>
+                        <a href="#"> Buscar vuelos</a>
                       </li>
                     </ul>
                   </li>
-                  <li><a href=""> Autos </a>
+                  <li><a href="#"> Autos </a>
                     <ul>
                       <li>
-                        <a href=""> Agregar autos</a>
-                        <a href=""> Ver autos</a>
-                        <a href=""> Buscar autos</a>
+                        <a href="#"> Agregar autos</a>
+                        <a href="#"> Ver autos</a>
+                        <a href="#"> Buscar autos</a>
                       </li>
                     </ul>
                   </li>
-                  <li><a href=""> Traslados </a>
+                  <li><a href="#"> Traslados </a>
                     <ul>
                       <li>
-                        <a href=""> Agregar traslados</a>
-                        <a href=""> Ver traslados</a>
-                        <a href=""> Buscar traslados</a>
+                        <a href="#"> Agregar traslados</a>
+                        <a href="#"> Ver traslados</a>
+                        <a href="#"> Buscar traslados</a>
                       </li>
                     </ul>
                   </li>
-                  <li><a href=""> Hoteles </a>
+                  <li><a href="#"> Hoteles </a>
                     <ul>
                       <li>
-                        <a href=""> Agregar hoteles</a>
-                        <a href=""> Ver hoteles</a>
-                        <a href=""> Buscar hoteles</a>
+                        <a href="#"> Agregar hoteles</a>
+                        <a href="#"> Ver hoteles</a>
+                        <a href="#"> Buscar hoteles</a>
                       </li>
                     </ul>
                   </li>
-                  <li><a href=""> Habitaciones </a>
+                  <li><a href="#"> Habitaciones </a>
                     <ul>
                       <li>
-                        <a href=""> Agregar Habitaciones</a>
-                        <a href=""> Ver Habitaciones</a>
-                        <a href=""> Buscar Habitaciones</a>
+                        <a href="#"> Agregar Habitaciones</a>
+                        <a href="#"> Ver Habitaciones</a>
+                        <a href="#"> Buscar Habitaciones</a>
                       </li>
                     </ul>
                   </li>
-                  <li><a href=""> Actividades </a>
+                  <li><a href="#"> Actividades </a>
                     <ul>
                       <li>
-                        <a href=""> Agregar actividades</a>
-                        <a href=""> Ver actividades</a>
-                        <a href=""> Buscar actividades</a>
+                        <a href="#"> Agregar actividades</a>
+                        <a href="#"> Ver actividades</a>
+                        <a href="#"> Buscar actividades</a>
                       </li>
                     </ul>
                   </li>

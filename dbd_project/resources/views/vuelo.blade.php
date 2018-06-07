@@ -9,7 +9,7 @@
         <h1>Insertar Vuelos</h1>
       </div>
       <div class="loginTable">
-        <form action="/insert-vuelo" method="post">
+        <form action="/vuelos" method="post">
             <table>
                <tr>
                  {{ csrf_field()}}

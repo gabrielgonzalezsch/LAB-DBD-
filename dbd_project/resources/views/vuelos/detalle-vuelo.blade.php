@@ -1,8 +1,8 @@
 @extends('layouts.app')
-<header>
 @section('content')
   <h1>Detalles del vuelo: {{$vuelo->nombre_avion}}</h1>
     <ul>
+      <li><h3>>Aerolinea: {{$vuelo->aerolinea}} </h3></li>
       <li><h3>>Viaje: {{$vuelo->aeropuerto_origen}} >>>>> {{$vuelo->aeropuerto_destino}} </h3></li>
       <li><h4>Salida: {{$vuelo->fecha_salida}}, {{$vuelo->hora_salida}}</h4></li>
       <li><h4>Llegada:{{$vuelo->fecha_llegada}}, {{$vuelo->hora_llegada}}</h4></li>

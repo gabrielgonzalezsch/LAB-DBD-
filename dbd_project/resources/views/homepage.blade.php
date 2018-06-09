@@ -15,7 +15,7 @@
                   <li><a href="#"> Log in </a>
                     <ul>
                       <li>
-                        <a href="#"> Agregar usuario normal</a>
+                        <a href="/usuarios/create"> Agregar usuario normal</a>
                         <a href="/admin"> Agregar administrador</a>
                         <a href="#"> Agregar usuario guest</a>
                       </li>
@@ -33,8 +33,8 @@
                   <li><a href="#"> Autos </a>
                     <ul>
                       <li>
-                        <a href="#"> Agregar autos</a>
-                        <a href="#"> Ver autos</a>
+                        <a href="/autos/create"> Agregar autos</a>
+                        <a href="/autos"> Ver autos</a>
                         <a href="#"> Buscar autos</a>
                       </li>
                     </ul>
@@ -51,8 +51,8 @@
                   <li><a href="#"> Hoteles </a>
                     <ul>
                       <li>
-                        <a href="#"> Agregar hoteles</a>
-                        <a href="#"> Ver hoteles</a>
+                        <a href="/hoteles/create"> Agregar hoteles</a>
+                        <a href="/hoteles"> Ver hoteles</a>
                         <a href="#"> Buscar hoteles</a>
                       </li>
                     </ul>

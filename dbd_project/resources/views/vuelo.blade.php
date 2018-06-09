@@ -17,6 +17,10 @@
                  <td><input type="text" name="n_avion" value=""></td>
                </tr>
                <tr>
+                 <td>Aerolinea: </td>
+                 <td><input type="text" name="aerolinea" value=""></td>
+               </tr>
+               <tr>
                  <td>Aeropuerto origen: </td>
                  <td><input type="text" name="a_origen" value=""></td>
                </tr>
@@ -29,11 +33,8 @@
                   <td>Hora llegada: </td><td><input type="text" name="h_llegada" value=""></td>
                </tr>
                <tr>
-                 <td>Fecha salida: </td> <td><input type="text" name="f_salida" value=""></td>
-                  <td>Fecha llegada: </td> <td><input type="text" name="f_llegada" value=""></td>
-               </tr>
-               <tr>
                    <td>Capacidad equipaje: </td> <td><input type="text" name="c_equipaje" value=""></td>
+                   <td>Maletas por persona: </td> <td><input type="text" name="maletas" value=""></td>
                </tr>
                <tr>
                     <td>Capacidad turistas: </td> <td><input type="text" name="c_turista" value=""></td>

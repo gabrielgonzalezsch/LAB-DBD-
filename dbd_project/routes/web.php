@@ -14,15 +14,9 @@ Route::get('/', function(){
     return view('homepage');
 });
 
-//Route::get('/{user}', 'ControladorPaginas@say');
-
 Route::get('/admin', function(){
     return view('admin');
 });
-
-/*Route::get('/vuelo', function(){
-    return view('vuelo');
-});*/
 
 Route::post('/insert', 'ControllerInsertAdmin@insert');
 
@@ -30,7 +24,12 @@ Route::get('/insertar-vuelos', function(){
   return view('vuelo');
 });
 
-Route::resource('vuelos', 'ControllerVuelos');
 
+//Route::post('/usuarios/store', 'ControllerUsuarios@store');
+
+Route::resource('vuelos', 'ControllerVuelos');
+Route::resource('autos', 'ControllerAutos');
+Route::resource('usuarios', 'ControllerUsuarios');
+Route::resource('hoteles', 'ControllerHoteles');
 
 Auth::routes();

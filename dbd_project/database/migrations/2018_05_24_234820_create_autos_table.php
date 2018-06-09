@@ -15,18 +15,16 @@ class CreateAutosTable extends Migration
     {
         Schema::create('autos', function (Blueprint $table) {
             $table->increments('ID_auto');
-            $table->string('tipo_vehiculo', 20);
             $table->string('modelo_auto', 50);
             $table->string('compañia', 30);
-            $table->string('patente', 10);
+            $table->string('patente', 10)->nullable();
             $table->string('pais_arriendo', 30);
             $table->string('ciudad_arriendo', 30);
             $table->string('calle_arriendo', 50);
             $table->integer('precio_por_dia');
-            $table->smallInteger('cap_pasajeros');
-            $table->string('descripcion_auto', 100);
-            //$table->text('detalle_auto');
-            $table->integer('descuento');
+            $table->smallInteger('cap_pasajeros')->default(4)->nullable();
+            $table->string('descripcion_auto', 100)->nullable()->default('No descripción');
+            $table->integer('descuento')->nullable()->default(0);
             $table->timestamps();
         });
     }

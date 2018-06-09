@@ -17,9 +17,9 @@ class CreateUsuariosTable extends Migration
             $table->increments('ID_usuario');
             $table->string('tipo_usuario', 15)->default('invitado');
             $table->string('banco_origen', 30)->nullable();
-            $table->smallInteger('numero_cuenta_usuario')->nullable();
-            $table->bigInteger('fondos_disponibles')->default(0);
-            $table->string('username', 30)->default('guest123');
+            $table->integer('numero_cuenta_usuario')->nullable();
+            $table->bigInteger('fondos_disponibles')->nullable()->default(0);
+            $table->string('username', 30)->unique()->default('guest');
             $table->string('email', 40)->unique()->nullable();
             $table->string('password', 20);
             $table->timestamps();

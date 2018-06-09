@@ -15,14 +15,12 @@ class CreateTransaccionesTable extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->increments('ID_transaccion');
-            //$table->primary('ID_transaccion');
-            $table->integer('ID_usuario')->references('ID_usuario')->on('usuarios');
+            $table->Integer('ID_usuario')->references('ID_usuario')->on('usuarios');
             $table->bigInteger('monto');
-            $table->boolean('ya_cancelado');
+            $table->boolean('ya_cancelado')->nullable()->default(false);
             $table->date('fecha_compra');
             $table->time('hora_compra');
-            $table->smallInteger('numero_cuenta_compra');
-            $table->text('descripcion');
+            $table->Integer('numero_cuenta_compra');
             $table->timestamps();
         });
     }

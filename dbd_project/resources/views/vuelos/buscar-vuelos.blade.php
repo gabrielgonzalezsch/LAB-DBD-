@@ -15,6 +15,7 @@
     <a href="/" class="button" role="button"> Volver </a>
   @else
     <p>No se encontraron vuelos!</p>
+    <a href="/" class="button" role="button"> Volver </a>
   @endif
 
 @endsection

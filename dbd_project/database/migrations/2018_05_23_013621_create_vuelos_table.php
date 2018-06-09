@@ -15,20 +15,19 @@ class CreateVuelosTable extends Migration
     {
         Schema::create('vuelos', function (Blueprint $table) {
             $table->increments('ID_vuelo');
-            //$table->interger('ID_aerolinea')->references('ID_aerolinea')->on('aerolinea');
+            //$table->interger('cod_aerolinea')->references('cod_aerolinea')->on('aerolinea');
             $table->string('nombre_avion', 30);
-            $table->string('aeropuerto_origen', 10);
-            $table->string('aeropuerto_destino', 10);
-            $table->time('hora_salida');
-            $table->time('hora_llegada');
-            $table->date('fecha_salida');
-            $table->date('fecha_llegada');
-            $table->smallInteger('cap_turista');
-            $table->smallInteger('cap_ejecutivo');
-            $table->smallInteger('cap_primera_clase');
-            $table->smallInteger('cap_equipaje');
-            //$table->string('formato_vuelo'); Saco formato vuelo, no estoy seguro si sirve de algo
-            $table->Integer('descuento');
+            $table->string('nombre_aerolinea', 30);
+            $table->string('aeropuerto_origen', 5);
+            $table->string('aeropuerto_destino', 5);
+            $table->DateTime('hora_salida');
+            $table->DateTime('hora_llegada');
+            $table->smallInteger('cap_turista')->default(0);
+            $table->smallInteger('cap_ejecutivo')->default(0);
+            $table->smallInteger('cap_primera_clase')->default(0);
+            $table->smallInteger('cap_equipaje')->default(0);
+            $table->smallInteger('maletas_por_persona')->nullable()->default(1);
+            $table->Integer('descuento')->nullable()->default(0);
             $table->Integer('valor_turista');
             $table->Integer('valor_ejecutivo');
             $table->Integer('valor_primera_clase');

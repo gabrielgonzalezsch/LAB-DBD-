@@ -13,20 +13,14 @@ class ControllerVuelos extends Controller
   }
 
   public function store(Request $req){
-
-      /*$this->validator($req, [
-      'username' => 'required',
-      'password' => 'required',
-      'email' =>'required'
-    ]);*/
-      $n_vuelo = $req->input('n_avion');
+      $num_vuelo = $req->input('num_avion');
+      $aerolinea = $req->input('aerolinea');
       $a_destino = $req->input('a_origen');
       $a_origen = $req->input('a_destino');
       $horaS = $req->input('h_salida');
       $horaL = $req->input('h_llegada');
-      $fechaS = $req->input('f_salida');
-      $fechaL = $req->input('f_llegada');
       $cap_equipaje = $req->input('c_equipaje');
+      $maletas = $req->input('num_maletas');
       $cap_t = $req->input('c_turista');
       $cap_e = $req->input('c_ejecutivo');
       $cap_p = $req->input('c_primera_clase');
@@ -36,17 +30,17 @@ class ControllerVuelos extends Controller
       $precio_p = $req->input('p_primera_clase');
 
       $array = array(
-      'nombre_avion'=> $n_vuelo,
+      'nombre_avion'=> $num_vuelo,
+      'cod_aerolinea'=> $aerolinea,
       'aeropuerto_origen'=> $a_origen,
       'aeropuerto_destino'=> $a_destino,
       'hora_salida'=>$horaS,
       'hora_llegada'=>$horaL,
-      'fecha_salida'=>$fechaS,
-      'fecha_llegada'=>$fechaL,
-      'cap_equipaje'=>$cap_equipaje,
       'cap_turista'=> $cap_t,
       'cap_ejecutivo'=> $cap_e,
       'cap_primera_clase'=> $cap_p,
+      'cap_equipaje'=>$cap_equipaje,
+      'maletas_por_persona'=>$maletas,
       'descuento'=> $desc,
       'valor_turista'=> $precio_t,
       'valor_ejecutivo'=> $precio_e,
@@ -61,12 +55,6 @@ class ControllerVuelos extends Controller
 
   public function show($id){
     $vuelo = Vuelos::find($id);
-    $fechaS = $vuelo->fecha_salida;
-    $fechaL = $vuelo->fecha_llegada;
-    $horaS = $vuelo->hora_salida;
-    $horaL = $vuelo->hora_llegada;
-    $dateTimeLlegada = date('Y-m-d H:i:s', strtotime("$fechaS $horaS"));
-    $dateTimeSalida = date('Y-m-d H:i:s', strtotime("$fechaL $horaL"));
     $tiempoViaje = $this->timeDiff($dateTimeSalida, $dateTimeLlegada);
     //echo "Horas: ".$tiempoViaje;
     return view('vuelos.detalle-vuelo')->with('vuelo', $vuelo)->with('horas', $tiempoViaje);

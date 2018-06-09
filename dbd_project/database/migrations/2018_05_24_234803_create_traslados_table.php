@@ -15,16 +15,15 @@ class CreateTrasladosTable extends Migration
     {
         Schema::create('traslados', function (Blueprint $table) {
             $table->increments('ID_traslado');
-            //$table->primary('ID_traslado');
             $table->string('tipo_vehiculo', 20);
-            $table->string('patente', 10);
+            $table->string('patente', 10)->nullable();
             $table->string('pais', 30);
             $table->string('ciudad', 30);
             $table->time('hora_inicio_servicio');
             $table->time('hora_fin_servicio');
             $table->smallInteger('cap_pasajeros');
             $table->integer('tarifa_por_kilometro');
-            $table->integer('descuento');
+            $table->integer('descuento')->nullable()->default(0);
             $table->timestamps();
         });
     }

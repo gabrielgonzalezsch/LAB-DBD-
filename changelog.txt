@@ -1,7 +1,17 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.0.4
+Version actual 0.0.5
+
+Cambios version 0.0.4 -> 0.0.5 09/06/18
+Contribuyentes: Vicente Rivera (No me digas)
+- Mejorado el registro, ahora se pueden registrar usuarios normales
+- Agregado insertar/ver autos
+- Modificado valores en la DB (nullable y esas cosas)
+- Agregado template para hacer otras partes de la pagina con forms de laravel
+
+To do:
+- Terminar hoteles, luego conectarlo con habitaciones
 
 Cambios version 0.0.31 -> 0.0.4 06/06/18
 Contribuyentes: Vicente Rivera (Porfin creia que alguien iba a ayudar y no pasa nada)

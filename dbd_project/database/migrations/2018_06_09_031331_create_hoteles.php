@@ -18,8 +18,10 @@ class CreateHoteles extends Migration
             $table->string('nombre_hotel', 100);
             $table->string('pais', 30);
             $table->string('ciudad', 50);
-            $table->string('direccion', 100);
+            $table->string('direccion', 100)->unique();
             $table->float('valoracion')->default(0.0);
+            $table->Integer('num_valoraciones')->default(0);//Implementar luego
+            $table->Interger('num_comentarios')->default(0);//Implementar luego
             $table->decimal('latitud', 10, 7);
             $table->decimal('longitud', 10, 7);
             $table->smallInteger('habitaciones_disponibles')->nullable()->default(0);

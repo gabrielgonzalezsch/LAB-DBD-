@@ -12,9 +12,11 @@ class ControllerHoteles extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
-      $autos = Hoteles::orderBy('precio_min_habitacion', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
+      $hoteles = Hoteles::orderBy('ID_hotel', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
       return view('hoteles.buscar-hoteles')->with('hoteles', $hoteles);
     }
 
@@ -25,7 +27,7 @@ class ControllerHoteles extends Controller
      */
     public function create()
     {
-        //return view('hoteles.insertar-hotel');
+        return view('hoteles.insertar-hotel');
     }
 
     /**
@@ -36,36 +38,26 @@ class ControllerHoteles extends Controller
      */
     public function store(Request $request)
     {
-      /*$validData = $request->validate([
-          'tipo-auto' => 'required|alpha_num',
-          'mod-auto' => 'required|alpha_num',
-          'comp' => 'required|alpha_num',
-          'pat' => 'required|alpha_num',
-          'pais-arr' => 'required|string',
-          'ciudad-arr' => 'required|string',
-          'calle-arr' => 'required|string',
-          'precio-por-dia' => 'required|numeric',
-          'descuento' => 'required',
-          'cap-pasajeros' => 'required|digits_between:0,100',
+      $validData = $request->validate([
+          'n_hotel' => 'required',
+          'pais' => 'required',
+          'ciudad' => 'required',
+          'dir' => 'required|unique:hoteles',
       ]);
 
-      $auto = new Autos();
-      $auto->tipo_vehiculo = $request->input('tipo-auto');
-      $auto->modelo_auto = $request->input('mod-auto');
-      $auto->compañia = $request->input('comp');
-      $auto->patente = $request->input('pat');
-      $auto->pais_arriendo = $request->input('pais-arr');
-      $auto->ciudad_arriendo = $request->input('ciudad-arr');
-      $auto->calle_arriendo = $request->input('calle-arr');
-      $auto->precio_por_dia = $request->input('precio-por-dia');
-      $auto->cap_pasajeros = $request->input('cap-pasajeros');
-      $auto->descripcion_auto = $request->input('desc-auto');
-      $auto->descuento = $request->input('descuento');
-      $auto->created_at = date('Y-m-d H:i:s');
-      $auto->updated_at = date('Y-m-d H:i:s');
-      $auto->save();
+      $hotel = new Hoteles();
+      $hotel->nombre_hotel = $request->input('n_hotel');
+      $hotel->pais = $request->input('pais');
+      $hotel->ciudad = $request->input('ciudad');
+      $hotel->direccion = $request->input('dir');
+      $hotel->valoracion = 0.0;
+      $hotel->latitud = 0;  //USAR GOOGLE API PARA OBTENER LATITUD Y LONGITUD
+      $hotel->longitud = 0;
+      $hotel->created_at = date('Y-m-d H:i:s');
+      $hotel->updated_at = date('Y-m-d H:i:s');
+      $hotel->save();
       echo "Success!";
-      return redirect('/autos')->with('success', 'Mostrando autos disponibles');*/
+      return redirect('/hoteles')->with('success', 'Mostrando todos los hoteles');
     }
 
     /**
@@ -74,9 +66,16 @@ class ControllerHoteles extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
-        //
+      try{
+          $hotel = Hoteles::findOrFail($id);
+        return view('hoteles.detalle-hotel')->with('hotel', $hotel);
+      }catch(Exception $e){
+        echo "Error";
+        return redirect('/hoteles')->with('failure', 'Hotel no existente');
+      }
     }
 
     /**

@@ -1,4 +1,5 @@
-<html lang="{{ app()->getLocale() }}">
+@extends('layouts.app')
+@section('content')
     <head>
         <meta charset="utf-8">
         <title>DBD Homepage!</title>
@@ -12,19 +13,12 @@
           </div>
             <div class="navigator">
                 <ul>
-                  <li><a href="#"> Log in </a>
-                    <ul>
-                      <li>
-                        <a href="/usuarios/create"> Agregar usuario normal</a>
-                        <a href="/admin"> Agregar administrador</a>
-                        <a href="#"> Agregar usuario guest</a>
-                      </li>
-                    </ul>
-                  </li>
                   <li><a href="#"> Vuelos </a>
                     <ul>
                       <li>
-                        <a href="/insertar-vuelos"> Agregar vuelo</a>
+                        @if(Auth::check())
+                        <a href="/vuelos/create"> Agregar vuelo</a>
+                        @endif
                         <a href="/vuelos"> Ver vuelos</a>
                         <a href="#"> Buscar vuelos</a>
                       </li>
@@ -33,7 +27,9 @@
                   <li><a href="#"> Autos </a>
                     <ul>
                       <li>
+                        @if(Auth::check())
                         <a href="/autos/create"> Agregar autos</a>
+                        @endif
                         <a href="/autos"> Ver autos</a>
                         <a href="#"> Buscar autos</a>
                       </li>
@@ -51,18 +47,11 @@
                   <li><a href="#"> Hoteles </a>
                     <ul>
                       <li>
+                        @if(Auth::check())
                         <a href="/hoteles/create"> Agregar hoteles</a>
+                        @endif
                         <a href="/hoteles"> Ver hoteles</a>
                         <a href="#"> Buscar hoteles</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><a href="#"> Habitaciones </a>
-                    <ul>
-                      <li>
-                        <a href="#"> Agregar Habitaciones</a>
-                        <a href="#"> Ver Habitaciones</a>
-                        <a href="#"> Buscar Habitaciones</a>
                       </li>
                     </ul>
                   </li>
@@ -79,4 +68,4 @@
             </div>
         </header>
     </body>
-</html>
+@endsection

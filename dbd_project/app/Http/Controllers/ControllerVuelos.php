@@ -12,6 +12,10 @@ class ControllerVuelos extends Controller
       return view('vuelos.buscar-vuelos')->with('vuelos', $vuelos);
   }
 
+  public function create(){
+      return view('vuelos.insertar-vuelo');
+  }
+
   public function store(Request $req){
       $num_vuelo = $req->input('num_avion');
       $aerolinea = $req->input('aerolinea');

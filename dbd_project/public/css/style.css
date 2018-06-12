@@ -10,6 +10,11 @@ header {
   background-position: center;
 }
 
+.has-new-line::before{
+  content: '\A';
+  white-space: pre;
+}
+
 .title-logo h1{
   color: darkorange;
   font-family: "Palatino", serif;

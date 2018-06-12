@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Middleware\CheckAdmin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,22 +14,30 @@ Route::get('/', function(){
     return view('homepage');
 });
 
-Route::get('/admin', function(){
-    return view('admin');
-});
-
-Route::post('/insert', 'ControllerInsertAdmin@insert');
-
-Route::get('/insertar-vuelos', function(){
-  return view('vuelo');
-});
-
 
 //Route::post('/usuarios/store', 'ControllerUsuarios@store');
+Route::group(['middleware'=> 'admin'], function (){
+  Route::get('/hoteles/create', 'ControllerHoteles@create');
+  Route::get('/vuelos/create', 'ControllerVuelos@create');
+  Route::get('/autos/create', 'ControllerAutos@create');
+  //Route::get('/hoteles/{id_hotel}/create', function($id_hotel){
+    //return view('habitaciones.insertar-habitacion')->with('id', $id_hotel);
+  //});
+  Route::get('/hoteles/{id_hotel}/create', 'ControllerHabitaciones@create');
+});
 
-Route::resource('vuelos', 'ControllerVuelos');
-Route::resource('autos', 'ControllerAutos');
-Route::resource('usuarios', 'ControllerUsuarios');
-Route::resource('hoteles', 'ControllerHoteles');
+//View methods
+Route::get('/hoteles', 'ControllerHoteles@index');
+Route::get('/hoteles/{id_hotel}', 'ControllerHoteles@show');
+Route::get('/vuelos', 'ControllerVuelos@index');
+Route::get('/vuelos/{id_vuelo}', 'ControllerVuelos@show');
+Route::get('/autos', 'ControllerAutos@index');
+Route::get('/autos/{id_auto}', 'ControllerAutos@show');
+
+//Post methods
+Route::post('/autos/store', 'ControllerAutos@store');
+Route::post('/hoteles/store', 'ControllerHoteles@store');
+Route::post('/vuelos/store', 'ControllerVuelos@store');
+Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
 Auth::routes();

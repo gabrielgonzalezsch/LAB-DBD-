@@ -1,9 +1,20 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.0.5
+Version actual 0.0.6
 
-Cambios version 0.0.4 -> 0.0.5 09/06/18
+<<< Version 0.0.5 -> 0.0.6 >>> 12/06/18
+Contribuyentes: Vicente Rivera (Era trabajo individual?), no deberia quedarme hasta las 3 am...
+- Agregado insertar hoteles, e insertar habitaciones para cada hotel!
+- Cambiado la manera en insertar nuevos registros, ahora requiere permisos de administrador utilizando middleware CheckAdmin (Se bloquean las rutas /autos/create, /vuelos/create, etc)
+- Ademas se ocultaron los links para poder ingresar a estas secciones para cualquier usuario no registrado (se cambiara despues para que solo se vea para los admins)
+- Para poder insertar cosas y entrar en el link se debe registrar usando el boton de registro normalmente. Luego en la terminal del homestead usar "php artisan tinker":
+1)$user = App\User::find(X); //X cualquier numero para la ID de usuario
+2)$user->tipo_usuario='administrador';
+3)$user->save();
+4)Ahora registrarse con esa cuenta y se podra ingresar a las rutas para insertar y visualizar los botones que estaban ocultos 
+
+<<< Version 0.0.4 -> 0.0.5 >>> 09/06/18
 Contribuyentes: Vicente Rivera (No me digas)
 - Mejorado el registro, ahora se pueden registrar usuarios normales
 - Agregado insertar/ver autos
@@ -13,20 +24,20 @@ Contribuyentes: Vicente Rivera (No me digas)
 To do:
 - Terminar hoteles, luego conectarlo con habitaciones
 
-Cambios version 0.0.31 -> 0.0.4 06/06/18
+<<< Version 0.0.31 -> 0.0.4 >>> 06/06/18
 Contribuyentes: Vicente Rivera (Porfin creia que alguien iba a ayudar y no pasa nada)
 - Agregado "Ver vuelos" para mostrar todos los vuelos ingresados en la DB (front-end por defecto, hay que cambiarlo)
 
 To do:
 - Repetir lo que esta de vuelos para todas las otras partes de la pagina (autos, traslados, hoteles, habitaciones)
 
-Cambios version 0.0.3 -> 0.0.31 06/06/18
+<<< Version 0.0.3 -> 0.0.31 06/06/18
 Contribuyentes: Vicente Rivera
 - Bugfixes para insertar un vuelo
 - Se mejoro el front end para mostrar dropdowns
 
 
-Cambios version 0.0.2 -> 0.0.3	06/06/18
+<<< Version 0.0.2 -> 0.0.3 >>>	06/06/18
 Contribuyentes: Vicente Rivera (...........)
 - Colocado un diseno temporal en front-end para el homepage
 - Agregado un insertor de vuelos (aun no probado)
@@ -36,7 +47,7 @@ To do:
 - Poblar la base de datos
 - Hacer funciones en el model y controladores para probar el uso de la DB
 
-Cambios version 0.0.11 -> 0.0.2
+<<< Version 0.0.11 -> 0.0.2 >>>
 Contribuyentes: Vicente Rivera (de verdad nadie quiere trabajar? con o sin paro hay que entregar algo)
 - Arreglado el problema del error de contrasena. Se pueden agregar usuarios correctamente (falta mejorar login)
 - Agregado tabla Autos
@@ -46,7 +57,7 @@ To do:
 - Esperar que termine el paro para que empiecen a trabajar...
 
 
-Cambios version 0.0.1 -> 0.0.11
+<<< Version 0.0.1 -> 0.0.11 >>>
 Contribuyentes: Vicente Rivera (sigo esperando que se animen a empezar)
 - Agregado un intento de injeccion de datos con un login
 - Agregado ruta: '/test' para realizar el login
@@ -55,7 +66,7 @@ Contribuyentes: Vicente Rivera (sigo esperando que se animen a empezar)
 To do:
 - Arreglar el problema de autorizacion que lanza al no ser valida la contrasena  para la DB
 
-Cambios version 0.0.0 -> 0.0.1
+<<< Version 0.0.0 -> 0.0.1 >>>
 Contribuyentes: Vicente Rivera
 - Agregado tablas: Usuarios, Transacciones, Vuelos
 - Agregado rutas: '/', '/{cualquier_ruta}'

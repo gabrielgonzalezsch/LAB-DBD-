@@ -15,7 +15,6 @@ class CreateVuelosTable extends Migration
     {
         Schema::create('vuelos', function (Blueprint $table) {
             $table->increments('ID_vuelo');
-            //$table->interger('cod_aerolinea')->references('cod_aerolinea')->on('aerolinea');
             $table->string('nombre_avion', 30);
             $table->string('nombre_aerolinea', 30);
             $table->string('aeropuerto_origen', 5);

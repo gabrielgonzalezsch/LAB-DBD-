@@ -44,7 +44,7 @@ class ControllerAutos extends Controller
           'ciudad-arr' => 'required|string',
           'calle-arr' => 'required|string',
           'precio-por-dia' => 'required|numeric',
-          'descuento' => 'required',
+          'descuento' => 'required|numeric',
           'cap-pasajeros' => 'required|digits_between:0,100',
       ]);
 

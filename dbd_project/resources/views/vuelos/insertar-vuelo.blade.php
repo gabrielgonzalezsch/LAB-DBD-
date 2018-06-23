@@ -1,61 +1,60 @@
-<html lang="{{ app()->getLocale() }}">
-  <head>
-    <title>{{config('app.name', 'DBD Project')}}</title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::to('../css/style.css') }}" />
-  </head>
-  <body>
-    <header>
-      <div clase="title-logo">
-        <h1>Insertar Vuelos</h1>
-      </div>
-      <div class="loginTable">
-        <form action="/vuelos" method="post">
-            <table>
-               <tr>
-                 {{ csrf_field()}}
-                 <td>Nombre del avión: </td>
-                 <td><input type="text" name="n_avion" value=""></td>
-               </tr>
-               <tr>
-                 <td>Aerolinea: </td>
-                 <td><input type="text" name="aerolinea" value=""></td>
-               </tr>
-               <tr>
-                 <td>Aeropuerto origen: </td>
-                 <td><input type="text" name="a_origen" value=""></td>
-               </tr>
-               <tr>
-                 <td>Aeropuerto destino: </td>
-                 <td><input type="text" name="a_destino" value=""></td>
-               </tr>
-               <tr>
-                 <td>Hora salida: </td><td><input type="text" name="h_salida" value=""></td>
-                  <td>Hora llegada: </td><td><input type="text" name="h_llegada" value=""></td>
-               </tr>
-               <tr>
-                   <td>Capacidad equipaje: </td> <td><input type="text" name="c_equipaje" value=""></td>
-                   <td>Maletas por persona: </td> <td><input type="text" name="maletas" value=""></td>
-               </tr>
-               <tr>
-                    <td>Capacidad turistas: </td> <td><input type="text" name="c_turista" value=""></td>
-                    <td>Capacidad ejecutivo: </td> <td><input type="text" name="c_ejecutivo" value=""></td>
-                    <td>Capacidad primera clase: </td> <td><input type="text" name="c_primera_clase" value=""></td>
-               </tr>
-               <tr>
-                    <td>Precio turistas: </td> <td><input type="text" name="p_turista" value=""></td>
-                    <td>Precio ejecutivo: </td> <td><input type="text" name="p_ejecutivo" value=""></td>
-                    <td>Precio primera clase: </td> <td><input type="text" name="p_primera_clase" value=""></td>
-               </tr>
-               <tr>
-                  <td>Descuento: </td><td><input type="text" name="descuento" value=""></td>
-               </tr>
-                 <td><input type="submit" name="submit" value="Ingresar">
-                 <a href="/" class="button" role="button"> Volver </a>
-                 </td>
-            </table>
-        </form>
-      </div>
-
-      </header>
-  </body>
-</html>
+@extends('layouts.app')
+@section('content')
+  <div class="loginTable">
+    <div class="title-logo">
+      <h1>Insertar vuelo</h1>
+    </div>
+    <style>
+      input{
+        display: inline-flex;
+        margin-left: 20px;
+        width: 350px;
+        height: 30px;
+      }
+    </style>
+    <form action="/vuelos/store" method="post">
+        <div class="form-control">
+              {{ csrf_field()}}
+               <div class="form-group">
+                 <h6>Nombre del avión: </h6>
+                 <h6><input type="text" name="n_avion" value=""></h6>
+               </div>
+               <div class="form-group">
+                 <h6>Aerolinea: </h6>
+                 <h6><input type="text" name="aerolinea" value=""></h6>
+               </div>
+               <div class="form-group">
+                 <h6>Aeropuerto origen: </h6>
+                 <h6><input type="text" name="a_origen" value=""></h6>
+               </div>
+               <div class="form-group">
+                 <h6>Aeropuerto destino: </h6>
+                 <h6><input type="text" name="a_destino" value=""></h6>
+               </div>
+               <div class="form-group">
+                 <h6>Hora salida: </h6><h6><input type="text" name="hora_salida" value="" placeholder="Formato: dd/mm/yy H:m ..."></h6>
+                  <h6>Hora llegada: </h6><h6><input type="text" name="hora_llegada" value="" placeholder="Formato: dd/mm/yy H:m ..."></h6>
+               </div>
+               <div class="form-group">
+                   <h6>Capacidad equipaje: </h6> <h6><input type="text" name="c_equipaje" value=""></h6>
+                   <h6>Maletas por persona: </h6> <h6><input type="text" name="maletas" value=""></h6>
+               </div>
+               <div class="form-group">
+                    <h6>Capacidad turistas: </h6> <h6><input type="text" name="c_turista" value=""></h6>
+                    <h6>Capacidad ejecutivo: </h6> <h6><input type="text" name="c_ejecutivo" value=""></h6>
+                    <h6>Capacidad primera clase: </h6> <h6><input type="text" name="c_primera_clase" value=""></h6>
+               </div>
+               <div class="form-group">
+                    <h6>Precio turistas: </h6> <h6><input type="text" name="p_turista" value=""></h6>
+                    <h6>Precio ejecutivo: </h6> <h6><input type="text" name="p_ejecutivo" value=""></h6>
+                    <h6>Precio primera clase: </h6> <h6><input type="text" name="p_primera_clase" value=""></h6>
+               </div>
+               <div class="form-group">
+                  <h6>Descuento: </h6><h6><input type="text" name="descuento" value=""></h6>
+               </div>
+                 <h6><input class="btn btn-primary"type="submit" name="submit" value="Ingresar"></h6>
+                 <a href="/" class="btn btn-danger" role="button"> Volver </a>
+        </table>
+    </form>
+  </div>
+@endsection

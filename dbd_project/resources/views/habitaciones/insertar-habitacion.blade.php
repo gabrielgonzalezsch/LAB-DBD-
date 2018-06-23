@@ -11,6 +11,7 @@
   {{Form::text('precio', '', ['class' => 'form-control', 'placeholder' => ''])}}
   {{Form::label('descripcion', 'Descripción: ')}}
   {{Form::text('descripcion', '', ['class' => 'form-control', 'placeholder' => ''])}}
+  <div>
   {{Form::label('inc_desayuno', 'Incluye desayuno? ')}}
   {{Form::hidden('inc_desayuno', false)}}
   {{Form::checkbox('inc_desayuno', true)}}
@@ -20,6 +21,7 @@
   {{Form::label('inc_servicio', 'Incluye servicio al cuarto? ')}}
   {{Form::hidden('inc_servicio', false)}}
   {{Form::checkbox('inc_servicio', true)}}
+  </div>
   {{Form::label('num_camas_dob', 'Número de camas dobles: ', ['class' => 'has-new-line'])}}
   {{Form::text('num_camas_dob', '', ['class' => 'form-control', 'placeholder' => ''])}}
   {{Form::label('num_camas_simp', 'Número de camas simples: ')}}

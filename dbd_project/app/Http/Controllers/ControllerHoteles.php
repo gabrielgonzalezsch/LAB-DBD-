@@ -39,17 +39,17 @@ class ControllerHoteles extends Controller
     public function store(Request $request)
     {
       $validData = $request->validate([
-          'n_hotel' => 'required',
+          'nombre_hotel' => 'required',
           'pais' => 'required',
           'ciudad' => 'required',
-          'dir' => 'required|unique:hoteles',
+          'direccion' => 'required|unique:hoteles',
       ]);
 
       $hotel = new Hoteles();
-      $hotel->nombre_hotel = $request->input('n_hotel');
+      $hotel->nombre_hotel = $request->input('nombre_hotel');
       $hotel->pais = $request->input('pais');
       $hotel->ciudad = $request->input('ciudad');
-      $hotel->direccion = $request->input('dir');
+      $hotel->direccion = $request->input('direccion');
       $hotel->valoracion = 0.0;
       $hotel->latitud = 0;  //USAR GOOGLE API PARA OBTENER LATITUD Y LONGITUD
       $hotel->longitud = 0;

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vuelos;
+use Carbon\Carbon;
 
 class ControllerVuelos extends Controller
 {
   public function index(){
-      $vuelos = Vuelos::orderBy('valor_turista', 'asc')->paginate(1); //Cambiar a ordenarlos segun criterios
+      $vuelos = Vuelos::orderBy('valor_turista', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
       return view('vuelos.buscar-vuelos')->with('vuelos', $vuelos);
   }
 
@@ -17,12 +18,16 @@ class ControllerVuelos extends Controller
   }
 
   public function store(Request $req){
-      $num_vuelo = $req->input('num_avion');
+
+    try{
+      $num_vuelo = $req->input('n_avion');
       $aerolinea = $req->input('aerolinea');
       $a_destino = $req->input('a_origen');
       $a_origen = $req->input('a_destino');
-      $horaS = $req->input('h_salida');
-      $horaL = $req->input('h_llegada');
+      $h_salida = $req->input('hora_salida');
+      $h_llegada = $req->input('hora_llegada');
+      $hora_salida = Carbon::createFromFormat('d/m/Y H:i', $h_salida);
+      $hora_llegada = Carbon::createFromFormat('d/m/Y H:i', $h_llegada);
       $cap_equipaje = $req->input('c_equipaje');
       $maletas = $req->input('num_maletas');
       $cap_t = $req->input('c_turista');
@@ -35,11 +40,11 @@ class ControllerVuelos extends Controller
 
       $array = array(
       'nombre_avion'=> $num_vuelo,
-      'cod_aerolinea'=> $aerolinea,
+      'nombre_aerolinea'=> $aerolinea,
       'aeropuerto_origen'=> $a_origen,
       'aeropuerto_destino'=> $a_destino,
-      'hora_salida'=>$horaS,
-      'hora_llegada'=>$horaL,
+      'hora_salida'=>$hora_salida,
+      'hora_llegada'=>$hora_llegada,
       'cap_turista'=> $cap_t,
       'cap_ejecutivo'=> $cap_e,
       'cap_primera_clase'=> $cap_p,
@@ -52,9 +57,11 @@ class ControllerVuelos extends Controller
       'created_at'=>date('Y-m-d H:i:s'),
       'updated_at'=>date('Y-m-d H:i:s')
       );
-
       Vuelos::insert($array);
-      echo "Success!";
+      return redirect('/vuelos')->with('success', 'Vuelo agregado exitósamente');
+    }catch(Exception $e){
+      return redirect('/vuelos')->with('failure', 'Ocurrio un error al ingresar un vuelo');
+    }
   }
 
   public function show($id){

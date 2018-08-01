@@ -6,12 +6,10 @@
 /*, *::before, *::after{
 //  box-sizing: border-box;
 //}*/
-a:link { color: #0099ff }
-a:visited { color: #99ccff }
-a:hover { color: #4dc3ff }
-a:active { color: #1a75ff }
+
 
 .main-container{
+
   display: block;
   position: absolute;
   width: 96%;
@@ -25,86 +23,117 @@ a:active { color: #1a75ff }
   border-color: black;
 }
 
-.navigation{
-    color: white;
-    padding-left: 30px;
+
+
+*{
+  padding: 0;
+  margin: 0 auto;
+}
+
+/*, *::before, *::after{
+//  box-sizing: border-box;
+//}*/
+
+a{
+  color: white;
+  text-decoration: none !important;
 }
 
 #navbar{
+  position: relative;
+  color: white;
+  left: 10px;
   position: fixed;
+  margin: auto;
   width: 98%;
   height: 62px;
   background-color: rgba(50, 50, 50, 0.9);
+  opacity: 0.9;
   border-left: 3px solid white;
   border-bottom: 3px solid white;
   border-right: 3px solid white;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  display: flex;
-  z-index: 5;
+  z-index: 1;
 }
 
-#title{
-    text-align: center;
+#logo{
     text-shadow: 10px;
-    text-transform: uppercase;
-    font-size: 24px;
-    padding-left: 10px;
+    width: 20%;
+    text-transform: capitalize;
+    font-size: 26px;
+    outline-width: thick;
+    padding-left: 15px;
     padding-top: 10px;
     font-family: serif;
     color: #ff6600;
     font-family: Book Antiqua;
-    text-decoration: none;
-    margin-top: 5px;
+    margin-top: 30px;
     cursor: pointer;
-
 }
 
-.col{
-  display: block;
-  padding-top: 20px;
-  padding-bottom: 22px;
-  text-align: center;
-  height: 59px;
-  list-style: none;
-  z-index: 10;
-}
-
-span#icon-vuelo{
-  background-image: url("/images/plane-icon.png");
-  height: auto;
-  width: auto;
-}
-
-.col li{
-  display: none;
-  position: relative;
-  height: 55px;
-  width: auto;
-  padding-top: 15px;
-  text-decoration: none;
-  background-color: #003d66;
-  font-size: 15px;
-  opacity: 0.95;
-  border-style: solid;
-  border-width: 0px 2px 2px 2px;
-}
-
-li:nth-child(3){  /*Para arreglar un margen del dropdown*/
-  margin-top: 14px;
-}
-
-.col:hover, .col li:hover{
-  text-shadow: 10px;
-  z-index: 15;
+.categoria:hover{
   background-color: darkorange;
-  color: white;
+  border-color: #520066;
+  color: black;
   transition: all 0.5s;
   border-radius: 4px;
 }
 
-.col:hover li{
+.categoria{
+  outline-width: thick;
+  overflow: hidden;
+  margin: 0 !important;
+  float: right !important;
+  text-align: center;
+  max-width: 170px;
+}
+
+.titulo-categoria{
+  border: none;
+  color: white;
+  width: auto;
+  padding: 14px 20px;
+  margin: 0;
+  text-align: center;
+  height: 59px;
+}
+
+.contenido-categoria{
+    display: none;
+    background-color: #003d66;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 20;
+}
+
+.contenido-categoria a{
+  float: none;
+  color: white;
+  background-color: rgba(50, 50, 50, 0.9);
+  padding: 12px 16px;
+  text-decoration: none;
   display: block;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+}
+
+.contenido-categoria:last-child{
+  border-bottom: 3px solid white;
+  border-radius: 5px;
+}
+
+.categoria a:hover{
+  color: orange;
+  border-left: 3px solid darkorange;
+  border-right: 3px solid darkorange;
+}
+.categoria:hover .contenido-categoria{
+  display: block;
+}
+
+.categoria:hover .fa-sort-down{
+  transform: translateY(50%);
 }
 
 .fa-sort-down{
@@ -112,8 +141,4 @@ li:nth-child(3){  /*Para arreglar un margen del dropdown*/
     margin-right: 5px;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
-}
-.col:hover .fa-sort-down{
-  transform: translateY(50%);
-  z-index: 20;
 }

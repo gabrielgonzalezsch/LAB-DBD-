@@ -1,7 +1,12 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.0.7
+Version actual 0.0.71
+<< Version 0.0.71 >>> 01/08/18
+Contribuyentes: Vicente Rivera
+- Se cambia un poco el diseno del navbar, aunque no pude hacer que quede flotando a la derecha... maldito css 
+- Falta arreglar el menu desplegable responsive, y hacer un menu responsive
+
 << Version 0.0.7 >>> 23/06/18
 Contribuyentes: Vicente Rivera (Es lo ultimo que subo para no quedar tan avanzado)
 - Mejorado el front end con un nav-bar horizontal sticky

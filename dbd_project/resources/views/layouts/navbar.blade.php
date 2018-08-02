@@ -58,7 +58,7 @@
     </ul>
     @if(Auth::check())
     <ul tabindex="7" class="categoria">
-      <div class="titulo-categoria">{{ Auth::user()->name }}<i class="fas fa-sort-down"></i>
+      <div class="titulo-categoria">{{ Auth::user()->username }}<i class="fas fa-sort-down"></i>
       </div>
       <div class="contenido-categoria">
         <a href="#"> Historial de compra</a>

@@ -1,14 +1,18 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.0.71
+Version actual 0.0.72
+<< Version 0.0.72 >>> 02/18/18
+- Se arreglan los bugs
+- Se agrega una seccion para otorgar privilegios de administrador con AJAX, y un controlador Rol
+- Por ahora se hizo solo para tener 1 solo rol administrador, hay que cambiarlo para poder ingresar mas roles
 << Version 0.0.71 >>> 01/08/18
 Contribuyentes: Vicente Rivera
 - Se cambia un poco el diseno del navbar, aunque no pude hacer que quede flotando a la derecha... maldito css 
 - Falta arreglar el menu desplegable responsive, y hacer un menu responsive
 
 << Version 0.0.7 >>> 23/06/18
-Contribuyentes: Vicente Rivera (Es lo ultimo que subo para no quedar tan avanzado)
+Contribuyentes: Vicente Rivera
 - Mejorado el front end con un nav-bar horizontal sticky
 - Se utiliza un mejor layout para insertar un vuelo
 - Se realiza un cambio en la DB, ahora Vuelos tiene 2 llaves foraneas para indicar el aeropuerto de salida y llegada 

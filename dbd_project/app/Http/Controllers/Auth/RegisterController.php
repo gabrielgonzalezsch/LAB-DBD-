@@ -65,7 +65,7 @@ class RegisterController extends Controller
     {
     $this->validator($data);
     try{
-      Usuarios::create([
+      return Usuarios::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -76,9 +76,10 @@ class RegisterController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
       ]);
-      return redirect('/')->with('success', 'Registrado exitosamente!');
+      //redirect('/')->with('success', 'Registrado exitosamente!');
     }catch(Exception $e){
-      return redirect('/register')->with('failure', 'Ha ocurrido algún error');
+      return NULL;
+      //redirect('/register')->with('failure', 'Ha ocurrido algún error');
     }
   }
 }

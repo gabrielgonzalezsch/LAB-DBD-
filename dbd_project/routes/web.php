@@ -26,6 +26,15 @@ Route::group(['middleware'=> 'admin'], function (){
   Route::get('/hoteles/{id_hotel}/create', 'ControllerHabitaciones@create');
 });
 
+Route::get('/admin', function(){
+  $usuarios = \App\Models\Usuarios::all();
+  return view('admin')->with('usuarios', $usuarios);
+});
+
+//ROLES. Usar middleware para bloquear entrada despues de otorgarse el rol
+Route::post('/admin/otorgar', 'ControllerRoles@otorgarRol');
+Route::post('/admin/revocar', 'ControllerRoles@revocarRol');
+
 //View methods
 Route::get('/hoteles', 'ControllerHoteles@index');
 Route::get('/hoteles/{id_hotel}', 'ControllerHoteles@show');
@@ -41,3 +50,7 @@ Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
 Auth::routes();
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -29,10 +29,14 @@ class Usuarios extends Authenticatable
     //protected $table = 'usuarios';
     protected $primaryKey = 'ID_usuario';
 
-    protected function isAdmin(){
+    public function esAdmin(){
       if($this->tipo_usuario == 'administrador'){
         return true;
       }else
         return false;
+    }
+
+    public function rol(){
+      return $this->tipo_usuario;
     }
 }

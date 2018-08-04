@@ -109,6 +109,7 @@
       }
       .menu-wrapper{
         display: block !important;
+        float: right !important;
       }
   }
 

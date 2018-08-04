@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-  <div class="header"> Lista de usuarios (para administración)</div>
+<div class="ui segment">
+  <div class="ui header"> Lista de usuarios (para administración)</div>
   <div>
   <table class="table">
   <thead class="thead-dark">

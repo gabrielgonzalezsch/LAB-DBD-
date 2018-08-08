@@ -1,7 +1,8 @@
 
 <div id="navbar" class="row">
-    <h2 style="margin: 5px !important; width: 20%; float: left;">
-      <a id="logo" href="/">{{ config('app.name', 'DBD') }}</a>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <h2 style="margin: 10px !important; width: 20%; float: left;">
+      <a id="logo" href="/"><i class="material-icons">&#xe905;</i> {{ config('app.name', 'DBD') }}</a>
     </h2>
     <ul tabindex="1" class="categoria">
       <div class="titulo-categoria"> <i class="fas fa-sort-down"></i> Vuelos
@@ -78,7 +79,7 @@
     </ul>
     @else
     <ul tabindex="7" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Ingresar al sitio
+      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Acceso
       </div>
       <div class="contenido-categoria">
         <a href="/login"> Ingresar</a>

@@ -15,6 +15,17 @@
       <a href="/vuelos"> Ver vuelos</a>
       </div>
     </ul>
+    <ul tabindex="4" class="categoria">
+      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Hoteles
+        <i class="far fa-building"></i>
+      </div>
+      <div class="contenido-categoria">
+        @if(Auth::check())
+        <a href="/hoteles/create"> Agregar hoteles</a>
+        @endif
+        <a href="/hoteles"> Ver hoteles</a>
+      </div>
+    </ul>
     <ul tabindex="2" class="categoria">
       <div class="titulo-categoria"> <i class="fas fa-sort-down"></i> Autos
         <i class="fas fa-car"></i>
@@ -35,20 +46,8 @@
         <a href="/traslados"> Ver Traslados</a>
       </div>
     </ul>
-    <ul tabindex="4" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Hoteles
-        <i class="far fa-building"></i>
-      </div>
-      <div class="contenido-categoria">
-        @if(Auth::check())
-        <a href="/hoteles/create"> Agregar hoteles</a>
-        @endif
-        <a href="/hoteles"> Ver hoteles</a>
-      </div>
-    </ul>
    <ul tabindex="5" class="categoria">
-     <div class="titulo-categoria"><i class="fas fa-sort-down"></i>Actividades
-       <i class="far fa-calendar-alt"></i>
+     <div class="titulo-categoria"><i class="fas fa-sort-down"></i>Actividades <i class="far fa-calendar-alt"> </i>
      </div>
      <div class="contenido-categoria">
        @if(!empty(Auth::check()))
@@ -79,7 +78,7 @@
     </ul>
     @else
     <ul tabindex="7" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Acceso
+      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Acceso <i class="fas fa-user"></i>
       </div>
       <div class="contenido-categoria">
         <a href="/login"> Ingresar</a>

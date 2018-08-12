@@ -14,7 +14,7 @@ class CreateVuelosTable extends Migration
     public function up()
     {
         Schema::create('vuelos', function (Blueprint $table) {
-            $table->increments('ID_vuelo');
+            $table->increments('id_vuelo');
             $table->string('nombre_avion', 30);
             $table->string('nombre_aerolinea', 30);
             $table->string('aeropuerto_origen', 5);

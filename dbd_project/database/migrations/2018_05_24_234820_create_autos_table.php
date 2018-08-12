@@ -14,7 +14,7 @@ class CreateAutosTable extends Migration
     public function up()
     {
         Schema::create('autos', function (Blueprint $table) {
-            $table->increments('ID_auto');
+            $table->increments('id_auto');
             $table->string('modelo_auto', 50);
             $table->string('compañia', 30);
             $table->string('patente', 10)->nullable();

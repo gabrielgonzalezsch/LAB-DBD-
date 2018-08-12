@@ -27,7 +27,7 @@ class Usuarios extends Authenticatable
         'password', 'remember_token',
     ];
     //protected $table = 'usuarios';
-    protected $primaryKey = 'ID_usuario';
+    protected $primaryKey = 'id_usuario';
 
     public function esAdmin(){
       if($this->tipo_usuario == 'administrador'){

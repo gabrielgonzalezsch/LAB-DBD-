@@ -8,5 +8,5 @@ class Autos extends Model
 {
     //
     protected $table = 'autos';
-    protected $primaryKey = 'ID_auto';
+    protected $primaryKey = 'id_auto';
 }

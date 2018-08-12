@@ -14,8 +14,8 @@ class CreateHabitaciones extends Migration
     public function up()
     {
         Schema::create('habitaciones', function (Blueprint $table) {
-          $table->increments('ID_habitacion');
-          $table->Integer('ID_hotel')->references('ID_hotel')->on('hoteles');
+          $table->increments('id_habitacion');
+          $table->Integer('id_hotel')->references('id_hotel')->on('hoteles');
           $table->smallInteger('num_habitacion');
           $table->Integer('precio_por_noche');
           $table->boolean('ya_reservado')->default(false);

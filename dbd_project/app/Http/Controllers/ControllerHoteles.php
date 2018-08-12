@@ -16,7 +16,7 @@ class ControllerHoteles extends Controller
 
     public function index()
     {
-      $hoteles = Hoteles::orderBy('ID_hotel', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
+      $hoteles = Hoteles::orderBy('id_hotel', 'asc')->paginate(6); //Cambiar a ordenarlos segun criterios
       return view('hoteles.buscar-hoteles')->with('hoteles', $hoteles);
     }
 

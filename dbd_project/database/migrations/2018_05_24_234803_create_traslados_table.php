@@ -14,7 +14,7 @@ class CreateTrasladosTable extends Migration
     public function up()
     {
         Schema::create('traslados', function (Blueprint $table) {
-            $table->increments('ID_traslado');
+            $table->increments('id_traslado');
             $table->string('tipo_vehiculo', 20);
             $table->string('patente', 10)->nullable();
             $table->string('pais', 30);

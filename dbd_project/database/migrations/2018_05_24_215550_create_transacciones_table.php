@@ -14,8 +14,8 @@ class CreateTransaccionesTable extends Migration
     public function up()
     {
         Schema::create('transacciones', function (Blueprint $table) {
-            $table->increments('ID_transaccion');
-            $table->Integer('ID_usuario')->references('ID_usuario')->on('usuarios');
+            $table->increments('id_transaccion');
+            $table->Integer('id_usuario')->references('id_usuario')->on('usuarios');
             $table->bigInteger('monto');
             $table->boolean('ya_cancelado')->nullable()->default(false);
             $table->date('fecha_compra');

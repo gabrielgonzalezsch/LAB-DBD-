@@ -8,9 +8,9 @@ use App\Models\Habitaciones;
 class Hoteles extends Model
 {
   protected $table = 'hoteles';
-  protected $primaryKey = 'ID_hotel';
+  protected $primaryKey = 'id_hotel';
 
   public function habitaciones(){
-    return $this->hasMany(Habitacion::class, 'ID_hotel');
+    return $this->hasMany(Habitacion::class, 'id_hotel');
   }
 }

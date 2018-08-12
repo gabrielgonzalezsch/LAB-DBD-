@@ -6,7 +6,7 @@
     <ul>
       @foreach($vuelos as $vuelo)
       <li>
-        <h3><a href="/vuelos/{{$vuelo->ID_vuelo}}">{{$vuelo->nombre_avion}}</a></h3>
+        <h3><a href="/vuelos/{{$vuelo->id_vuelo}}">{{$vuelo->nombre_avion}}</a></h3>
         <small>De {{$vuelo->aeropuerto_origen}} hasta {{$vuelo->aeropuerto_destino}} !!</small>
       </li>
       @endforeach

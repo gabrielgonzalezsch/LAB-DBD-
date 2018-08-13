@@ -79,7 +79,7 @@ class ControllerVuelos extends Controller
   }
 
   public function edit($id){
-
+    
   }
 
   public function update(Request $request, $id){
@@ -87,6 +87,7 @@ class ControllerVuelos extends Controller
   }
 
   public function destroy($id){
-
+    $vuelo = Vuelos::find($id);
+    $vuelo->delete();
   }
 }

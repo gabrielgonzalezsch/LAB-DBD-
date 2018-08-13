@@ -86,7 +86,8 @@ class ControllerAutos extends Controller
      */
     public function edit($id)
     {
-        //
+        $auto = Autos::find($id);
+        return view('editar.autos')->with('auto',$auto);
     }
 
     /**
@@ -98,7 +99,8 @@ class ControllerAutos extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $auto = Autos::find($id);
+        
     }
 
     /**
@@ -109,6 +111,7 @@ class ControllerAutos extends Controller
      */
     public function destroy($id)
     {
-        //
+        $auto = Autos::find($id);
+        $auto->delete();
     }
 }

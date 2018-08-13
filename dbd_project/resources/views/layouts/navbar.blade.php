@@ -1,7 +1,8 @@
 
 <div id="navbar" class="row">
-    <h2 style="margin: 5px !important; width: 20%; float: left;">
-      <a id="logo" href="/">{{ config('app.name', 'DBD') }}</a>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <h2 style="margin: 10px !important; width: 20%; float: left;">
+      <a id="logo" href="/"><i class="material-icons">&#xe905;</i> {{ config('app.name', 'DBD') }}</a>
     </h2>
     <ul tabindex="1" class="categoria">
       <div class="titulo-categoria"> <i class="fas fa-sort-down"></i> Vuelos
@@ -12,6 +13,17 @@
         <a href="/vuelos/create"> Agregar vuelo</a>
       @endif
       <a href="/vuelos"> Ver vuelos</a>
+      </div>
+    </ul>
+    <ul tabindex="4" class="categoria">
+      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Hoteles
+        <i class="far fa-building"></i>
+      </div>
+      <div class="contenido-categoria">
+        @if(Auth::check())
+        <a href="/hoteles/create"> Agregar hoteles</a>
+        @endif
+        <a href="/hoteles"> Ver hoteles</a>
       </div>
     </ul>
     <ul tabindex="2" class="categoria">
@@ -34,20 +46,8 @@
         <a href="/traslados"> Ver Traslados</a>
       </div>
     </ul>
-    <ul tabindex="4" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Hoteles
-        <i class="far fa-building"></i>
-      </div>
-      <div class="contenido-categoria">
-        @if(Auth::check())
-        <a href="/hoteles/create"> Agregar hoteles</a>
-        @endif
-        <a href="/hoteles"> Ver hoteles</a>
-      </div>
-    </ul>
    <ul tabindex="5" class="categoria">
-     <div class="titulo-categoria"><i class="fas fa-sort-down"></i>Actividades
-       <i class="far fa-calendar-alt"></i>
+     <div class="titulo-categoria"><i class="fas fa-sort-down"></i>Actividades <i class="far fa-calendar-alt"> </i>
      </div>
      <div class="contenido-categoria">
        @if(!empty(Auth::check()))
@@ -78,7 +78,7 @@
     </ul>
     @else
     <ul tabindex="7" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Ingresar al sitio
+      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Acceso <i class="fas fa-user"></i>
       </div>
       <div class="contenido-categoria">
         <a href="/login"> Ingresar</a>

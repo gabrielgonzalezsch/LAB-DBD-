@@ -33,6 +33,6 @@
   </ul>
   </div>
   @if(Auth::check())
-  <a href="/hoteles/{{$hotel->ID_hotel}}/create"> Agregar habitaciones (solo admin)</a>
+  <a href="/hoteles/{{$hotel->id_hotel}}/create"> Agregar habitaciones (solo admin)</a>
   @endif
 @endsection

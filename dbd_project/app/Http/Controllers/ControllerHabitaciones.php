@@ -44,7 +44,7 @@ class ControllerHabitaciones extends Controller
     public function store(Request $request)
     {
       $validData = $request->validate([
-          'num_hab' => 'required|unique:hoteles,ID_hotel',
+          'num_hab' => 'required|unique:hoteles,id_hotel',
           'precio' => 'required|numeric',
           'descripcion' => 'required',
           'num_camas_simp' => 'required|numeric',
@@ -53,7 +53,7 @@ class ControllerHabitaciones extends Controller
       ]);
       try{
       $hab = new Habitacion();
-      $hab->ID_hotel = $request->input('id_hotel');
+      $hab->id_hotel = $request->input('id_hotel');
       $hab->num_habitacion = $request->input('num_hab');
       $hab->precio_por_noche = $request->input('precio');
       $hab->ya_reservado = false;

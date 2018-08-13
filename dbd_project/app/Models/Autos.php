@@ -8,7 +8,7 @@ class Autos extends Model
 {
     //
     protected $table = 'autos';
-    protected $primaryKey = 'ID_auto';
+    protected $primaryKey = 'id_auto';
 
     protected $fillable = ['patente','compania','tipo_auto','modelo_auto','pais','ciudad','calle','capacidad','precio_por_dia','descripcion_auto','detalles_auto','descuento','precio_normal']
 

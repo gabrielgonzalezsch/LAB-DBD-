@@ -1,8 +1,15 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.0.72
-<< Version 0.0.72 >>> 02/18/18
+Version actual 0.0.8
+<< Version 0.0.8 >>> 12/08/18
+Contribuyentes: Vicente Rivera
+- <<IMPORTANTE>> Cambie todos los nombres de llaves primarias a id_, ya que hay problemas con el uppercase con pgsql
+- Se agregan los triggers y sp para el proceso de agregar/modificar/eliminar habitaciones para cambiar el valor de habitaciones disponibles.
+- Para correrlos, hay que hacer psql -U homestead -d homestead -f Procedures/count_hab_disp.sql
+- Agregue css a hoteles
+
+<< Version 0.0.72 >>> 02/08/18
 - Se arreglan los bugs
 - Se agrega una seccion para otorgar privilegios de administrador con AJAX, y un controlador Rol
 - Por ahora se hizo solo para tener 1 solo rol administrador, hay que cambiarlo para poder ingresar mas roles

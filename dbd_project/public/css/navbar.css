@@ -61,13 +61,13 @@ a{
     text-shadow: 10px;
     width: 20%;
     text-transform: capitalize;
-    font-size: 26px;
+    font-size: 40px;
     outline-width: thick;
     padding-left: 15px;
     padding-top: 10px;
     font-family: serif;
-    color: #ff6600;
-    font-family: Book Antiqua;
+    color: #f3162a;
+    font-family: Harlow Solid Italic;
     margin-top: 30px;
     cursor: pointer;
 }
@@ -93,7 +93,7 @@ a{
   border: none;
   color: white;
   width: auto;
-  padding: 14px 20px;
+  padding: 14px 15px;
   margin: 0;
   text-align: center;
   height: 59px;

@@ -1,4 +1,4 @@
-<?php
+|<?php
 
 namespace App\Models;
 
@@ -11,6 +11,6 @@ class Hoteles extends Model
   protected $primaryKey = 'ID_hotel';
 
   public function habitaciones(){
-    return $this->hasMany(Habitacion::class, 'ID_hotel');
+  	
   }
 }

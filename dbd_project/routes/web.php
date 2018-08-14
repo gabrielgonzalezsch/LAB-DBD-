@@ -26,10 +26,7 @@ Route::group(['middleware'=> 'admin'], function (){
   Route::get('/hoteles/{id_hotel}/create', 'ControllerHabitaciones@create');
 });
 
-Route::get('/admin', function(){
-  $usuarios = \App\Models\Usuarios::all();
-  return view('admin')->with('usuarios', $usuarios);
-});
+Route::get('/admin', ['middleware' => 'auth', 'uses' => 'ControllerRoles@administrar']);
 
 //ROLES. Usar middleware para bloquear entrada despues de otorgarse el rol
 Route::post('/admin/otorgar', 'ControllerRoles@otorgarRol');
@@ -49,8 +46,11 @@ Route::post('/hoteles/store', 'ControllerHoteles@store');
 Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
-Auth::routes();
+Route::get('/carrito', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@mostrarCarrito']);
+Route::post('/carrito/agregar', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@agregarAlCarrito']);
+Route::get('/carrito/eliminar', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@eliminarDelCarrito']);
+Route::get('/comprar', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@comprar']);
+
+Route::get('/historial', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@verHistorial']);
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

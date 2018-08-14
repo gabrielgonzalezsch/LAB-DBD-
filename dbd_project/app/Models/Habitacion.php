@@ -11,4 +11,7 @@ class Habitacion extends Model
     protected $guarded = ['id_habitacion'];
     //protected $fillable = [*]);
 
+    public function transacciones(){
+       return $this->belongsToMany(App\Models\Transaccion::class, 'compra_habitacion', 'id_habitacion', 'id_transaccion');
+    }
 }

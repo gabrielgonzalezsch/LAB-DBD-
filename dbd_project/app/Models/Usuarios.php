@@ -36,6 +36,10 @@ class Usuarios extends Authenticatable
         return false;
     }
 
+    public function transacciones(){
+      return $this->hasMany(\App\Models\Transaccion::class, 'id_transaccion');
+    }
+
     public function rol(){
       return $this->tipo_usuario;
     }

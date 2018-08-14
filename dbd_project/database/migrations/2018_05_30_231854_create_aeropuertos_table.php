@@ -15,8 +15,8 @@ class CreateAeropuertosTable extends Migration
     {
         Schema::create('aeropuertos', function (Blueprint $table) {
             $table->string('cod_aeropuerto', 5)->unique()->primary();
-            $table->string('ciudad', 30);
-            $table->string('pais', 30);
+            $table->string('ciudad', 50);
+            $table->string('pais', 50);
             $table->timestamps();
         });
     }

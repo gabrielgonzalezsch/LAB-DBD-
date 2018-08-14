@@ -7,5 +7,6 @@ use App\Models\Aeropuertos;
 
 class ControllerAeropuertos extends Controller
 {
-    //
+
+	//
 }

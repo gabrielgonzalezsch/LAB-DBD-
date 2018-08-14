@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class autos_seeders extends Seeder
 {
@@ -11,6 +12,21 @@ class autos_seeders extends Seeder
      */
     public function run()
     {
-        //
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 }

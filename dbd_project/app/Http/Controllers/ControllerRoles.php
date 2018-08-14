@@ -24,4 +24,9 @@ class ControllerRoles extends Controller
       $usuario->save();
       return redirect('/admin')->with('success', 'Roles revocados');
     }
+
+    public function administrar(){
+      $usuarios = Usuarios::all();
+      return view('admin')->with('usuarios', $usuarios);
+    }
 }

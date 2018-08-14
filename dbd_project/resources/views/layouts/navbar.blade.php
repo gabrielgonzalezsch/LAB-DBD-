@@ -61,8 +61,8 @@
       <div class="titulo-categoria">{{ Auth::user()->username }}<i class="fas fa-sort-down"></i>
       </div>
       <div class="contenido-categoria">
-        <a href="#"> Historial de compra</a>
-        <a href="#"> Carrito de compra</a>
+        <a href="/historial"> Historial de compra</a>
+        <a href="/carrito"> Carrito de compra</a>
         @if(Auth::check())
         <a href="/admin"> Administración </a>
         @endif

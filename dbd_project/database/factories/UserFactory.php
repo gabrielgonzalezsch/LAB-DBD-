@@ -33,25 +33,3 @@ $factory->define(Usuarios::class, function (Faker $faker) {
 });
 
 
-/*$factory->define(Aeropuertos::class, function (Faker $faker) {
-    
-    
-
-    //print($i);
-    //$i = random_int(0,1000);  
-
-    //$i = range(1, 20);
-    //shuffle($i);
-
-    $array = [
-
-
-            'cod_aeropuerto' =>  $response[random_int(0,3)]->codeIataAirport,
-            'ciudad'         =>  $response[random_int(0,3)]->codeIataCity,
-            'pais'           =>  $response[random_int(0,3)]->codeIso2Country,
-    
-    ];
-
-    
-    return $array;
-});*/

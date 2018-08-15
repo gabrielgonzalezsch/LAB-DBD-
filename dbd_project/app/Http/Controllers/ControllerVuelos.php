@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Vuelos;
+use App\Models\Vuelo;
 use Carbon\Carbon;
 
 class ControllerVuelos extends Controller
 {
   public function index(){
-      $vuelos = Vuelos::orderBy('valor_turista', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
+      $vuelos = Vuelo::orderBy('valor_turista', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
       return view('vuelos.buscar-vuelos')->with('vuelos', $vuelos);
   }
 
@@ -57,7 +57,7 @@ class ControllerVuelos extends Controller
       'created_at'=>date('Y-m-d H:i:s'),
       'updated_at'=>date('Y-m-d H:i:s')
       );
-      Vuelos::insert($array);
+      Vuelo::insert($array);
       return redirect('/vuelos')->with('success', 'Vuelo agregado exitósamente');
     }catch(Exception $e){
       return redirect('/vuelos')->with('failure', 'Ocurrio un error al ingresar un vuelo');
@@ -65,8 +65,11 @@ class ControllerVuelos extends Controller
   }
 
   public function show($id){
-    $vuelo = Vuelos::find($id);
-    $tiempoViaje = $this->timeDiff($dateTimeSalida, $dateTimeLlegada);
+    $vuelo = Vuelo::find($id);
+    $dateTimeSalida = $vuelo->hora_salida;
+    $dateTimeLlegada = $vuelo->hora_llegada;
+    $tiempoViaje = number_format($this->timeDiff($dateTimeSalida, $dateTimeLlegada), 1);
+    $tiempoViaje = $tiempoViaje." horas";
     //echo "Horas: ".$tiempoViaje;
     return view('vuelos.detalle-vuelo')->with('vuelo', $vuelo)->with('horas', $tiempoViaje);
   }

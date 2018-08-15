@@ -15,6 +15,8 @@ class ControllerTransacciones extends Controller
         $transaccion = new Transaccion();
         if (Session::has("carrito")){
     	 		$carrito = json_decode(Session::get("carrito"));
+        }else{
+          return redirect("/")->with('failure', 'El carrito esta vacío');
         }
         $transaccion->monto = $carrito->total;
         $transaccion->id_usuario = $usuario->id_usuario;
@@ -26,32 +28,60 @@ class ControllerTransacciones extends Controller
         //$usuario->transacciones()->save($transaccion);
     	 	foreach ($carrito->items as $item){
     	 		switch ($item->categoria){
-             case 'Vuelos':
+             case 'Vuelo':
                $vuelo = \App\Models\Vuelo::findOrFail($item->id);
-               //Hay que corregir esto
-               $transaccion->vuelos()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'num_asiento' => rand(1, $vuelo->cap_turista)]);
+               switch ($item->tipo_pasaje) {
+                 case 'Turista':
+                   $transaccion->vuelos()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'num_asiento' => rand(1, $vuelo->cap_turista), 'tipo_asiento' => 'Turista']);
+                   $vuelo->cap_turista = $vuelo->cap_turista - 1;
+                   break;
+                 case 'Ejecutivo':
+                   $transaccion->vuelos()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'num_asiento' => rand(1, $vuelo->cap_ejecutivo), 'tipo_asiento' => 'Ejecutivo']);
+                   $vuelo->cap_ejecutivo = $vuelo->cap_ejecutivo - 1;
+                   break;
+                 case 'Primera Clase':
+                   $transaccion->vuelos()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'num_asiento' => rand(1, $vuelo->cap_primera_clase), 'tipo_asiento' => 'Primera Clase']);
+                   $vuelo->cap_primera_clase = $vuelo->cap_primera_clase - 1;
+                   break;
+               }
+               $vuelo->save();
                break;
              case 'Habitación':
               $habitacion = \App\Models\Habitacion::findOrFail($item->id);
-              //Hay que corregir esto********
-              $num_dias = rand(1, 30);
-              $transaccion->habitaciones()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $num_dias]);
+              $transaccion->habitaciones()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_noches' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
               break;
              default:
                break;
            }
     	 	}
-        $this->verHistorial();
-
+        Session::forget("carrito");
+        return redirect("/historial");
     }
 
     public function verHistorial(){
       $id = Auth::user()->id_usuario;
       $transacciones = DB::select(DB::raw("SELECT * FROM transacciones WHERE id_usuario = '$id'"));
+      $vuelos_reservados = DB::select('
+                          SELECT c.id_transaccion, c.nombre_avion, c.nombre_aerolinea, c.aeropuerto_origen, c.aeropuerto_destino, c.hora_compra, c.num_asiento, c.tipo_asiento
+                          FROM
+                            (SELECT cp.id_transaccion, t.id_usuario, v.nombre_avion, v.nombre_aerolinea, v.aeropuerto_origen, v.aeropuerto_destino, t.hora_compra, cp.num_asiento, cp.tipo_asiento
+                            FROM vuelos v, compra_pasaje cp, transacciones t WHERE v.id_vuelo = cp.id_vuelo AND cp.id_transaccion = t.id_transaccion) c
+                          WHERE c.id_usuario = :id;', ['id' => $id]);
+
+      $habitaciones_reservadas = DB::select('
+                          SELECT c.id_transaccion, c.nombre_hotel, c.pais, c.ciudad, c.direccion, c.num_habitacion, c.hora_reserva, c.inicio_reserva, c.fin_reserva, c.monto
+                          FROM
+                            (SELECT t.id_usuario, r.id_transaccion, r.nombre_hotel, r.pais, r.ciudad, r.direccion, r.num_habitacion, r.hora_reserva, r.inicio_reserva, r.fin_reserva, t.monto
+                            FROM transacciones t,
+                              (SELECT ch.id_transaccion, h.nombre_hotel, h.pais, h.ciudad, h.direccion, hab.num_habitacion, ch.hora_reserva, ch.inicio_reserva, ch.fin_reserva
+                              FROM hoteles h, habitaciones hab, compra_habitacion ch
+                              WHERE hab.id_habitacion = ch.id_habitacion AND h.id_hotel = hab.id_hotel) r
+                            WHERE r.id_transaccion = t.id_transaccion) c
+                          WHERE c.id_usuario = :id;', ['id' => $id]);
       if($transacciones != NULL)
-        return view('historial')->with('transacciones', $transacciones);
+        return view('historial')->with('transacciones', $transacciones)->with('vuelos_reservados', $vuelos_reservados)->with('habitaciones_reservadas', $habitaciones_reservadas);//->with('habitaciones', $habitaciones_reservadas);
       else {
-        return redirect('/')->with('failure', 'nope');
+        return redirect('/')->with('failure', 'No hay compras realizadas');
       }
     }
 

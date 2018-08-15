@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Autos;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
+use App\Models\Auto;
 
 class ControllerAutos extends Controller
 {
@@ -16,7 +14,7 @@ class ControllerAutos extends Controller
      */
     public function index()
     {
-      $autos = Autos::orderBy('id_auto', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
+      $autos = Auto::orderBy('id_auto', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
       return view('autos.buscar-autos')->with('autos', $autos);
     }
 
@@ -50,7 +48,7 @@ class ControllerAutos extends Controller
           'cap-pasajeros' => 'required|digits_between:0,100',
       ]);
 
-      $auto = new Autos();
+      $auto = new Auto();
       $auto->modelo_auto = $request->input('mod-auto');
       $auto->compañia = $request->input('comp');
       $auto->patente = $request->input('pat');
@@ -76,7 +74,7 @@ class ControllerAutos extends Controller
      */
     public function show($id)
     {
-        $auto = Autos::find($id);
+        $auto = Auto::find($id);
         return view('autos.detalle-auto')->with('auto', $auto);
     }
 

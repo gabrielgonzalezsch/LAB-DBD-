@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Usuarios;
+use App\Models\Usuario;
 use Closure;
 
 class CheckAdmin
@@ -17,7 +17,7 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
         $id = \Auth::id();
-        $user = Usuarios::find($id);
+        $user = Usuario::find($id);
         if($user['tipo_usuario'] != "administrador"){
           return redirect("/")->with('failure', 'No tiene privilegios para ingresar a esta página');
         }

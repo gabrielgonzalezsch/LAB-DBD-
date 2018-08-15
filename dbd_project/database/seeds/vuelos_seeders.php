@@ -12,22 +12,6 @@ class vuelos_seeders extends Seeder
      */
     public function run()
     {
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+        //
     }
 }

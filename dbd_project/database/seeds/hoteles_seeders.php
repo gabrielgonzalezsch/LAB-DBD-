@@ -40,7 +40,7 @@ class hoteles_seeders extends Seeder
 	            'nombre_hotel'					=> $faker->name,
 	            'pais'							=> $response[$i]->country,
 	            'ciudad'						=> $response[$i]->city, 
-	            'direccion'						=> $faker->address,		//Direccion api
+	            'direccion'						=> str_random(30),		//Direccion api
 	            'valoracion'					=> frand(1, 5, 1),
 	            'num_valoraciones'				=> random_int(0,500),
 	            'num_comentarios'				=> random_int(0,50),

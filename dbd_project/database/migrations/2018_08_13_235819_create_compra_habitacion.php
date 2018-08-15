@@ -18,7 +18,9 @@ class CreateCompraHabitacion extends Migration
         $table->integer('id_transaccion')->references('id_transaccion')->on('transacciones');
         $table->integer('id_habitacion')->references('id_habitacion')->on('habitaciones');
         $table->dateTime('hora_reserva');
-        $table->smallInteger('num_dias');
+        $table->date('inicio_reserva');
+        $table->date('fin_reserva');
+        $table->smallInteger('num_noches');
       });
     }
 

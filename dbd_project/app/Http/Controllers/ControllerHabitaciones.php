@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Habitacion;
-use App\Models\Hoteles;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class ControllerHabitaciones extends Controller
@@ -26,7 +26,7 @@ class ControllerHabitaciones extends Controller
     public function create($id_hotel)
     {
       try{
-          $found = Hoteles::findOrFail($id_hotel);
+          $found = Hotel::findOrFail($id_hotel);
           return view('habitaciones.insertar-habitacion')->with('id_hotel', $id_hotel);
       }catch(Exception $e){
         //echo "Error, hotel no encontrado";
@@ -81,7 +81,7 @@ class ControllerHabitaciones extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Habitaciones  $habitaciones
+     * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
     public function show(Habitaciones $habitaciones)
@@ -92,7 +92,7 @@ class ControllerHabitaciones extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Habitaciones  $habitaciones
+     * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
     public function edit(Habitaciones $habitaciones)
@@ -104,7 +104,7 @@ class ControllerHabitaciones extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Habitaciones  $habitaciones
+     * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Habitaciones $habitaciones)
@@ -115,7 +115,7 @@ class ControllerHabitaciones extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Habitaciones  $habitaciones
+     * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
     public function destroy(Habitaciones $habitaciones)

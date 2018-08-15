@@ -11,7 +11,7 @@ class Transaccion extends Model
   public $timestamps = false;
 
   public function usuario(){
-    return $this->belongsTo(\App\Models\Usuarios::class, 'id_usuario');
+    return $this->belongsTo(\App\Models\Usuario::class, 'id_usuario');
   }
 
   public function vuelos(){

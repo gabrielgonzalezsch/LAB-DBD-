@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Habitaciones;
+use App\Models\Habitacion;
 
-class Hoteles extends Model
+class Hotel extends Model
 {
   protected $table = 'hoteles';
   protected $primaryKey = 'id_hotel';

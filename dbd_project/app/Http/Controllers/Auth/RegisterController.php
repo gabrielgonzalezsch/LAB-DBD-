@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Usuarios;
+use App\Models\Usuario;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -65,7 +65,7 @@ class RegisterController extends Controller
     {
     $this->validator($data);
     try{
-      return Usuarios::create([
+      return Usuario::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

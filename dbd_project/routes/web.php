@@ -47,7 +47,11 @@ Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
 Route::get('/carrito', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@mostrarCarrito']);
-Route::post('/carrito/agregar', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@agregarAlCarrito']);
+
+Route::post('/carrito/agregarHabitacion', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addHabitacionAlCarrito']);
+Route::get('/carrito/agregarVuelo', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addVueloAlCarrito']);
+Route::post('/carrito/agregarAuto', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@agregarAlCarrito']);
+
 Route::get('/carrito/eliminar', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@eliminarDelCarrito']);
 Route::get('/comprar', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@comprar']);
 

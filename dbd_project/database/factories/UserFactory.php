@@ -25,7 +25,7 @@ $factory->define(Usuario::class, function (Faker $faker) {
         'tipo_usuario'          => $faker->randomElement(['Administrador','Invitado']),
         'banco_origen'          => $faker->randomElement(['Santander','Bci','Itau','Banco Estado','Bancho De Chile','Scotiabank']),
         'numero_cuenta_usuario' => random_int(100000000,999999999),
-        'fondos_disponibles'    => random_int(0,500),
+        'fondos_disponibles'    => random_int(0,2000000),
         'remember_token'        => str_random(10)
     ];
 

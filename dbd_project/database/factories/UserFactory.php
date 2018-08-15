@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\Usuarios;
+use App\Models\Usuario;
 use App\Models\Aeropuertos;
 
 /*
@@ -15,7 +15,7 @@ use App\Models\Aeropuertos;
 |
 */
 
-$factory->define(Usuarios::class, function (Faker $faker) {
+$factory->define(Usuario::class, function (Faker $faker) {
     
     $array = [
 

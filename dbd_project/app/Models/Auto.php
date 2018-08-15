@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Autos extends Model
+class Auto extends Model
 {
     //
     protected $table = 'autos';

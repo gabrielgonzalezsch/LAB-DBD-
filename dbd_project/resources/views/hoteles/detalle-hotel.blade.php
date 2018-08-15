@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+  <script src="{{ asset('js/carrito.js') }}"></script>
   <div>
     <h1>Detalles del hotel: {{$hotel->nombre_hotel}}</h1>
     <ul>
@@ -29,16 +30,14 @@
           <li><h6>Incluye aire acondicionado: {{$habitacion->incluye_aire_acondicionado}}</small></li>
         </ul>
       </li>
-      <div class="form-group">
-       <label for="example-number-input" class="form-label">Ingresa numero de dias</label>
-          <input style="width: 10%; margin-left: 10px;"class="form-control" type="number" value="1" id="example-number-input">
-      </div>
       <div class="ui left action input">
-        <button onclick="addCarrito({{$habitacion->id_habitacion}}, '{{$hotel->nombre_hotel}}', {{$habitacion->precio_por_noche}})" class="ui teal labeled icon button">
-          <i class="cart icon"></i>
+        <label class="form-input">Ingresa numero de dias</label>
+        <input class="form-input" style="width: 10%; margin-left: 10px;" type="number" value="1">
+        <button onclick="addCarrito(this, {{$habitacion->id_habitacion}}, '{{$hotel->nombre_hotel}}')" class="ui teal labeled icon button">
+        <i class="cart icon"></i>
           Al carrito
         </button>
-        <input type="text" value="{{$habitacion->precio_por_noche}}">
+        <input type="text" value="$ {{$habitacion->precio_por_noche}} CLP" readonly>
       </div>
   @endforeach
   </ul>
@@ -49,34 +48,17 @@
   @endif
   @endif
   <script>
-        function addCarrito(id_hab, hotel, precio){
-          var id = id_hab;
-          var precio = precio//document.getElementById("precio").innerHTML;
-          var nombre = hotel;//document.getElementById("nombre-curso").innerHTML;
-          var cantidad = 1;//document.getElementById("cantidad").value;
-          // if(parseInt(cantidad) > 0){
-          //   document.getElementById("cantidadError").style.display = 'none';
-          agregarAlCarrito(id, nombre ,"Habitación", cantidad);
-          // }else{
-          //   document.getElementById("cantidadError").style.display = 'inline-block';
-          // }
-        }
-        function agregarAlCarrito(id_item, nombre, categoria, cantidad){
-              $.ajax({
-                dataType: "json",
-                url : "../../carrito/agregar",
-                method : "POST",
-                data: {id: id_item, nombre: nombre, categoria: categoria, cantidad: cantidad},
-                headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(){
-                  alert("Se ha agregado "+nombre+" al carrito de compras!");
-                },
-                error: function (data, textStatus, errorThrown) {
-                  console.log(data);
-                }
-              });
-        }
+    function addCarrito(elem, id_hab, hotel){
+      var id = id_hab;
+      var nombre = hotel;//document.getElementById("nombre-curso").innerHTML;
+      var elemDias = elem.previousElementSibling;
+      var num_dias = elemDias.value;
+      if(num_dias < 0){
+        elemDias.style.border = '1px solid red';
+      }else{
+         elemDias.style.border = '1px solid teal';
+         addHabitacionAlCarrito(id, nombre, num_dias);
+      }
+    }
 </script>
 @endsection

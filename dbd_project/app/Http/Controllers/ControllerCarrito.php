@@ -33,6 +33,101 @@ class ControllerCarrito extends Controller
     }
   }
 
+    public function addHabitacionAlCarrito(Request $request){
+      if (Session::has("carrito")){
+  	 		$carrito = json_decode(Session::get("carrito"));
+  	 	}else{
+        //Se crea una clase vacia y se llena como el formato de arriba
+    	 	$carrito = new \stdClass();
+    	 	$carrito->precio = 0;
+    	 	$carrito->items = [];
+      }
+
+      $id = $request->input("id");
+      $nombreHotel = $request->input("nombre");
+      $cantidad = $request->input("cantidad");
+
+      $habitacion = \App\Models\Habitacion::findOrFail($id);
+
+      $nuevoItem = new \stdClass();
+      $nuevoItem->id = $id;
+      $nuevoItem->categoria = 'Habitación';
+      $nuevoItem->precio = $habitacion->precio_por_noche;
+      $nuevoItem->nombre = $nombreHotel;
+	 		$nuevoItem->cantidad = $cantidad;
+      $nuevoItem->descuento = $habitacion->descuento;
+	 		$nuevoItem->subtotal= $nuevoItem->precio * $cantidad;
+      array_push($carrito->items, $nuevoItem);
+
+      $total = 0;
+  	 	foreach ($carrito->items as $item) {
+  	 		$total = $total + $item->subtotal;
+  	 	}
+  	 	$carrito->total = $total;
+  	 	Session::put("carrito", json_encode($carrito));
+    }
+
+    public function addVueloAlCarrito(Request $request){
+      if (Session::has("carrito")){
+  	 		$carrito = json_decode(Session::get("carrito"));
+  	 	}else{
+        //Se crea una clase vacia y se llena como el formato de arriba
+    	 	$carrito = new \stdClass();
+    	 	$carrito->precio = 0;
+    	 	$carrito->items = [];
+      }
+
+      $id = $request->input("id");
+      $num_turista = $request->input("turista");
+      $num_ejecutivo = $request->input("ejecutivo");
+      $num_pc = $request->input("primera_clase");
+
+      $vuelo = \App\Models\Vuelo::findOrFail($id);
+
+      if($num_turista > 0){
+        $nuevoItem = new \stdClass();
+        $nuevoItem->id = $id;
+        $nuevoItem->nombre = $vuelo->nombre_avion;
+        $nuevoItem->categoria = 'Vuelo';
+        $nuevoItem->tipo_pasaje = 'Turista';
+        $nuevoItem->precio = $vuelo->valor_turista;
+        $nuevoItem->descuento = $vuelo->descuento;
+  	 		$nuevoItem->cantidad = $num_turista;
+  	 		$nuevoItem->subtotal= round($nuevoItem->precio * $num_turista - $nuevoItem->precio * $num_turista * ($vuelo->descuento/100));
+        array_push($carrito->items, $nuevoItem);
+      }
+      if($num_ejecutivo > 0){
+        $nuevoItem = new \stdClass();
+        $nuevoItem->id = $id;
+        $nuevoItem->nombre = $vuelo->nombre_avion;
+        $nuevoItem->categoria = 'Vuelo';
+        $nuevoItem->tipo_pasaje = 'Ejecutivo';
+        $nuevoItem->precio = $vuelo->valor_ejecutivo;
+        $nuevoItem->descuento = $vuelo->descuento;
+  	 		$nuevoItem->cantidad = $num_ejecutivo;
+  	 		$nuevoItem->subtotal= round($nuevoItem->precio * $num_ejecutivo - $nuevoItem->precio * $num_ejecutivo * ($vuelo->descuento/100));
+        array_push($carrito->items, $nuevoItem);
+      }
+      if($num_pc > 0){
+        $nuevoItem = new \stdClass();
+        $nuevoItem->id = $id;
+        $nuevoItem->nombre = $vuelo->nombre_avion;
+        $nuevoItem->categoria = 'Vuelo';
+        $nuevoItem->tipo_pasaje = 'Primera Clase';
+        $nuevoItem->precio = $vuelo->valor_primera_clase;
+        $nuevoItem->descuento = $vuelo->descuento;
+  	 		$nuevoItem->cantidad = $num_pc;
+  	 		$nuevoItem->subtotal = round($nuevoItem->precio * $num_pc - $nuevoItem->precio * $num_pc * ($vuelo->descuento/100));
+        array_push($carrito->items, $nuevoItem);
+      }
+      $total = 0;
+  	 	foreach ($carrito->items as $item) {
+  	 		$total = $total + $item->subtotal;
+  	 	}
+  	 	$carrito->total = $total;
+  	 	Session::put("carrito", json_encode($carrito));
+    }
+
     public function agregarAlCarrito(Request $request){
      /*
      Carrito es un JSON de la siguiente estructura:
@@ -44,11 +139,12 @@ class ControllerCarrito extends Controller
         "categoria": "vuelo",
         "cantidad" : "3",
         "precio" : "20000",
+        "descuento" : "10",
         "subtotal" : "60000"
         },
         ...
       ],
-      "total" = "60000";
+      "total" = "54000";
       }
     }
     */

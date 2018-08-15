@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Hoteles;
+use App\Models\Hotel;
 
 class ControllerHoteles extends Controller
 {
@@ -16,7 +16,7 @@ class ControllerHoteles extends Controller
 
     public function index()
     {
-      $hoteles = Hoteles::orderBy('id_hotel', 'asc')->paginate(6); //Cambiar a ordenarlos segun criterios
+      $hoteles = Hotel::orderBy('id_hotel', 'asc')->paginate(6); //Cambiar a ordenarlos segun criterios
       return view('hoteles.buscar-hoteles')->with('hoteles', $hoteles);
     }
 
@@ -45,7 +45,7 @@ class ControllerHoteles extends Controller
           'direccion' => 'required|unique:hoteles',
       ]);
 
-      $hotel = new Hoteles();
+      $hotel = new Hotel();
       $hotel->nombre_hotel = $request->input('nombre_hotel');
       $hotel->pais = $request->input('pais');
       $hotel->ciudad = $request->input('ciudad');
@@ -70,7 +70,7 @@ class ControllerHoteles extends Controller
     public function show($id)
     {
       try{
-          $hotel = Hoteles::findOrFail($id);
+          $hotel = Hotel::findOrFail($id);
         return view('hoteles.detalle-hotel')->with('hotel', $hotel);
       }catch(Exception $e){
         echo "Error";

@@ -39,6 +39,5 @@ class autos_seeders extends Seeder
 	   				'updated_at'					=> now()       
 	   		]);
 		}
-      
     }
 }

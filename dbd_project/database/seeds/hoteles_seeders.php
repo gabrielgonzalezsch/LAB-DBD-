@@ -22,13 +22,16 @@ class hoteles_seeders extends Seeder
 
     	$response = file_get_contents(storage_path() . "/airports.json");
     	$response = json_decode($response);
-    	$client = new Client();
-    	$latlong = '-33.523689,-70.554199';
-	      $res = $client->get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$latlong'&sensor=true');
-	      echo $res->getStatusCode(); // 200
-	      return $res->getBody();
+
+
+    	/*$client = new Client();
+    	$latlong = $response[$i]->lat+$response[$i]->lon;
+	    $res = $client->get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$latlong+'&sensor=true');
+	    echo $res->getStatusCode(); // 200
+	    return $res->getBody();
    
 
+	    echo $res->getBody();*/
 
     	for ($i=0; $i < 400 ; $i++) { 
 

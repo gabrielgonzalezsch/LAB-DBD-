@@ -18,11 +18,14 @@ class ControllerTransacciones extends Controller
         }else{
           return redirect("/")->with('failure', 'El carrito esta vacío');
         }
+        if($carrito->total > $usuario->fondos_disponibles){
+          return redirect('/carrito')->with('failure', 'No tiene suficientes fondos para realizar esta compra!');
+        }
         $transaccion->monto = $carrito->total;
         $transaccion->id_usuario = $usuario->id_usuario;
         $transaccion->ya_cancelado = true; //Para efectos practicos de prueba
         $transaccion->hora_compra = \Carbon\Carbon::now();
-        $transaccion->numero_cuenta_compra = rand(100, 1000);//$usuario->numero_cuenta_usuario;
+        $transaccion->numero_cuenta_compra = $usuario->numero_cuenta_usuario;
         $transaccion->usuario()->associate($usuario);
         $transaccion->save();
         //$usuario->transacciones()->save($transaccion);
@@ -49,7 +52,14 @@ class ControllerTransacciones extends Controller
              case 'Habitación':
               $habitacion = \App\Models\Habitacion::findOrFail($item->id);
               $transaccion->habitaciones()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_noches' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
+              $habitacion->ya_reservado = true;
+              $habitacion->save();
               break;
+             case 'Auto':
+              $auto = \App\Models\Auto::findOrFail($item->id);
+              $transaccion->autos()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
+              $auto->ya_reservado = true;
+              $auto->save();
              default:
                break;
            }
@@ -67,7 +77,13 @@ class ControllerTransacciones extends Controller
                             (SELECT cp.id_transaccion, t.id_usuario, v.nombre_avion, v.nombre_aerolinea, v.aeropuerto_origen, v.aeropuerto_destino, t.hora_compra, cp.num_asiento, cp.tipo_asiento
                             FROM vuelos v, compra_pasaje cp, transacciones t WHERE v.id_vuelo = cp.id_vuelo AND cp.id_transaccion = t.id_transaccion) c
                           WHERE c.id_usuario = :id;', ['id' => $id]);
-
+      $autos_arrendados = DB::select('
+                          SELECT c.id_transaccion, c.modelo_auto, c.patente, c.pais_arriendo, c.ciudad_arriendo, c.calle_arriendo, c.inicio_reserva, c.fin_reserva, c.hora_reserva, c.monto
+                          FROM
+                            (SELECT t.id_usuario, ra.id_transaccion, a.modelo_auto, a.patente, a.pais_arriendo, a.ciudad_arriendo, a.calle_arriendo, ra.inicio_reserva, ra.fin_reserva, ra.hora_reserva, t.monto
+                            FROM autos a, reserva_auto ra, transacciones t
+                            WHERE a.id_auto = ra.id_auto AND ra.id_transaccion = t.id_transaccion) c
+                          WHERE c.id_usuario = :id;', ['id' => $id]);
       $habitaciones_reservadas = DB::select('
                           SELECT c.id_transaccion, c.nombre_hotel, c.pais, c.ciudad, c.direccion, c.num_habitacion, c.hora_reserva, c.inicio_reserva, c.fin_reserva, c.monto
                           FROM
@@ -79,7 +95,10 @@ class ControllerTransacciones extends Controller
                             WHERE r.id_transaccion = t.id_transaccion) c
                           WHERE c.id_usuario = :id;', ['id' => $id]);
       if($transacciones != NULL)
-        return view('historial')->with('transacciones', $transacciones)->with('vuelos_reservados', $vuelos_reservados)->with('habitaciones_reservadas', $habitaciones_reservadas);//->with('habitaciones', $habitaciones_reservadas);
+        return view('historial')->with('transacciones', $transacciones)
+        ->with('vuelos_reservados', $vuelos_reservados)
+        ->with('habitaciones_reservadas', $habitaciones_reservadas)
+        ->with('autos_arrendados', $autos_arrendados);
       else {
         return redirect('/')->with('failure', 'No hay compras realizadas');
       }

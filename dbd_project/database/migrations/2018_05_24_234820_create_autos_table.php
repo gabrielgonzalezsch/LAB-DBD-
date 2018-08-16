@@ -25,6 +25,7 @@ class CreateAutosTable extends Migration
             $table->smallInteger('cap_pasajeros')->default(4)->nullable();
             $table->string('descripcion_auto', 100)->nullable()->default('No descripción');
             $table->integer('descuento')->nullable()->default(0);
+            $table->boolean('ya_reservado')->default(false);
             $table->timestamps();
         });
     }

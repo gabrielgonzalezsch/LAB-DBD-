@@ -6,7 +6,7 @@
     <ul>
       @foreach($autos as $auto)
       <li>
-        <h3><a href="/autos/{{$auto->ID_auto}}">{{$auto->modelo_auto}}</a></h3>
+        <h3><a href="/autos/{{$auto->id_auto}}">{{$auto->modelo_auto}}</a></h3>
         <small>Valor por dia: {{$auto->precio_por_dia}}</small>
       </li>
       @endforeach

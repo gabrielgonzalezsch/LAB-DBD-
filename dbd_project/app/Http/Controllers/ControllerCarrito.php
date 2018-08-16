@@ -67,6 +67,40 @@ class ControllerCarrito extends Controller
   	 	Session::put("carrito", json_encode($carrito));
     }
 
+    public function addAutoAlCarrito(Request $request){
+      if (Session::has("carrito")){
+  	 		$carrito = json_decode(Session::get("carrito"));
+  	 	}else{
+        //Se crea una clase vacia y se llena como el formato de arriba
+    	 	$carrito = new \stdClass();
+    	 	$carrito->precio = 0;
+    	 	$carrito->items = [];
+      }
+
+      $id = $request->input("id");
+      $nombreAuto = $request->input("nombre");
+      $cantidad = $request->input("cantidad");
+
+      $auto = \App\Models\Auto::findOrFail($id);
+
+      $nuevoItem = new \stdClass();
+      $nuevoItem->id = $id;
+      $nuevoItem->categoria = 'Auto';
+      $nuevoItem->precio = $auto->precio_por_dia;
+      $nuevoItem->nombre = $nombreAuto;
+	 		$nuevoItem->cantidad = $cantidad;
+      $nuevoItem->descuento = $auto->descuento;
+	 		$nuevoItem->subtotal= $nuevoItem->precio * $cantidad;
+      array_push($carrito->items, $nuevoItem);
+
+      $total = 0;
+  	 	foreach ($carrito->items as $item) {
+  	 		$total = $total + $item->subtotal;
+  	 	}
+  	 	$carrito->total = $total;
+  	 	Session::put("carrito", json_encode($carrito));
+    }
+
     public function addVueloAlCarrito(Request $request){
       if (Session::has("carrito")){
   	 		$carrito = json_decode(Session::get("carrito"));

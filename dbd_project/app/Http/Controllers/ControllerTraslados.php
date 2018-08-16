@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Traslado;
 
 class ControllerTraslados extends Controller{
     public function index(){
-    	$traslado = Traslado::orderBy('id_traslado','asc')->paginate(10);
-    	return view('traslado.mostrar-traslados')->with('traslado',$traslado);
+    	$traslados = Traslado::orderBy('id_traslado','asc')->paginate(10);
+    	return view('traslado.mostrar-traslados')->with('traslados', $traslados);
   	}
 
   	public function create(){
@@ -16,7 +17,7 @@ class ControllerTraslados extends Controller{
 
 	public function store(Request $request){
 	    $validData = $request->validate([
-			'tipo_vehiculo' => 'required',
+			     'tipo_vehiculo' => 'required',
           	'patente' => 'required',
           	'pais' => 'required',
           	'ciudad' => 'required',
@@ -61,7 +62,7 @@ class ControllerTraslados extends Controller{
   		catch(Exception $e){
   			echo "Error"
   			return redirect('/traslado')->with('failure','Traslado no existente');
-  		}	
+  		}
 	}
 
   	public function update(Request $request, $id){

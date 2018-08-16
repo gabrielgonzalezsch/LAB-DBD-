@@ -52,6 +52,8 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios',
             'password' => 'required|string|min:6|confirmed',
+            'num_cuenta' => 'required|numeric',
+            'banco' => 'required|string'
         ]);
     }
 
@@ -70,8 +72,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'tipo_usuario' => 'registrado',
-            'numero_cuenta_usuario' => NULL,
-            'banco_origen' => NULL,
+            'numero_cuenta_usuario' => $data['num_cuenta'],
+            'banco_origen' => $data['banco'],
             'fondos_disponibles' => 0,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')

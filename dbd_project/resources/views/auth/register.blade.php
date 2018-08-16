@@ -38,7 +38,28 @@
                                 @endif
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                            <label for="banco" class="col-md-4 col-form-label text-md-right">{{ __('Banco') }}</label>
+                            <div class="col-md-6">
+                                <input id="banco" type="text" class="form-control{{ $errors->has('banco') ? ' is-invalid' : '' }}" name="banco" value="{{ old('banco') }}" required>
+                                @if ($errors->has('banco'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('banco') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="num_cuenta" class="col-md-4 col-form-label text-md-right">{{ __('Número de tarjeta bancaria') }}</label>
+                            <div class="col-md-6">
+                                <input id="num_cuenta" type="text" class="form-control{{ $errors->has('num_cuenta') ? ' is-invalid' : '' }}" name="num_cuenta" value="{{ old('num_cuenta') }}" required>
+                                @if ($errors->has('num_cuenta'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('num_cuenta') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

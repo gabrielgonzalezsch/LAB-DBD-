@@ -90,5 +90,40 @@
       </tbody>
     </table>
   </div>
+  <div class="ui segment">
+    <div class="ui header">Autos arrendados</div>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Id compra</th>
+          <th>Modelo</th>
+          <th>Patente</th>
+          <th>País</th>
+          <th>Ciudad</th>
+          <th>Dirección Arriendo</th>
+          <th>Hora de compra</th>
+          <th>Inicio reserva</th>
+          <th>Fin reserva</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($autos_arrendados as $auto)
+        <tr>
+          <td>{{$auto->id_transaccion}}</td>
+          <td>{{$auto->modelo_auto}}</td>
+          <td>{{$auto->patente}}</td>
+          <td>{{$auto->pais_arriendo}}</td>
+          <td>{{$auto->ciudad_arriendo}}</td>
+          <td>{{$auto->calle_arriendo}}</td>
+          <td>{{$auto->hora_reserva}}</td>
+          <td>{{$auto->inicio_reserva}}</td>
+          <td>{{$auto->fin_reserva}}</td>
+          <td>{{$auto->monto}}</td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
 </div>
 @stop

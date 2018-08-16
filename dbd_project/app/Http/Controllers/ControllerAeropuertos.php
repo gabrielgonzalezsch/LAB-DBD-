@@ -36,7 +36,7 @@ class ControllerAeropuertos extends Controller
 
     public function show($id){
     	try{
-	    	$aeropuerto = Aeropuertos::::find($id);
+	    	$aeropuerto = Aeropuertos::find($id);
 	    	return view('aeropuertos.detalles')->with('aeropuerto',$aeropuerto);
     	}
     	catch(Exception $e){

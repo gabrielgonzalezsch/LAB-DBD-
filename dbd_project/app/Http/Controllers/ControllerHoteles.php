@@ -105,7 +105,7 @@ class ControllerHoteles extends Controller{
           'latitud' => 'required',
           'longitud' => 'required',
         ]);
-      $hotel = new Hotel();
+      $hotel = Hotel::find($id);
       $hotel->nombre_hotel = $request->input('nombre_hotel');
       $hotel->pais = $request->input('pais');
       $hotel->ciudad = $request->input('ciudad');

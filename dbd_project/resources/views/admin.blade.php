@@ -40,7 +40,7 @@
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      data: {usuario: usuario, rol : 'Administrador'},
+      data: {usuario: usuario, rol : 'administrador'},
       success: function(){
         alert('Privilegios otorgados');
         document.location.reload(false);
@@ -50,7 +50,7 @@
       }
     });
   });
-  
+
   /*$.ajax({
     url: 'https://aviation-edge.com/api/public/airportDatabase?key=3f3c82-218908-4bdb0c-373276-6df51a',
     datatype: 'json',
@@ -70,7 +70,7 @@
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      data: {usuario: usuario, rol : 'Administrador'},
+      data: {usuario: usuario, rol : 'administrador'},
       success: function(){
         alert('Privilegios revocados');
         document.location.reload(false);

@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\Usuarios;
-use App\Models\Aeropuertos;
+use App\Models\Usuario;
+use App\Models\Aeropuerto;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +15,14 @@ use App\Models\Aeropuertos;
 |
 */
 
-$factory->define(Usuarios::class, function (Faker $faker) {
-    
+$factory->define(Usuario::class, function (Faker $faker) {
+
     $array = [
 
         'username'              => $faker->username,
         'email'                 => $faker->email,
         'password'              => $faker->password,
-        'tipo_usuario'          => $faker->randomElement(['Administrador','Invitado']),
+        'tipo_usuario'          => $faker->randomElement(['administrador','Invitado']),
         'banco_origen'          => $faker->randomElement(['Santander','Bci','Itau','Banco Estado','Bancho De Chile','Scotiabank']),
         'numero_cuenta_usuario' => random_int(100000000,999999999),
         'fondos_disponibles'    => random_int(0,500),
@@ -34,11 +34,11 @@ $factory->define(Usuarios::class, function (Faker $faker) {
 
 
 /*$factory->define(Aeropuertos::class, function (Faker $faker) {
-    
-    
+
+
 
     //print($i);
-    //$i = random_int(0,1000);  
+    //$i = random_int(0,1000);
 
     //$i = range(1, 20);
     //shuffle($i);
@@ -49,9 +49,9 @@ $factory->define(Usuarios::class, function (Faker $faker) {
             'cod_aeropuerto' =>  $response[random_int(0,3)]->codeIataAirport,
             'ciudad'         =>  $response[random_int(0,3)]->codeIataCity,
             'pais'           =>  $response[random_int(0,3)]->codeIso2Country,
-    
+
     ];
 
-    
+
     return $array;
 });*/

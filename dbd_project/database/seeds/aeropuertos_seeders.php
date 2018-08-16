@@ -21,12 +21,13 @@ class aeropuertos_seeders extends Seeder
 
     		DB::table('aeropuertos')->insert([
    			
-   				'cod_aeropuerto' 	=>  $response[$i]->code, 
-   				'ciudad'			=>  $response[$i]->city,
-   				'pais' 				=>  $response[$i]->country,
-   				'created_at'		=> 	now(),
-   				'updated_at'		=>  now()
+   				'cod_aeropuerto' 	 =>  $response[$i]->code, 
+   				'ciudad'			     =>  $response[$i]->city,
+   				'pais' 				     =>  $response[$i]->country,
+   				'created_at'		   =>  now(),
+   				'updated_at'		   =>  now()
+
    			]);
-       	}
+       }
     }
 }

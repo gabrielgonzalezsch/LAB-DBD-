@@ -23,12 +23,11 @@ class ControllerAeropuertos extends Controller
         'latitud' => 'requiered|float',
 
     ]);
-
     $aeropuerto = new Aeropuertos();
-    $auto->pais = $request->input('pais');
-    $auto->ciudad = $request->input('ciudad');
-    $auto->longitud = $request->input('longitud');
-    $auto->latitud = $request->input('latitud');
+    $aeropuerto->pais = $request->input('pais');
+    $aeropuerto->ciudad = $request->input('ciudad');
+    $aeropuerto->longitud = $request->input('longitud');
+    $aeropuerto->latitud = $request->input('latitud');
     $aeropuerto->save();
     echo "Success!";
     return redirect('/aeropuertos')->with('success', 'Mostrando aeropuertos disponibles');
@@ -45,8 +44,31 @@ class ControllerAeropuertos extends Controller
         return redirect('/aeropuertos')->with('failure', 'aeropuerto no existente');
       }
     }
+    public function edit($id){
+        try{
+            $aeropuerto = Aeropuerto::findOrFail($id);
+            return view('Aeropuerto.modificar')->with('Aeropuerto',$aeropuerto);
+        }
+        catch(Exception $e){
+            echo "Error"
+            return redirect('/aeropuerto')->with('failure','Aeropuerto no existente');
+        }   
+    }
+
     public function update($request , $id){
-    	
+    	$validData = $request->validate([
+        'pais' => 'required|string',
+        'ciudad' => 'required|string',
+        'longitud' => 'required|float',
+        'latitud' => 'requiered|float',
+        ]);
+        $aeropuerto = new Aeropuertos();
+        $aeropuerto->pais = $request->input('pais');
+        $aeropuerto->ciudad = $request->input('ciudad');
+        $aeropuerto->longitud = $request->input('longitud');
+        $aeropuerto->latitud = $request->input('latitud');
+        $aeropuerto->save();
+        echo "Success!";
     }
 
     public function destroy($id){

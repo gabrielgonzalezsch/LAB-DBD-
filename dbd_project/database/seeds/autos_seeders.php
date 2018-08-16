@@ -31,7 +31,7 @@ class autos_seeders extends Seeder
 		            'pais_arriendo'					=> $response[$i]->country,		
 		            'ciudad_arriendo'				=> $response[$i]->city,
 		            'calle_arriendo'				=> $faker->address,
-		            'precio_por_dia'				=> random_int(20,50),
+		            'precio_por_dia'				=> random_int(20000,50000),
 		            'cap_pasajeros'					=> random_int(2,6),
 		            'descripcion_auto'				=> '-',
 		            'descuento'						=> random_int(3,20),

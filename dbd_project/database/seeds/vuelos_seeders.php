@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Generator as Faker;
 
+
 class vuelos_seeders extends Seeder
 {
     /**
@@ -16,6 +17,8 @@ class vuelos_seeders extends Seeder
         
     	$response = file_get_contents(storage_path() . "/airports.json");
     	$response = json_decode($response);
+    	$carbon = new Carbon();
+
     	
 
     	for ($i=0; $i < 300 ; $i++) { 

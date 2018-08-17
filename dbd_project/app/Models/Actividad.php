@@ -8,4 +8,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 class Actividad extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
+    public function transaccion(){
+    	return $this->belongsToMany('App\Transaccion');
+    }
 }

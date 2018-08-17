@@ -13,21 +13,21 @@ class ControllerActividades extends Controller
     }
 
     public function create(){
-    	return view('actividad.crear-actividad');
+    	return view('actividades.crear-actividad');
     }
 
-    public function store(Request $req){
+    public function store(Request $request){
     	$validData = $request->validate([
           'nombre_actividad' => 'required',
           'descripcion_actividad' => 'required',
           'fecha_inicio' => 'required',
-          'fecha_termino' => 'required',
+          'fecha_termino' => 'requirasdasded',
           'pais' => 'required',
           'ciudad' => 'required',
           'calle' => 'required',
           'valor_entrada' => 'required',
           'cupos' => 'required',
-          'precio_normal' =>'required'
+          'precio_normal' => 'required',
           'descuento' => 'required',
       ]);
     	$actividad = new Actividad();
@@ -83,7 +83,6 @@ class ControllerActividades extends Controller
           'precio_normal' =>'required'
           'descuento' => 'required',
       ]);
-    	$actividad = new Actividad();
     	$actividad->nombre_actividad = $request->input('nombre_actividad');
     	$actividad->descripcion_actividad = $request->input('descripcion_actividad');
     	$actividad->fecha_inicio = $request->input('fecha_inicio');
@@ -97,14 +96,10 @@ class ControllerActividades extends Controller
     	$actividad->descuento = $request->input('descuento');
     	$hotel->save();
      	echo "Success!";
-    }
-
     public function destroy($id){
     	try{
     		$actividad = Actividad::find($id);
     		$actividad->delete();
     	}
     }
-
-
 }

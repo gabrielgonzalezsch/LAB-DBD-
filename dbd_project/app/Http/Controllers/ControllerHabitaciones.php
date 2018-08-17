@@ -13,9 +13,9 @@ class ControllerHabitaciones extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+      $habitaciones = Habitacion::orderBy('id_habitacion', 'asc')->paginate(5); 
+      return view('habitaciones.buscar-habitaciones')->with('habitaciones', $habitaciones);
     }
 
     /**
@@ -86,7 +86,13 @@ class ControllerHabitaciones extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+          $habitacion = Habitacion::find($id);
+          return view('habitacion.mostrar')->with('habitacion',$habitacion);
+        }
+        catch(Exception $e){
+          echo "FAIL";
+        }
     }
 
     /**
@@ -147,6 +153,7 @@ class ControllerHabitaciones extends Controller
      */
     public function destroy($id)
     {
-        //
+        $habitacion = Habitacion::find($id);
+        $habitacion->delete();
     }
 }

@@ -1,4 +1,4 @@
-<?php
+|<?php
 
 namespace App\Models;
 
@@ -24,6 +24,7 @@ class Transaccion extends Model implements Auditable
   public function habitaciones(){
      return $this->belongsToMany(\App\Models\Habitacion::class, 'compra_habitacion', 'id_transaccion', 'id_habitacion');
   }
+
 
   public function autos(){
      return $this->belongsToMany(\App\Models\Auto::class, 'reserva_auto', 'id_transaccion', 'id_auto');

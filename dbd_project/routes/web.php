@@ -25,6 +25,7 @@ Route::group(['middleware'=> 'admin'], function (){
   Route::get('/hoteles/{id}/edit', 'ControllerHoteles@edit')->name('hotel.edit');
   Route::patch('/hoteles/{id}/update', 'ControllerHoteles@update')->name('hotel.update');
   Route::get('/auditoria', 'ControllerAuditoria@mostrarTablaAuditoria');
+  Route::get('/actividades/create', 'ControllerActividades@create');
   //Route::get('/hoteles/{id_hotel}/create', function($id_hotel){
     //return view('habitaciones.insertar-habitacion')->with('id', $id_hotel);
   //});

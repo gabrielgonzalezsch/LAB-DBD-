@@ -82,14 +82,38 @@ class ControllerVuelos extends Controller
   }
 
   public function edit($id){
-
+      try{
+        $vuelo = Vuelo::find($id);
+        return view('vuelo.modificar')->with('vuelo',$vuelo);
+      }
+      catch(Exception $e){
+        echo "error";
+      }
   }
 
   public function update(Request $request, $id){
+      $num_vuelo = $req->input('n_avion');
+      $aerolinea = $req->input('aerolinea');
+      $a_destino = $req->input('a_origen');
+      $a_origen = $req->input('a_destino');
+      $h_salida = $req->input('hora_salida');
+      $h_llegada = $req->input('hora_llegada');
+      $hora_salida = Carbon::createFromFormat('d/m/Y H:i', $h_salida);
+      $hora_llegada = Carbon::createFromFormat('d/m/Y H:i', $h_llegada);
+      $cap_equipaje = $req->input('c_equipaje');
+      $maletas = $req->input('num_maletas');
+      $cap_t = $req->input('c_turista');
+      $cap_e = $req->input('c_ejecutivo');
+      $cap_p = $req->input('c_primera_clase');
+      $desc = $req->input('descuento');
+      $precio_t = $req->input('p_turista');
+      $precio_e = $req->input('p_ejecutivo');
+      $precio_p = $req->input('p_primera_clase');
 
   }
 
   public function destroy($id){
-
+    $vuelo = Vuelo::find($id);
+    $vuelo->delete();
   }
 }

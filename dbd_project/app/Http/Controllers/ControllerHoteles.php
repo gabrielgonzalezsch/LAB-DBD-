@@ -84,7 +84,7 @@ class ControllerHoteles extends Controller{
       }
       catch(Exception $e){
         echo "Error";
-        return redirect('/hoteles')->with('failure','Hotel no existente');
+        return redirect('/hotel')->with('failure','Hotel no existente');
       }
     }
 
@@ -102,7 +102,7 @@ class ControllerHoteles extends Controller{
           'ciudad' => 'string',
           'direccion' => 'string',
         ]);
-      $hotel = new Hotel();
+      $hotel = Hotel::find($id);
       $hotel->nombre_hotel = $request->input('nombre_hotel');
       $hotel->pais = $request->input('pais');
       $hotel->ciudad = $request->input('ciudad');
@@ -123,5 +123,11 @@ class ControllerHoteles extends Controller{
     public function destroy($id){
       $hotel = Hotel::find($id);
       $hotel->delete();
+    }
+
+
+
+    public function HotelesSegunPais(Request $request){
+      "SELECT ID_vuelo from Vuelo WHERE pais = '" + $request->pais? + "';"
     }
 }

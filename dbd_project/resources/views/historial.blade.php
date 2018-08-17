@@ -91,6 +91,39 @@
     </table>
   </div>
   <div class="ui segment">
+    <div class="ui header">Entradas compradas de actividades </div>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Id compra</th>
+          <th>Nombre de la actividad</th>
+          <th>País</th>
+          <th>Ciudad</th>
+          <th>Dirección</th>
+          <th>Hora de compra</th>
+          <th>Tipo entrada</th>
+          <th>Número de entradas</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($actividades_compradas as $actividad)
+        <tr>
+          <td>{{$actividad->id_transaccion}}</td>
+          <td>{{$actividad->nombre_actividad}}</td>
+          <td>{{$actividad->pais}}</td>
+          <td>{{$actividad->ciudad}}</td>
+          <td>{{$actividad->calle}}</td>
+          <td>{{$actividad->hora_compra}}</td>
+          <td>{{$actividad->tipo_entrada}}</td>
+          <td>{{$actividad->num_entradas}}</td>
+          <td>{{$actividad->monto}}</td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+  <div class="ui segment">
     <div class="ui header">Autos arrendados</div>
     <table class="table">
       <thead class="thead-dark">

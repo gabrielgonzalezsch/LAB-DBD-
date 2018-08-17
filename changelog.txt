@@ -1,11 +1,23 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.1.9
+Version actual 0.2.0
+<< Version 0.2.0 >> 17/08/18
+Contribuyentes: Vicente Rivera, Felipe Sanchez
+- Se agregan las vistas para actividades y traslados en create e index
+- Se agrega vista ver una actividad
+- Se puede comprar una actividad
+- Fix de los errores de sintaxis del felipe (muchos)
+- Fix de seeds para vuelos
+- Se deja en duda como implementar los traslados...
+- Se puede usar el cheat code /fondos teniendo privilegios de admin para ganar infinita plata
+
 << Version 0.1.9 >> 17/08/18
 Contribuyentes: Vicente Rivera
 - Agregado insertar traslado y ver traslado
 - intentando hacer lo mismo para actividades pero quiero dormir
+- Tienen que hacer composer install para poder ocupar auditoria
+
 << Version 0.1.8 >> 17/08/18
 Contribuyentes: Vicente Rivera, Gabriel Gonzalez, Felipe Sanchez, Nicolas Vieras
 - script listo

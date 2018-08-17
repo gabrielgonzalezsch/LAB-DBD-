@@ -101,6 +101,40 @@ class ControllerCarrito extends Controller
   	 	Session::put("carrito", json_encode($carrito));
     }
 
+    public function addActividadAlCarrito(Request $request){
+      if (Session::has("carrito")){
+  	 		$carrito = json_decode(Session::get("carrito"));
+  	 	}else{
+        //Se crea una clase vacia y se llena como el formato de arriba
+    	 	$carrito = new \stdClass();
+    	 	$carrito->precio = 0;
+    	 	$carrito->items = [];
+      }
+
+      $id = $request->input("id");
+      $nombreActividad = $request->input("nombre");
+      $cantidad = $request->input("cantidad");
+
+      $actividad = \App\Models\Actividad::findOrFail($id);
+
+      $nuevoItem = new \stdClass();
+      $nuevoItem->id = $id;
+      $nuevoItem->categoria = 'Actividad';
+      $nuevoItem->precio = $actividad->valor_entrada;
+      $nuevoItem->nombre = $nombreActividad;
+	 		$nuevoItem->cantidad = $cantidad;
+      $nuevoItem->descuento = $actividad->descuento;
+	 		$nuevoItem->subtotal= $nuevoItem->precio * $cantidad;
+      array_push($carrito->items, $nuevoItem);
+
+      $total = 0;
+  	 	foreach ($carrito->items as $item) {
+  	 		$total = $total + $item->subtotal;
+  	 	}
+  	 	$carrito->total = $total;
+  	 	Session::put("carrito", json_encode($carrito));
+    }
+
     public function addVueloAlCarrito(Request $request){
       if (Session::has("carrito")){
   	 		$carrito = json_decode(Session::get("carrito"));

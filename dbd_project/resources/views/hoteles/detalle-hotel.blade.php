@@ -16,6 +16,7 @@
   <ul>
   @foreach($hotel->habitaciones as $habitacion)
       <li>
+        @if($habitacion->ya_reservado == false)
         <ul>
           <li><h3>{{$habitacion->num_habitacion}}</h3></li>
           <li><h6>Valoración: {{$habitacion->valoracion}}</li>
@@ -44,6 +45,7 @@
         </button>
         <input type="text" value="$ {{$habitacion->precio_por_noche}} CLP" readonly>
       </div>
+      @endif
   @endforeach
   </ul>
   </div>

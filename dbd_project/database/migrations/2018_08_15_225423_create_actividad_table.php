@@ -22,7 +22,7 @@ class CreateActividadTable extends Migration
             $table->string('pais');
             $table->string('ciudad');
             $table->string('calle');
-            $table->smallInteger('valor_entrada');
+            $table->integer('valor_entrada');
             $table->integer('cupos');
             $table->integer('descuento');
             $table->timestamps();

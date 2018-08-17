@@ -68,13 +68,13 @@ class ControllerTransacciones extends Controller
               $transaccion->autos()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
               $auto->ya_reservado = true;
               $auto->save();
+              break;
              case 'Actividad':
               $actividad = \App\Models\Actividad::findOrFail($item->id);
               $transaccion->actividades()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'tipo_entrada' => 'Adulto', 'num_entradas' => $item->cantidad]);
               $actividad->cupos = $actividad->cupos - $item->cantidad;
               $actividad->save();
-             default:
-               break;
+              break;
            }
     	 	}
         Session::forget("carrito");

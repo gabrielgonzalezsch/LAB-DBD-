@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Usuario extends Authenticatable
+class Usuario extends Authenticatable implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     use Notifiable;
 
     /**

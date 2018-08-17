@@ -1,7 +1,13 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.1.6
+Version actual 0.1.8
+<< Version 0.1.8 >> 17/08/18
+Contribuyentes: Vicente Rivera, Gabriel Gonzalez, Felipe Sanchez, Nicolas Vieras
+- script listo
+- auditoria listo
+- editar hoteles y habitaciones listo
+
 << Version 0.1.6 >> 16/08/18
 Contribuyentes: Vicente Rivera, Gabriel Gonzalez, Felipe Sanchez, Nicolas Vieras
 - Se agrega trigger para descontarle plata al comprar

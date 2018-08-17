@@ -27,15 +27,15 @@ class ControllerTraslados extends Controller{
           	'tarifa_por_kilometro' => 'required'
       		]);
       	$traslado = new Traslado();
-      	$traslado -> tipo_vehiculo = $request->input('tipo_vehiculo');
-      	$traslado -> patente = $request->input('patente');
-      	$traslado -> pais = $request->input('pais');
-      	$traslado -> ciudad = $request->input('ciudad');
-      	$traslado -> inicio_servicio = $request->input('inicio_servicio');
-      	$traslado -> fin_servicio = $request->input('fin_servicio');
-      	$traslado -> numero_pasajeros = $request->input('numero_pasajeros');
-      	$traslado -> tarifa_por_kilometro = $request->input('tarifa_por_kilometro');
-      	$traslado -> descuento = 0;
+      	$traslado->tipo_vehiculo = $request->input('tipo_vehiculo');
+      	$traslado->patente = $request->input('patente');
+      	$traslado->pais = $request->input('pais');
+      	$traslado->ciudad = $request->input('ciudad');
+      	$traslado->inicio_servicio = $request->input('inicio_servicio');
+      	$traslado->fin_servicio = $request->input('fin_servicio');
+      	$traslado->numero_pasajeros = $request->input('numero_pasajeros');
+      	$traslado->tarifa_por_kilometro = $request->input('tarifa_por_kilometro');
+      	$traslado->descuento = 0;
       	$traslado->created_at = date('Y-m-d H:i:s');
       	$traslado->updated_at = date('Y-m-d H:i:s');
       	$traslado->save();
@@ -57,7 +57,7 @@ class ControllerTraslados extends Controller{
   	public function edit($id){
   		try{
   			$traslado = Traslado::findOrFail($id);
-  			return view('traslado.modificar')->with('Traslado',$traslado);
+  			return view('traslado.modificar')->with('traslado',$traslado);
   		}
   		catch(Exception $e){
   			echo "Error"
@@ -78,15 +78,15 @@ class ControllerTraslados extends Controller{
           	'descuento' => 'required'
       		]);
       	$traslado = new Traslado();
-      	$traslado -> tipo_vehiculo = $request->input('tipo_vehiculo');
-      	$traslado -> patente = $request->input('patente');
-      	$traslado -> pais = $request->input('pais');
-      	$traslado -> ciudad = $request->input('ciudad');
-      	$traslado -> inicio_servicio = $request->input('inicio_servicio');
-      	$traslado -> fin_servicio = $request->input('fin_servicio');
-      	$traslado -> numero_pasajeros = $request->input('numero_pasajeros');
-      	$traslado -> tarifa_por_kilometro = $request->input('tarifa_por_kilometro');
-      	$traslado -> descuento = $request->input('descuento');
+      	$traslado->tipo_vehiculo = $request->input('tipo_vehiculo');
+      	$traslado->patente = $request->input('patente');
+      	$traslado->pais = $request->input('pais');
+      	$traslado->ciudad = $request->input('ciudad');
+      	$traslado->inicio_servicio = $request->input('inicio_servicio');
+      	$traslado->fin_servicio = $request->input('fin_servicio');
+      	$traslado->numero_pasajeros = $request->input('numero_pasajeros');
+      	$traslado->tarifa_por_kilometro = $request->input('tarifa_por_kilometro');
+      	$traslado->descuento = $request->input('descuento');
       	$traslado->updated_at = date('Y-m-d H:i:s');
       	$traslado->save();
       	echo "Success!";

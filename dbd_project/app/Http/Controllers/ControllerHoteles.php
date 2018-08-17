@@ -128,4 +128,10 @@ class ControllerHoteles extends Controller{
       $hotel = Hotel::find($id);
       $hotel->delete();
     }
+
+
+
+    public function HotelesSegunPais(Request $request){
+      "SELECT ID_vuelo from Vuelo WHERE pais = '" + $request->pais? + "';"
+    }
 }

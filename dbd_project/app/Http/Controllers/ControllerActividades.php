@@ -9,25 +9,25 @@ class ControllerActividades extends Controller
 {
     public function index(){
  		$actividad = Actividad::orderBy('id_actividad', 'asc')->paginate(5); 
-  		return view('actividad.buscar-actividad')->with('actividad', $actividad);
+  		return view('actividades.buscar-actividad')->with('actividad', $actividad);
     }
 
     public function create(){
-    	return view('actividad.crear-actividad');
+    	return view('actividades.crear-actividad');
     }
 
-    public function store(Request $req){
+    public function store(Request $request){
     	$validData = $request->validate([
           'nombre_actividad' => 'required',
           'descripcion_actividad' => 'required',
           'fecha_inicio' => 'required',
-          'fecha_termino' => 'required',
+          'fecha_termino' => 'requirasdasded',
           'pais' => 'required',
           'ciudad' => 'required',
           'calle' => 'required',
           'valor_entrada' => 'required',
           'cupos' => 'required',
-          'precio_normal' =>'required'
+          'precio_normal' => 'required',
           'descuento' => 'required',
       ]);
     	$actividad = new Actividad();

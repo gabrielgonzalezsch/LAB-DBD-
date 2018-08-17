@@ -83,7 +83,7 @@ class ControllerHoteles extends Controller{
         return view('hotel.modificar')->with('hotel',$hotel);
       }
       catch(Exception $e){
-        echo "Error"
+        echo "Error";
         return redirect('/hotel')->with('failure','Hotel no existente');
       }
     }

@@ -20,6 +20,7 @@ Route::group(['middleware'=> 'admin'], function (){
   Route::get('/hoteles/create', 'ControllerHoteles@create');
   Route::get('/vuelos/create', 'ControllerVuelos@create');
   Route::get('/autos/create', 'ControllerAutos@create');
+  Route::get('/actividades/create', 'ControllerActividades@create');
   //Route::get('/hoteles/{id_hotel}/create', function($id_hotel){
     //return view('habitaciones.insertar-habitacion')->with('id', $id_hotel);
   //});

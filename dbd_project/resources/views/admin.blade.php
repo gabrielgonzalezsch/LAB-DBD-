@@ -40,7 +40,7 @@
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      data: {usuario: usuario, rol : 'Administrador'},
+      data: {usuario: usuario, rol : 'administrador'},
       success: function(){
         alert('Privilegios otorgados');
         document.location.reload(false);
@@ -70,7 +70,7 @@
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      data: {usuario: usuario, rol : 'Administrador'},
+      data: {usuario: usuario, rol : 'administrador'},
       success: function(){
         alert('Privilegios revocados');
         document.location.reload(false);

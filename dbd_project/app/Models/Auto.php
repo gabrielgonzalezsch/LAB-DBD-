@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +7,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 class Auto extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
-    
+
     protected $table = 'autos';
     protected $primaryKey = 'id_auto';
     protected $dates = ['hora_compra', 'inicio_reserva', 'fin_reserva'];

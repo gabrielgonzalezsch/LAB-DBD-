@@ -13,7 +13,7 @@ class hoteles_seeders extends Seeder
      */
     public function run(Faker $faker)
     {
-        
+
     	function frand($min, $max, $decimals = 0) {
   			$scale = pow(10, $decimals);
   			return mt_rand($min * $scale, $max * $scale) / $scale;
@@ -29,28 +29,28 @@ class hoteles_seeders extends Seeder
 	    $res = $client->get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$latlong+'&sensor=true');
 	    echo $res->getStatusCode(); // 200
 	    return $res->getBody();
-   
+
 
 	    echo $res->getBody();*/
 
-    	for ($i=0; $i < 400 ; $i++) { 
+    	for ($i=0; $i < 400 ; $i++) {
 
     		DB::table('hoteles')->insert([
-   			
+
 	            'nombre_hotel'					    => $faker->name,
 	            'pais'							        => $response[$i]->country,
-	            'ciudad'						        => $response[$i]->city, 
+	            'ciudad'						        => $response[$i]->city,
 	            'direccion'						      => $faker->address,		//Direccion api
 	            'valoracion'					      => frand(1, 5, 1),
 	            'num_valoraciones'			    => random_int(0,500),
 	            'num_comentarios'				    => random_int(0,50),
 	            'latitud'						        => $response[$i]->lat,
 	            'longitud'						      => $response[$i]->lon,
-	            'habitaciones_disponibles'	=> random_int(40,300),
+	            'habitaciones_disponibles'	=> 0,
 	            'precio_min_habitacion'			=> random_int(50000,300000),
 	            'created_at'					      => now(),
    				'updated_at'					          => now()
-	            
+
    			]);
        	}
 

@@ -1,5 +1,4 @@
-|<?php
-
+<?php
 namespace App\Models;
 
 use OwenIt\Auditing\Contracts\Auditable;
@@ -25,8 +24,11 @@ class Transaccion extends Model implements Auditable
      return $this->belongsToMany(\App\Models\Habitacion::class, 'compra_habitacion', 'id_transaccion', 'id_habitacion');
   }
 
-
   public function autos(){
      return $this->belongsToMany(\App\Models\Auto::class, 'reserva_auto', 'id_transaccion', 'id_auto');
+  }
+
+  public function actividades(){
+     return $this->belongsToMany(\App\Models\Actividad::class, 'compra_actividad', 'id_transaccion', 'id_actividad');
   }
 }

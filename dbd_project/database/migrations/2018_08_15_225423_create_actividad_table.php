@@ -14,8 +14,7 @@ class CreateActividadTable extends Migration
     public function up()
     {
         Schema::create('actividad', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id_actividad');
             $table->string('nombre_actividad');
             $table->string('descripcion_actividad');
             $table->date('fecha_inicio');
@@ -26,8 +25,7 @@ class CreateActividadTable extends Migration
             $table->smallInteger('valor_entrada');
             $table->integer('cupos');
             $table->integer('descuento');
-            $table->integer('precio_normal');
-
+            $table->timestamps();
         });
     }
 

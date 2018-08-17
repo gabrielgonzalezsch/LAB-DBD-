@@ -4,10 +4,10 @@
   <h1>Todas las actividades: </h1>
   @if(count($actividades) > 0)
     <ul>
-      @foreach($actividades as $actividades)
+      @foreach($actividades as $actividad)
       <li>
-        <h3><a href="/actividades/{{$actividades->id_actividades}}">{{$actividades->nombre_actividad}}</a></h3>
-        <small>Valor por dia: {{$actividades->precio_normal}}</small>
+        <h3><a href="/actividades/{{$actividad->id_actividad}}">{{$actividad->nombre_actividad}}</a></h3>
+        <small>Valor por dia: {{$actividad->precio_normal}}</small>
       </li>
       @endforeach
     </ul>

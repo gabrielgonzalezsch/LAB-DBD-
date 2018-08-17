@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Transaccion;
 use Illuminate\Support\Facades\Session;
@@ -10,6 +8,16 @@ use Auth;
 
 class ControllerTransacciones extends Controller
 {
+    public function fondos(){
+      return view('agregar-fondos');
+    }
+    public function addFondos(Request $req){
+      $usuario = Auth::user();
+      $usuario->fondos_disponibles = $usuario->fondos_disponibles + $req['fondos'];
+      $usuario->save();
+      return redirect('/')->with('success', 'Fondos cargados');
+    }
+
     public function comprar(){
         $usuario = Auth::user();
         $transaccion = new Transaccion();
@@ -60,6 +68,11 @@ class ControllerTransacciones extends Controller
               $transaccion->autos()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
               $auto->ya_reservado = true;
               $auto->save();
+             case 'Actividad':
+              $actividad = \App\Models\Actividad::findOrFail($item->id);
+              $transaccion->actividades()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'tipo_entrada' => 'Adulto', 'num_entradas' => $item->cantidad]);
+              $actividad->cupos = $actividad->cupos - $item->cantidad;
+              $actividad->save();
              default:
                break;
            }
@@ -84,6 +97,13 @@ class ControllerTransacciones extends Controller
                             FROM autos a, reserva_auto ra, transacciones t
                             WHERE a.id_auto = ra.id_auto AND ra.id_transaccion = t.id_transaccion) c
                           WHERE c.id_usuario = :id;', ['id' => $id]);
+      $actividades_compradas = DB::select('
+                          SELECT c.id_transaccion, c.nombre_actividad, c.pais, c.ciudad, c.calle, c.tipo_entrada, c.num_entradas, c.hora_compra, c.monto
+                          FROM
+                            (SELECT t.id_usuario, ca.id_transaccion, a.nombre_actividad, a.pais, a.ciudad, a.calle, ca.tipo_entrada, ca.num_entradas, ca.hora_compra, t.monto
+                            FROM actividad a, compra_actividad ca, transacciones t
+                            WHERE a.id_actividad = ca.id_actividad AND ca.id_transaccion = t.id_transaccion) c
+                          WHERE c.id_usuario = :id;', ['id' => $id]);
       $habitaciones_reservadas = DB::select('
                           SELECT c.id_transaccion, c.nombre_hotel, c.pais, c.ciudad, c.direccion, c.num_habitacion, c.hora_reserva, c.inicio_reserva, c.fin_reserva, c.monto
                           FROM
@@ -98,14 +118,10 @@ class ControllerTransacciones extends Controller
         return view('historial')->with('transacciones', $transacciones)
         ->with('vuelos_reservados', $vuelos_reservados)
         ->with('habitaciones_reservadas', $habitaciones_reservadas)
-        ->with('autos_arrendados', $autos_arrendados);
+        ->with('autos_arrendados', $autos_arrendados)
+        ->with('actividades_compradas', $actividades_compradas);
       else {
         return redirect('/')->with('failure', 'No hay compras realizadas');
       }
     }
-
-    //// WIP
-    // public function autos(){
-    //   return $this->hasMany(App\Models\Vuelo::class, 'compra_pasaje', 'id_usuario', 'id_vuelo');
-    // }
 }

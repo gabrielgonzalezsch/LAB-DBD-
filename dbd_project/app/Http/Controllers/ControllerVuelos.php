@@ -92,6 +92,7 @@ class ControllerVuelos extends Controller
   }
 
   public function update(Request $request, $id){
+    //no se esta guardando nada
       $num_vuelo = $req->input('n_avion');
       $aerolinea = $req->input('aerolinea');
       $a_destino = $req->input('a_origen');
@@ -109,7 +110,13 @@ class ControllerVuelos extends Controller
       $precio_t = $req->input('p_turista');
       $precio_e = $req->input('p_ejecutivo');
       $precio_p = $req->input('p_primera_clase');
+  }
 
+  public function buscarVuelos(Request $request){
+    //$vuelos = DB::select('SELECT * FROM
+    //                    vuelos WHERE pais = :pais ORDER BY ;', ['pais' => $request->input('filtro')])
+    $vuelos = Vuelo::where('aeropuerto_destino', '=', $request['filtro'])->paginate(6);
+    return view("vuelos.buscar-vuelos")->with('vuelos', $vuelos);
   }
 
   public function destroy($id){

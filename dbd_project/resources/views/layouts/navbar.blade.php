@@ -41,7 +41,7 @@
       </div>
       <div class="contenido-categoria">
         @if(!empty(Auth::user()))
-          <a href="/cursos/create"> Agregar traslados</a>
+          <a href="/traslados/create"> Agregar traslados</a>
         @endif
         <a href="/traslados"> Ver Traslados</a>
       </div>

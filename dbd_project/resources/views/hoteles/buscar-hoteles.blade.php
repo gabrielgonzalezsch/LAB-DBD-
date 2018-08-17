@@ -52,10 +52,10 @@
       @endif
     @endforeach
   </div>
-  <div style="left: 40%; width: 20%;"class="ui segment">
+  <div style="left: 30%; width: 40%; overflow: auto;"class="ui segment">
     {{$hoteles->links()}}
   </div>
-  <a style="margin-left: 20px margin-top: 20px; width: 100px;" href="/" class="btn btn-primary" role="button"> Volver </a>
+  <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/" class="btn btn-primary" role="button"> Volver </a>
   @else
     <div class="ui segment"
     <h2 class="ui header">No se encontraron hoteles!</h2>

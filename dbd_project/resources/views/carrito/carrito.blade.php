@@ -32,15 +32,60 @@
 	    </div>
 	  </div>
 	@endforeach
- <div>
-	<h4>Total: $ {{$carrito->total}} CLP</h4>
- </div>
- <a role="button" href="/comprar" class="btn btn-primary"> Comprar </a>
+	<div class="ui tablet stackable steps">
+  <div class="step">
+    <i class="cart icon"></i>
+    <div class="content">
+			<div class="ui small statistic">
+		 	<label class="title">Esta compra</label>
+		 	<div class="value"> $ {{$carrito->total}} CLP </div>
+		  </div>
+    </div>
+  </div>
+  <div class="active step">
+    <i class="dollar icon"></i>
+    <div class="content">
+			<div class="ui small statistic">
+		 	<label class="title">Mis fondos</label>
+		 	<div class="value"> $ {{Auth::user()->fondos_disponibles}} CLP </div>
+    </div>
+		</div>
+  </div>
+	@if(isset($failure))
+	<div class="disabled step">
+		<i class="info circle icon"></i>
+		<div class="content">
+			<strong class=""> No hay suficientes fondos disponibles para realizar esta compra </strong>
+		</div>
+	</div>
 	@else
-	<div>
-		<h3> El carrito esta vacío! </h3>
+	<div class="active step">
+    <i class="dollar icon"></i>
+    <div class="content">
+			<div class="ui small statistic">
+				<div class="title">Fondos restantes</div>
+		 	<div class="value"> $ {{Auth::user()->fondos_disponibles - $carrito->total}} CLP </div>
+		  </div>
+    </div>
+  </div>
+	</div>
+	@if(!isset($failure))
+	<div class="row">
+		<div class="massive ui vertical animated button" tabindex="0">
+			<div class="hidden content"><a href="/comprar">Comprar</a></div>
+			<div class="visible content">
+				<i class="shop icon"></i>
+			</div>
+		</div>
 	</div>
 	@endif
+	@endif
+</div>
+@else
+	<div class="ui segment">
+		<h3 class="ui header"> El carrito esta vacío! </h3>
+	</div>
+@endif
 </div>
 	<script>
 		function eliminarDelCarrito(index_item){

@@ -8,8 +8,8 @@ use App\Models\Actividad;
 class ControllerActividades extends Controller
 {
     public function index(){
- 		$actividad = Actividad::orderBy('id_actividad', 'asc')->paginate(5); 
-  		return view('actividades.buscar-actividad')->with('actividad', $actividad);
+ 		$actividad = Actividad::orderBy('id_actividad', 'asc')->paginate(5);
+  		return view('actividad.buscar-actividad')->with('actividad', $actividad);
     }
 
     public function create(){

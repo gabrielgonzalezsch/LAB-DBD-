@@ -14,7 +14,7 @@ class usuarios_seeders extends Seeder
      * @return void
      */
     public function run()
-    {  	
-    	factory(App\Models\Usuario::class, 10)->create();
+    {
+    	factory(\App\Models\Usuario::class, 10)->create();
     }
 }

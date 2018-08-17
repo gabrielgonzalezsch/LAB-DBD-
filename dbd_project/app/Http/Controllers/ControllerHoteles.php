@@ -64,10 +64,10 @@ class ControllerHoteles extends Controller{
     public function show($id){
       try{
           $hotel = Hotel::findOrFail($id);
-        return view('hotel.detalle-hotel')->with('hotel', $hotel);
+        return view('hoteles.detalle-hotel')->with('hotel', $hotel);
       }catch(Exception $e){
         echo "Error";
-        return redirect('/hotel')->with('failure', 'Hotel no existente');
+        return redirect('/hoteles')->with('failure', 'Hotel no existente');
       }
     }
 
@@ -111,7 +111,7 @@ class ControllerHoteles extends Controller{
       $hotel->ciudad = $request->input('ciudad');
       $hotel->direccion = $request->input('direccion');
       $hotel->valoracion = 0.0;
-      $hotel->latitud = 0;  
+      $hotel->latitud = 0;
       $hotel->longitud = 0;
       $hotel->updated_at = date('Y-m-d H:i:s');
       $hotel->save();

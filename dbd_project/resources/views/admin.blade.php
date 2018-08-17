@@ -50,7 +50,7 @@
       }
     });
   });
-  
+
   /*$.ajax({
     url: 'https://aviation-edge.com/api/public/airportDatabase?key=3f3c82-218908-4bdb0c-373276-6df51a',
     datatype: 'json',

@@ -13,7 +13,7 @@ class autos_seeders extends Seeder
      */
     public function run(Faker $faker)
     {
-       
+
  		$response = file_get_contents(storage_path() . "/airports.json");
     	$response = json_decode($response);
     	$responseCars =file_get_contents(storage_path() . "/cars.json");
@@ -24,19 +24,19 @@ class autos_seeders extends Seeder
 		for ($i=0; $i < count($responseCars) ; $i++) {
 			$str = explode(" ",$responseCars[$i]->Name);
 	    	DB::table('autos')->insert([
-	   			
+
 		            'modelo_auto'					=> ucfirst($str[1]),
 		            'compañia'						=> ucfirst($str[0]),
-		            'patente'						=> strtoupper(str_random(6)), 
-		            'pais_arriendo'					=> $response[$i]->country,		
+		            'patente'						=> strtoupper(str_random(6)),
+		            'pais_arriendo'					=> $response[$i]->country,
 		            'ciudad_arriendo'				=> $response[$i]->city,
 		            'calle_arriendo'				=> $faker->address,
-		            'precio_por_dia'				=> random_int(20000,50000),
+		            'precio_por_dia'				=> random_int(10000,50000),
 		            'cap_pasajeros'					=> random_int(2,6),
-		            'descripcion_auto'				=> '-',
-		            'descuento'						=> random_int(3,20),
+		            'descripcion_auto'				=> 'Descripción de prueba',
+		            'descuento'						=> random_int(5,20),
 		            'created_at'					=> now(),
-	   				'updated_at'					=> now()       
+	   				'updated_at'					=> now()
 	   		]);
 		}
     }

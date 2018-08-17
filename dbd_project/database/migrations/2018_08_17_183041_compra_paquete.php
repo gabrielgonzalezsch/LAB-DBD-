@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompraActividad extends Migration
+class CompraPaquete extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateCompraActividad extends Migration
      */
     public function up()
     {
-      Schema::create('compra_actividad', function(Blueprint $table){
-        $table->increments('id_compra_actividad');
+      Schema::create('compra_paquete', function(Blueprint $table){
+        $table->increments('id_compra_paquete');
         $table->integer('id_transaccion')->references('id_transaccion')->on('transacciones');
-        $table->integer('id_actividad')->references('id_actividad')->on('actividad');
+        $table->integer('id_paquete')->references('id_paquete')->on('paquetes');
         $table->dateTime('hora_compra');
-        $table->string('tipo_entrada', 20);
-        $table->smallInteger('num_entradas');
       });
     }
 
@@ -30,6 +28,6 @@ class CreateCompraActividad extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compra_actividad');
+        Schema::dropIfExists('compra_paquete');
     }
 }

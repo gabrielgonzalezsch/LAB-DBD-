@@ -20,6 +20,11 @@ Route::group(['middleware'=> 'admin'], function (){
   Route::get('/hoteles/create', 'ControllerHoteles@create');
   Route::get('/vuelos/create', 'ControllerVuelos@create');
   Route::get('/autos/create', 'ControllerAutos@create');
+  Route::get('/habitaciones/{id}/edit', 'ControllerHabitaciones@edit')->name('habitacion.edit');
+  Route::post('/habitaciones/{id}/update', 'ControllerHabitaciones@update')->name('habitacion.update');
+  Route::get('/hoteles/{id}/edit', 'ControllerHoteles@edit')->name('hotel.edit');
+  Route::patch('/hoteles/{id}/update', 'ControllerHoteles@update')->name('hotel.update');
+  Route::get('/auditoria', 'ControllerAuditoria@mostrarTablaAuditoria');
   //Route::get('/hoteles/{id_hotel}/create', function($id_hotel){
     //return view('habitaciones.insertar-habitacion')->with('id', $id_hotel);
   //});
@@ -43,8 +48,10 @@ Route::get('/autos/{id_auto}', 'ControllerAutos@show');
 //Post methods
 Route::post('/autos/store', 'ControllerAutos@store');
 Route::post('/hoteles/store', 'ControllerHoteles@store');
+
 Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
+
 
 Route::get('/carrito', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@mostrarCarrito']);
 

@@ -80,7 +80,7 @@ class ControllerHoteles extends Controller{
     public function edit($id){
       try{
         $hotel = Hotel::findOrFail($id);
-        return view('hotel.modificar')->with('hotel',$hotel);
+        return view('hoteles.editar-hotel')->with('hotel',$hotel);
       }
       catch(Exception $e){
         echo "Error";
@@ -97,22 +97,18 @@ class ControllerHoteles extends Controller{
      */
     public function update(Request $request, $id){
         $validData = $request->validate([
-          'nombre_hotel' => 'required',
-          'pais' => 'required',
-          'ciudad' => 'required',
-          'direccion' => 'required',
-          'valoracion' => 'required',
-          'latitud' => 'required',
-          'longitud' => 'required',
+          'nombre_hotel' => 'string',
+          'pais' => 'string',
+          'ciudad' => 'string',
+          'direccion' => 'string',
         ]);
       $hotel = new Hotel();
       $hotel->nombre_hotel = $request->input('nombre_hotel');
       $hotel->pais = $request->input('pais');
       $hotel->ciudad = $request->input('ciudad');
-      $hotel->direccion = $request->input('direccion');
-      $hotel->valoracion = 0.0;
       $hotel->latitud = 0;
       $hotel->longitud = 0;
+      $hotel->direccion = $request->input('direccion');
       $hotel->updated_at = date('Y-m-d H:i:s');
       $hotel->save();
       echo "Success!";

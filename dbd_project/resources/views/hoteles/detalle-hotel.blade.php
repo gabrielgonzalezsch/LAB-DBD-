@@ -30,6 +30,11 @@
           <li><h6>Incluye aire acondicionado: {{$habitacion->incluye_aire_acondicionado}}</small></li>
         </ul>
       </li>
+      @if(Auth::check())
+      @if(Auth::user()->esAdmin())
+        <a href="/habitaciones/{{$habitacion->id_habitacion}}/edit"> Editar habitacion</a>
+      @endif
+      @endif
       <div class="ui left action input">
         <label class="form-input">Ingresa numero de dias</label>
         <input class="form-input" style="width: 10%; margin-left: 10px;" type="number" value="1">
@@ -44,6 +49,7 @@
   </div>
   @if(Auth::check())
   @if(Auth::user()->esAdmin())
+  <a href="/hoteles/{{$hotel->id_hotel}}/edit"> Editar hotel</a>
   <a href="/hoteles/{{$hotel->id_hotel}}/create"> Agregar habitaciones (solo admin)</a>
   @endif
   @endif

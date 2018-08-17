@@ -84,7 +84,7 @@ class ControllerHabitaciones extends Controller
      * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
-    public function show(Habitaciones $habitaciones)
+    public function show($id)
     {
         //
     }
@@ -95,9 +95,10 @@ class ControllerHabitaciones extends Controller
      * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
-    public function edit(Habitaciones $habitaciones)
+    public function edit($id)
     {
-        //
+        $habitacion = Habitacion::findOrFail($id);
+        return view('habitaciones.editar-habitacion')->with('habitacion', $habitacion);
     }
 
     /**
@@ -107,9 +108,35 @@ class ControllerHabitaciones extends Controller
      * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Habitaciones $habitaciones)
+    public function update(Request $request, $id)
     {
-        //
+      $hab = Habitacion::findOrFail($id);
+      if(!empty($_POST['num_hab']))
+        $hab->num_habitacion = $_POST['num_hab'];
+      if(!empty($_POST['precio_por_noche']))
+        $hab->precio_por_noche = $_POST['precio_por_noche'];
+      $hab->ya_reservado = (!empty($_POST['ya_reservado'])) ? $_POST['ya_reservado'] : false;
+      if(!empty($_POST['valoracion']))
+        $hab->valoracion = $_POST['valoracion'];
+      if(!empty($_POST['descripcion']))
+        $hab->descripcion = $_POST['descripcion'];
+      if(!empty($_POST['inc_desayuno']))
+        $hab->incluye_desayuno = $_POST['inc_desayuno'];
+      if(!empty($_POST['inc_aircon']))
+        $hab->incluye_aire_acondicionado = $_POST['inc_aircon'];
+      if(!empty($_POST['inc_servicio']))
+        $hab->incluye_servicio = $_POST['inc_servicio'];
+      if(!empty($_POST['num_camas_dob']))
+        $hab->num_camas_dobles = $_POST['num_camas_dob'];
+      if(!empty($_POST['num_camas_simp']))
+        $hab->num_camas_simples = $_POST['num_camas_simp'];
+      if(!empty($_POST['size']))
+        $hab->room_size = $request->input('size');
+      if(!empty($_POST['descuento']))
+        $hab->descuento = $_POST['descuento'];
+      $hab->updated_at = date('Y-m-d H:i:s');
+      $hab->save();
+      return redirect('/hoteles')->with('success', 'Habitación editada con éxito');
     }
 
     /**
@@ -118,7 +145,7 @@ class ControllerHabitaciones extends Controller
      * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Habitaciones $habitaciones)
+    public function destroy($id)
     {
         //
     }

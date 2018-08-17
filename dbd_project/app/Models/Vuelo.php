@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Vuelo extends Model
+class Vuelo extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     protected $table = 'vuelos';
     protected $primaryKey = 'id_vuelo';
     protected $dates = ['hora_salida', 'hora_llegada'];

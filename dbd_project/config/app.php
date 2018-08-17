@@ -152,6 +152,7 @@ return [
          */
          //*****Agregado manualmente*****
          Collective\Html\HtmlServiceProvider::class,
+         OwenIt\Auditing\AuditingServiceProvider::class,
         /*
          * Application Service Providers...
          */

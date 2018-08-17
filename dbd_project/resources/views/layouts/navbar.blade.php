@@ -65,6 +65,7 @@
         <a href="/carrito"> Carrito de compra</a>
         @if(Auth::check())
         <a href="/admin"> Administración </a>
+        <a href="/auditoria"> Auditoría </a>
         @endif
         <a href="{{ route('logout') }}"
            onclick="event.preventDefault();

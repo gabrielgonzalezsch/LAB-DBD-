@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaccion extends Model
+class Transaccion extends Model implements Auditable
 {
+  use \OwenIt\Auditing\Auditable;
+
   protected $primaryKey = "id_transaccion";
   protected $table = "transacciones";
   public $timestamps = false;

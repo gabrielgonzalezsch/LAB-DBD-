@@ -13,9 +13,9 @@ class ControllerHabitaciones extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+      $habitaciones = Habitacion::orderBy('id_habitacion', 'asc')->paginate(5); 
+      return view('habitaciones.buscar-habitaciones')->with('habitaciones', $habitaciones);
     }
 
     /**

@@ -21,7 +21,7 @@ class ControllerActividades extends Controller
           'nombre_actividad' => 'required',
           'descripcion_actividad' => 'required',
           'fecha_inicio' => 'required',
-          'fecha_termino' => 'requirasdasded',
+          'fecha_termino' => 'required',
           'pais' => 'required',
           'ciudad' => 'required',
           'calle' => 'required',

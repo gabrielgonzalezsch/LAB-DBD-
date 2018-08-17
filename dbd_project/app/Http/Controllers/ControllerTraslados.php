@@ -8,11 +8,11 @@ use App\Models\Traslado;
 class ControllerTraslados extends Controller{
     public function index(){
     	$traslados = Traslado::orderBy('id_traslado','asc')->paginate(10);
-    	return view('traslado.mostrar-traslados')->with('traslados', $traslados);
+    	return view('traslados.mostrar-traslados')->with('traslados', $traslados);
   	}
 
   	public function create(){
-    	return view('traslado.insertar-traslado');
+    	return view('traslados.insertar-traslado');
   	}
 
 	public function store(Request $request){
@@ -23,7 +23,7 @@ class ControllerTraslados extends Controller{
           	'ciudad' => 'required',
           	'inicio_servicio' => 'required',
           	'fin_servicio' => 'required',
-          	'numero_pasajeros' => 'required',
+          	'cap_pasajeros' => 'required',
           	'tarifa_por_kilometro' => 'required'
       		]);
       	$traslado = new Traslado();
@@ -33,7 +33,7 @@ class ControllerTraslados extends Controller{
       	$traslado->ciudad = $request->input('ciudad');
       	$traslado->inicio_servicio = $request->input('inicio_servicio');
       	$traslado->fin_servicio = $request->input('fin_servicio');
-      	$traslado->numero_pasajeros = $request->input('numero_pasajeros');
+      	$traslado->cap_pasajeros = $request->input('cap_pasajeros');
       	$traslado->tarifa_por_kilometro = $request->input('tarifa_por_kilometro');
       	$traslado->descuento = 0;
       	$traslado->created_at = date('Y-m-d H:i:s');
@@ -57,11 +57,11 @@ class ControllerTraslados extends Controller{
   	public function edit($id){
   		try{
   			$traslado = Traslado::findOrFail($id);
-  			return view('traslado.modificar')->with('traslado',$traslado);
+  			return view('traslados.modificar')->with('traslado',$traslado);
   		}
   		catch(Exception $e){
-  			echo "Error"
-  			return redirect('/traslado')->with('failure','Traslado no existente');
+  			echo "Error";
+  			return redirect('/traslados')->with('failure','Traslado no existente');
   		}
 	}
 

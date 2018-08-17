@@ -53,6 +53,9 @@ Route::post('/hoteles/store', 'ControllerHoteles@store');
 Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
+Route::get('/traslados', 'ControllerTraslados@index');
+Route::get('/traslados/create', 'ControllerTraslados@create');
+Route::post('/traslados/store', 'ControllerTraslados@store');
 
 Route::get('/carrito', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@mostrarCarrito']);
 

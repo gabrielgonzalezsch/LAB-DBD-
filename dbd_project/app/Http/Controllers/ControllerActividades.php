@@ -83,7 +83,6 @@ class ControllerActividades extends Controller
           'precio_normal' =>'required'
           'descuento' => 'required',
       ]);
-    	$actividad = new Actividad();
     	$actividad->nombre_actividad = $request->input('nombre_actividad');
     	$actividad->descripcion_actividad = $request->input('descripcion_actividad');
     	$actividad->fecha_inicio = $request->input('fecha_inicio');
@@ -97,14 +96,10 @@ class ControllerActividades extends Controller
     	$actividad->descuento = $request->input('descuento');
     	$hotel->save();
      	echo "Success!";
-    }
-
     public function destroy($id){
     	try{
     		$actividad = Actividad::find($id);
     		$actividad->delete();
     	}
     }
-
-
 }

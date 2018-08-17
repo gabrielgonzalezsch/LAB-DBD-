@@ -84,9 +84,15 @@ class ControllerHabitaciones extends Controller
      * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
-    public function show(Habitaciones $habitaciones)
+    public function show($id)
     {
-        //
+        try{
+          $habitacion = Habitacion::find($id);
+          return view('habitacion.mostrar')->with('habitacion',$habitacion);
+        }
+        catch(Exception $e){
+          echo "FAIL";
+        }
     }
 
     /**
@@ -95,9 +101,15 @@ class ControllerHabitaciones extends Controller
      * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
-    public function edit(Habitaciones $habitaciones)
+    public function edit($id)
     {
-        //
+        try{
+          $habitacion = Habitacion::find($id);
+          return view('habitacion.modificar')->with('habitacion',$habitacion);
+        }
+        catch(Exception $e){
+          echo "FAIL";
+        }
     }
 
     /**
@@ -107,9 +119,26 @@ class ControllerHabitaciones extends Controller
      * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Habitaciones $habitaciones)
+    public function update(Request $request, $id)
     {
-        //
+      $hab = Habitacion::find($id);
+        $hab->id_hotel = $request->input('id_hotel');
+      $hab->num_habitacion = $request->input('num_hab');
+      $hab->precio_por_noche = $request->input('precio');
+      $hab->ya_reservado = false;
+      $hab->valoracion = 0;
+      $hab->descripcion = $request->input('descripcion');
+      $hab->tag_habitacion = NULL;
+      $hab->incluye_desayuno = $request->input('inc_desayuno');
+      $hab->incluye_aire_acondicionado = $request->input('inc_aircon');
+      $hab->incluye_servicio = $request->input('inc_servicio');
+      $hab->num_camas_dobles = $request->input('num_camas_dob');
+      $hab->num_camas_simples = $request->input('num_camas_simp');
+      $hab->room_size = $request->input('size');
+      $hab->descuento = 0;
+      $hab->created_at = date('Y-m-d H:i:s');
+      $hab->updated_at = date('Y-m-d H:i:s');
+      $hab->save();
     }
 
     /**
@@ -118,8 +147,9 @@ class ControllerHabitaciones extends Controller
      * @param  \App\Habitacion  $habitaciones
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Habitaciones $habitaciones)
+    public function destroy($id)
     {
-        //
+        $habitacion = Habitacion::find($id);
+        $habitacion->delete();
     }
 }

@@ -21,4 +21,8 @@ class Transaccion extends Model
   public function habitaciones(){
      return $this->belongsToMany(\App\Models\Habitacion::class, 'compra_habitacion', 'id_transaccion', 'id_habitacion');
   }
+
+  public function transaccion(){
+    return $this->belongsToMany(\App\Models\Actividad::class,'id_actividad');
+  }
 }

@@ -86,7 +86,13 @@ class ControllerAutos extends Controller
      */
     public function edit($id)
     {
-        //
+        try{
+          $auto = Auto::find($id);
+          return view('auto.modificar')->with('auto',$auto);
+        }
+        catch(Exception $e){
+          echo "fail";
+        }
     }
 
     /**
@@ -98,7 +104,20 @@ class ControllerAutos extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $auto->modelo_auto = $request->input('mod-auto');
+      $auto->compañia = $request->input('comp');
+      $auto->patente = $request->input('pat');
+      $auto->pais_arriendo = $request->input('pais-arr');
+      $auto->ciudad_arriendo = $request->input('ciudad-arr');
+      $auto->calle_arriendo = $request->input('calle-arr');
+      $auto->precio_por_dia = $request->input('precio-por-dia');
+      $auto->cap_pasajeros = $request->input('cap-pasajeros');
+      $auto->descripcion_auto = $request->input('desc-auto');
+      $auto->descuento = $request->input('descuento');
+      $auto->created_at = date('Y-m-d H:i:s');
+      $auto->updated_at = date('Y-m-d H:i:s');
+      $auto->save();
+      echo "Success!";
     }
 
     /**
@@ -109,6 +128,7 @@ class ControllerAutos extends Controller
      */
     public function destroy($id)
     {
-        //
+        $auto = Auto::find($id);
+        $auto->delete();
     }
 }

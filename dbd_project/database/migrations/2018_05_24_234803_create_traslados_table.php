@@ -19,8 +19,8 @@ class CreateTrasladosTable extends Migration
             $table->string('patente', 10)->nullable();
             $table->string('pais', 30);
             $table->string('ciudad', 30);
-            $table->time('hora_inicio_servicio');
-            $table->time('hora_fin_servicio');
+            $table->time('inicio_servicio');
+            $table->time('fin_servicio');
             $table->smallInteger('cap_pasajeros');
             $table->integer('tarifa_por_kilometro');
             $table->integer('descuento')->nullable()->default(0);

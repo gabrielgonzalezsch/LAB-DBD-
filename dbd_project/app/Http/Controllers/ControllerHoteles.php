@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use Illuminate\Support\Facades\DB;
 
 class ControllerHoteles extends Controller{
     /**
@@ -125,9 +125,9 @@ class ControllerHoteles extends Controller{
       $hotel->delete();
     }
 
-
-
-    public function HotelesSegunPais(Request $request){
-      "SELECT ID_vuelo from Vuelo WHERE pais = '" + $request->pais? + "';"
+    public function buscarHoteles(Request $request){
+      //$hoteles = DB::select('SELECT * from hoteles WHERE pais = :pais ORDER BY ;', ['pais' => $request->input('filtro')])
+      $hoteles = Hotel::where('pais', '=', $request['filtro'])->paginate(6);
+      return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles);
     }
 }

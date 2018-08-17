@@ -4,6 +4,16 @@
   <div class="container">
     <h1 class="display-4">Vuelos</h1>
     <p class="lead">Aqui se muestran los vuelos</p>
+    <div class="ui fluid category search">
+      {!! Form::open(['route'=>'vuelos.buscar', 'method' => 'GET']) !!}
+        <div class="ui icon input">
+        {{Form::text('filtro', '', ['class' => 'form-control promt', 'placeholder' => 'Busca tu vuelo según destino...'])}}
+        <i class="search icon"></i>
+        </div>
+       {{Form::submit('Buscar', ['class' => 'btn btn-primary'])}}
+      {!! Form::close() !!}
+      <div id="resultados" class="results"></div>
+    </div>
   </div>
 </div>
 <div class="ui fluid container">

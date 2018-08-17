@@ -3,7 +3,17 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Hoteles</h1>
-    <p class="lead">Aqui se muestran los hoteles</p>
+    <p class="lead"></p>
+    <div class="ui fluid category search">
+      {!! Form::open(['route'=>'hoteles.buscar', 'method' => 'GET']) !!}
+        <div class="ui icon input">
+        {{Form::text('filtro', '', ['class' => 'form-control promt', 'placeholder' => 'Busca tu hotel según país...'])}}
+        <i class="search icon"></i>
+        </div>
+       {{Form::submit('Buscar', ['class' => 'btn btn-primary'])}}
+      {!! Form::close() !!}
+      <div id="resultados" class="results"></div>
+    </div>
   </div>
 </div>
 <div class="ui segment">
@@ -87,6 +97,48 @@
         maxRating: 5
       });
       $("ui.star.rating").rating('enable');
+    // $('#buscador').submit(function(){
+    //     var filtro = document.getElementById('#filtro').value();
+    //     alert(filtro);
+    //     $.ajax({
+    //       url: "/hoteles/buscar",
+    //       method: "GET",
+    //       data: {filtro : filtro},
+    //       headers: {
+  	// 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  	// 			},
+    //       success: function(){
+    //         console.log('Busqueda exitosa');
+    //       },
+    //       errors: function(data, error, errorData){
+    //         alert(data);
+    //         alert(error);
+    //         alert(errorData);
+    //       }
+    //     });
+    //     return false;
+    //   });
     });
+    // function buscar(){
+    //   var filtro = document.getElementById('filtro').value;
+    //   alert(filtro);
+    //       $.ajax({
+    //         url: "",
+    //         method: "GET",
+    //         data: {filtro : filtro},
+    //         headers: {
+    // 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    // 				},
+    //         success: function(){
+    //           console.log('Busqueda exitosa');
+    //         },
+    //         errors: function(data, error, errorData){
+    //           alert(data);
+    //           alert(error);
+    //           alert(errorData);
+    //         }
+    //       });
+    //   return false;
+    // }
 </script>
 @endsection

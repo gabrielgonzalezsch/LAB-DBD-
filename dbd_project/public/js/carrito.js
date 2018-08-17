@@ -17,6 +17,25 @@ function addHabitacionAlCarrito(id_habitacion, nombre, num_dias){
       });
 }
 
+function addActividadAlCarrito(id_actividad, nombre, num_entradas){
+      $.ajax({
+        url : "../../carrito/agregarActividad",
+        method : "POST",
+        data: {id: id_actividad, nombre: nombre, cantidad: num_entradas},
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(){
+          alert("Se ha agregado "+nombre+" al carrito de compras!");
+        },
+        error: function (data, textStatus, errorThrown) {
+          console.log(data);
+          console.log(textStatus);
+          console.log(errorThrown);
+        }
+      });
+}
+
 function addAutoAlCarrito(id_auto, nombre, num_dias){
       $.ajax({
         url : "../../carrito/agregarAuto",

@@ -1,7 +1,16 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.2.0
+Version actual 0.2.1
+<< Version 0.2.1 >> 29/08/18
+Contribuyentes: Vicente Rivera
+- Se agrega termina el CRUD para autos
+- Se crea la vista modificar-auto
+- Se mejora la vista detalle auto
+To do:
+- Ordenar las rutas para que no quede tan desordenado
+- Los CRUD restantes
+
 << Version 0.2.0 >> 17/08/18
 Contribuyentes: Vicente Rivera, Felipe Sanchez
 - Se agregan las vistas para actividades y traslados en create e index

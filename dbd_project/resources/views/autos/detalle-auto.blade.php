@@ -12,30 +12,61 @@
       <li><h4>N° Patente {{$auto->patente}}</h4></li>
     </ul>
     <div class="ui horizontal divider"> Detalles del arriendo </div>
+    <div class="ui segment">
     <ul>
       <li><h3>Pais: {{$auto->pais_arriendo}} </h3></li>
       <li><h3>Ciudad: {{$auto->ciudad_arriendo}} </h3></li>
       <li><h3>Calle: {{$auto->calle_arriendo}} </h3></li>
     </ul>
-    <div class="ui left action input">
-      <label class="form-input">Ingresa numero de dias para el arriendo</label>
-      <input id="num_dias" class="form-input" style="width: 10%; margin-left: 10px;" type="number" value="1">
+    </div>
+    <div class="ui horizontal divider"> Proceso de compra </div>
+    <div class"ui segment">
+      <div class="form-group">
+        <label>Ingresa numero de dias para el arriendo</label>
+        <input id="num_dias" class="form-control" style="width: 10%; margin-left: 10px;" type="number" value="1">
+      </div>
+      <a href="/autos" class="ui button" role="button"> Volver a Autos </a>
       <button onclick="addCarrito({{$auto->id_auto}})" class="ui teal labeled icon button">
       <i class="cart icon"></i>
         Al carrito
       </button>
-      <input type="text" value="$ {{$auto->precio_por_dia}} CLP" readonly>
+      <label id="total" type="text" class="ui big blue tag label" readonly>$ {{$auto->precio_por_dia}} CLP</label>
     </div>
-    <a href="/" class="btn btn-info" role="button"> Volver </a>
+    @if(Auth::check())
+    @if(Auth::user()->esAdmin())
+    <div class="ui divider"></div>
+    <div class="ui segment">
+      <div class="ui header">
+        Panel de administrador
+      </div>
+      <a role="button" class="btn btn-primary" href="{{$auto->id_auto}}/edit"> Editar </a>
+      <a role="button" class="btn btn-danger" onclick="return promptDelete()" href=""> Borrar </a>
+    </div>
+    @endif
+    @endif
 </div>
 </div>
 <style>
-  .ui.segment{
-    padding: 10px;
-    margin: 5px;
+  .ui.segment li{
+    padding: 5px;
+    margin-left: 10px;
   }
 </style>
 <script>
+  function promptDelete(){
+    var confirmacion = confirm('Esta seguro de eliminar de la base de datos?');
+    if(confirmacion){
+      window.location = "/autos/{{$auto->id_auto}}/destroy";
+    }else{
+      alert("Entendido");
+    }
+    return false;
+  }
+  $('#num_dias').change(function(){
+    var value = $('#num_dias').val() * {{$auto->precio_por_dia}};
+    $('#total').html('$ '+value+' CLP');
+  });
+
   function addCarrito(id_auto){
     var id = id_auto;
     var numDiasElem = document.getElementById("num_dias");

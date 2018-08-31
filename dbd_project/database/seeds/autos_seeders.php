@@ -36,7 +36,7 @@ class autos_seeders extends Seeder
 		            'descripcion_auto'				=> 'Descripción de prueba',
 		            'descuento'						=> random_int(5,20),
 		            'created_at'					=> now(),
-	   				'updated_at'					=> now()
+	   				    'updated_at'					=> now()
 	   		]);
 		}
     }

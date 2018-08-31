@@ -88,7 +88,7 @@ class ControllerAutos extends Controller
     {
         try{
           $auto = Auto::find($id);
-          return view('auto.modificar')->with('auto',$auto);
+          return view('autos.modificar-auto')->with('auto', $auto);
         }
         catch(Exception $e){
           echo "fail";
@@ -104,7 +104,9 @@ class ControllerAutos extends Controller
      */
     public function update(Request $request, $id)
     {
-        $auto->modelo_auto = $request->input('mod-auto');
+      try{
+      $auto = Auto::findOrFail($id);
+      $auto->modelo_auto = $request->input('mod-auto');
       $auto->compañia = $request->input('comp');
       $auto->patente = $request->input('pat');
       $auto->pais_arriendo = $request->input('pais-arr');
@@ -114,10 +116,13 @@ class ControllerAutos extends Controller
       $auto->cap_pasajeros = $request->input('cap-pasajeros');
       $auto->descripcion_auto = $request->input('desc-auto');
       $auto->descuento = $request->input('descuento');
-      $auto->created_at = date('Y-m-d H:i:s');
       $auto->updated_at = date('Y-m-d H:i:s');
       $auto->save();
       echo "Success!";
+      return redirect("/autos/".$id)->with('success', 'Auto editado con éxito');
+      }catch(Exception $e){
+        return redirect("/autos/".$id)->with('failure', 'Error al editar el auto');
+      }
     }
 
     /**
@@ -128,7 +133,12 @@ class ControllerAutos extends Controller
      */
     public function destroy($id)
     {
+      try{
         $auto = Auto::find($id);
         $auto->delete();
+        return redirect("/autos")->with('success', 'Auto eliminado con éxito');
+      }catch(Exception $e){
+        return redirect("/autos/".$id)->with('success', 'Error al eliminar auto');
+      }
     }
 }

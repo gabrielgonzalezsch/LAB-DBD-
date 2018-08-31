@@ -24,6 +24,9 @@ Route::group(['middleware'=> 'admin'], function (){
   Route::post('/habitaciones/{id}/update', 'ControllerHabitaciones@update')->name('habitacion.update');
   Route::get('/hoteles/{id}/edit', 'ControllerHoteles@edit')->name('hotel.edit');
   Route::patch('/hoteles/{id}/update', 'ControllerHoteles@update')->name('hotel.update');
+  Route::get('/autos/{id}/edit', 'ControllerAutos@edit')->name('autos.edit');
+  Route::patch('/autos/{id}/update', 'ControllerAutos@update')->name('autos.update');
+  Route::get('/autos/{id}/destroy', 'ControllerAutos@destroy')->name('autos.destroy');
   Route::get('/auditoria', 'ControllerAuditoria@mostrarTablaAuditoria');
   Route::get('/actividades/create', 'ControllerActividades@create');
   Route::get('/fondos', 'ControllerTransacciones@fondos');

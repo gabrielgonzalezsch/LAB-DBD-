@@ -5,8 +5,8 @@
       <a id="logo" href="/"><i class="material-icons">&#xe905;</i> {{ config('app.name', 'DBD') }}</a>
     </h2>
     <ul tabindex="1" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i> Vuelos
-        <i class="fas fa-plane"></i>
+      <div class="titulo-categoria"> <i class="angle down icon"></i> Vuelos
+        <i class="plane icon"></i>
       </div>
       <div class="contenido-categoria">
       @if(!empty(Auth::user()))
@@ -16,8 +16,8 @@
       </div>
     </ul>
     <ul tabindex="4" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Hoteles
-        <i class="far fa-building"></i>
+      <div class="titulo-categoria"> <i class="angle down icon"></i>Hoteles
+        <i class="building icon"></i>
       </div>
       <div class="contenido-categoria">
         @if(Auth::check())
@@ -27,8 +27,8 @@
       </div>
     </ul>
     <ul tabindex="2" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i> Autos
-        <i class="fas fa-car"></i>
+      <div class="titulo-categoria"> <i class="angle down icon"></i> Autos
+        <i class="car icon"></i>
       </div>
       <div class="contenido-categoria">
         <a href="/autos/create"> Agregar auto</a>
@@ -36,8 +36,8 @@
       </div>
     </ul>
     <ul tabindex="3" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Traslados
-        <i class="fas fa-map-marker-alt"></i>
+      <div class="titulo-categoria"> <i class="angle down icon"></i>Traslados
+        <i class="taxi icon"></i>
       </div>
       <div class="contenido-categoria">
         @if(!empty(Auth::user()))
@@ -47,7 +47,7 @@
       </div>
     </ul>
    <ul tabindex="5" class="categoria">
-     <div class="titulo-categoria"><i class="fas fa-sort-down"></i>Actividades <i class="far fa-calendar-alt"> </i>
+     <div class="titulo-categoria"><i class="angle down icon"></i>Actividades <i class="calendar alternate outline icon"> </i>
      </div>
      <div class="contenido-categoria">
        @if(!empty(Auth::check()))
@@ -56,9 +56,16 @@
        <a href="/actividades"> Ver actividades</a>
      </div>
     </ul>
+    <ul tabindex="6" class="categoria">
+      <div class="titulo-categoria"><i class="angle down icon"></i>Paquetes <i class="package icon"> </i>
+      </div>
+      <div class="contenido-categoria">
+        <a href="/paquetes"> Ver paquete</a>
+      </div>
+     </ul>
     @if(Auth::check())
     <ul tabindex="7" class="categoria">
-      <div class="titulo-categoria">{{ Auth::user()->username }}<i class="fas fa-sort-down"></i>
+      <div class="titulo-categoria"><i class="angle down icon"></i>{{ Auth::user()->username }}<i class="user icon"></i>
       </div>
       <div class="contenido-categoria">
         <a href="/historial"> Historial de compra</a>
@@ -78,8 +85,8 @@
       </div>
     </ul>
     @else
-    <ul tabindex="7" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Acceso <i class="fas fa-user"></i>
+    <ul tabindex="8" class="categoria">
+      <div class="titulo-categoria"> <i class="angle down icon"></i>Acceso <i class="fas fa-user"></i>
       </div>
       <div class="contenido-categoria">
         <a href="/login"> Ingresar</a>

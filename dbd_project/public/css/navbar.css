@@ -132,11 +132,11 @@ a{
   display: block;
 }
 
-.categoria:hover .fa-sort-down{
+.categoria:hover .angle.down{
   transform: translateY(50%);
 }
 
-.fa-sort-down{
+.angle.down{
     font-size:20px;
     margin-right: 5px;
     -webkit-transition: all 0.5s;

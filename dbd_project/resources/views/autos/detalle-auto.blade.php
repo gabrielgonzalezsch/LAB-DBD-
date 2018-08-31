@@ -23,7 +23,7 @@
     <div class"ui segment">
       <div class="form-group">
         <label>Ingresa numero de dias para el arriendo</label>
-        <input id="num_dias" class="form-control" style="width: 10%; margin-left: 10px;" type="number" value="1">
+        <input id="num_dias" class="form-control" style="width: 10%; margin-left: 10px;" type="number" min=1 value="1">
       </div>
       <a href="/autos" class="ui button" role="button"> Volver a Autos </a>
       <button onclick="addCarrito({{$auto->id_auto}})" class="ui teal labeled icon button">

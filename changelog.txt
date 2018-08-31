@@ -1,7 +1,15 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.2.1
+Version actual 0.2.3
+
+<< Version 0.2.3 >> 31/08/18
+Contribuyentes: Vicente Rivera
+- Se crea el SearchServiceProvider y el SearchService para realizar busquedas en la aplicacion
+- Se crea paquete, donde se puede buscar (por ahora) los vuelos de un pais a otro
+- Las busquedas usando aeropuerto no se deben realizar en controllerAeropuerto sino en SearchService
+- Se implementa el JS para confimar datos de busqueda
+
 << Version 0.2.1 >> 29/08/18
 Contribuyentes: Vicente Rivera
 - Se agrega termina el CRUD para autos

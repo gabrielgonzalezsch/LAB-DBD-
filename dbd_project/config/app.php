@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'DBD Project'),
+    'name' => env('APP_NAME', 'Volados'),
 
     /*
     |--------------------------------------------------------------------------
@@ -158,6 +158,10 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+
+        /*Creado*/
+        App\Providers\SearchServiceProvider::class,
+
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
@@ -213,6 +217,7 @@ return [
         //*****Agregado manualmente*******
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Buscar' => App\Providers\SearchServiceProvider::class,
 
     ],
 

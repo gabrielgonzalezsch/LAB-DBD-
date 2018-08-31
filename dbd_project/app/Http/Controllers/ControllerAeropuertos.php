@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Aeropuertos;
+use App\Models\Aeropuerto;
 
 class ControllerAeropuertos extends Controller
 {
-    
+
     public function index(){
-    $aeropuertos = Aeropuertos::orderBy('id_auto', 'asc')->paginate(5); 
+    $aeropuertos = Aeropuertos::orderBy('id_auto', 'asc')->paginate(5);
     return view('aeropuertos.buscar-aeropuertos')->with('aeropuertos', $aeropuertos);
     }
     public function create(){
@@ -52,7 +52,7 @@ class ControllerAeropuertos extends Controller
         catch(Exception $e){
             echo "Error"
             return redirect('/aeropuerto')->with('failure','Aeropuerto no existente');
-        }   
+        }
     }
 
     public function update($request , $id){

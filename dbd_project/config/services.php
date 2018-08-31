@@ -35,4 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'aeropuerto' => [
+        'default' => env('AEROPUERTO_LOCAL'),
+        'paisOrigen' => env('PAIS_ORIGEN')
+    ],
 ];

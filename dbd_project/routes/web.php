@@ -17,6 +17,10 @@ Route::get('/', function(){
 
 //Route::post('/usuarios/store', 'ControllerUsuarios@store');
 Route::group(['middleware'=> 'admin'], function (){
+  Route::get('/aeropuertos/create','ControllerAeropuertos@create');
+  Route::get('/aeropuertos/store','ControllerAeropuertos@store');
+  Route::get('/aeropuertos/{id}/edit','ControllerAeropuertos@edit')->name('aeropuerto.edit');
+  Route::post('/aeropuertos/{id}/update','ControllerAeropuertos@update')->name('aeropuerto.update');
   Route::get('/hoteles/create', 'ControllerHoteles@create');
   Route::get('/vuelos/create', 'ControllerVuelos@create');
   Route::get('/autos/create', 'ControllerAutos@create');

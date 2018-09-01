@@ -23,15 +23,17 @@ class vuelos_seeders extends Seeder
 
     	for ($i=0; $i < 300 ; $i++) {
 
-    		$a = random_int(0,3884);
-    		$b = random_int(0,3884);
+    		// $a = random_int(0,3884);
+    		// $b = random_int(0,3884);
+        $a = random_int(0,100);
+    	  $b = random_int(0,100);
 
     		$start = strtotime("2019-01-01");
 			//End point of our date range.
-			$end = strtotime("2022-01-01");
+			$end = strtotime("2019-06-31");
 			//Custom range.
 			$timestampInicial = rand($start, $end);
-			$timestampFinal = rand($timestampInicial, $timestampInicial + rand(3600, 172800));
+			$timestampFinal = rand($timestampInicial, $timestampInicial + rand(3600, 10000));
 
 
 			DB::table('vuelos')->insert([
@@ -40,8 +42,8 @@ class vuelos_seeders extends Seeder
 	            'nombre_aerolinea'				=> $faker->randomElement(['Latam','AirFrance','American Airlines','Lufthansa','Sky','Low','Airways']),
 	            'aeropuerto_origen'				=> $response[$a]->code,
 	            'aeropuerto_destino'			=> $response[$b]->code,
-	            'hora_salida'					=> date("Y/m/d H:i:s", $timestampInicial),
-	            'hora_llegada'					=> date("Y/m/d H:i:s", $timestampFinal),
+	            'hora_salida'					=> date("Y/m/d H:i", $timestampInicial),
+	            'hora_llegada'					=> date("Y/m/d H:i", $timestampFinal),
 	            'cap_turista'					=> random_int(150,200),
 	            'cap_ejecutivo'					=> random_int(50,100),
 	            'cap_primera_clase'				=> random_int(10,30),
@@ -52,7 +54,7 @@ class vuelos_seeders extends Seeder
 	            'valor_ejecutivo'				=> random_int(110000,200000),
 	            'valor_primera_clase'			=> random_int(220000,500000),
 	            'created_at'					=> now(),
-				'updated_at'					=> now()
+				       'updated_at'					=> now()
 
 		   ]);
     	}

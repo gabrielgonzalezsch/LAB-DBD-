@@ -14,7 +14,6 @@ Route::get('/', function(){
     return view('homepage');
 });
 
-
 //Route::post('/usuarios/store', 'ControllerUsuarios@store');
 Route::group(['middleware'=> 'admin'], function (){
   Route::get('/hoteles/create', 'ControllerHoteles@create');

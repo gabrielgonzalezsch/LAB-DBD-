@@ -1,7 +1,15 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.2.3
+Version actual 0.2.5.1
+
+<< Version 0.2.5.1 >> 01/09/18
+Contribuyentes: Vicente Rivera, Felipe Sanchez (commit pendiente)
+- Se amplia el servicio de busqueda para permitir buscar vuelos ida-vuelta, con o sin fecha
+- Se mejora (?) el crud de aeropuerto
+- Bugfix de aeropuertos insertados al reves y cambiar formato fecha a Y-m-d
+To do:
+- Arreglar revocar privilegios antes que se me olvide
 
 << Version 0.2.3 >> 31/08/18
 Contribuyentes: Vicente Rivera

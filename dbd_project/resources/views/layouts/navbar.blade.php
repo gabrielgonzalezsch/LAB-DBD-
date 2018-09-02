@@ -36,14 +36,14 @@
       </div>
     </ul>
     <ul tabindex="3" class="categoria">
-      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Traslados
+      <div class="titulo-categoria"> <i class="fas fa-sort-down"></i>Solicitar Traslado
         <i class="fas fa-map-marker-alt"></i>
       </div>
       <div class="contenido-categoria">
         @if(!empty(Auth::user()))
-          <a href="/traslados/create"> Agregar traslados</a>
+          <a href="/traslados/create_aeropuerto_a_hotel">Aeropuerto a Hotel</a>
         @endif
-        <a href="/traslados"> Ver Traslados</a>
+        <a href="/traslados/create_hotel_a_aeropuerto">Hotel a Aeropuerto</a>
       </div>
     </ul>
    <ul tabindex="5" class="categoria">
@@ -98,7 +98,7 @@
         width: calc(30px + (170 - 30) * ((100vw - 300px) / (1600 - 300)));
       }
       .titulo-categoria{
-        font-size: calc(9px + (16 - 9) * ((100vw - 300px) / (1600 - 300)));
+        font-size: calc(8px + (16 - 9) * ((100vw - 300px) / (1600 - 300)));
       }
       .menu-wrapper{
         display: none;

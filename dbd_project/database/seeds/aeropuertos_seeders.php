@@ -24,6 +24,8 @@ class aeropuertos_seeders extends Seeder
    				'cod_aeropuerto' 	 =>  $response[$i]->code,
    				'ciudad'			     =>  $response[$i]->city,
    				'pais' 				     =>  $response[$i]->country,
+          'latitud'          => $response[$i]->lat,
+          'longitud'         => $response[$i]->lon,
    				'created_at'		   =>  now(),
    				'updated_at'		   =>  now()
 

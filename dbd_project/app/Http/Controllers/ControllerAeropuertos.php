@@ -15,6 +15,7 @@ class ControllerAeropuertos extends Controller
     public function create(){
     	return view('aeropuertos.insertar-aeropuerto');
     }
+
     public function store(Request $request){
     	$validData = $request->validate([
         'pais' => 'required|string',
@@ -50,29 +51,41 @@ class ControllerAeropuertos extends Controller
             return view('Aeropuerto.modificar')->with('Aeropuerto',$aeropuerto);
         }
         catch(Exception $e){
-            echo "Error"
+            echo "Error";
             return redirect('/aeropuerto')->with('failure','Aeropuerto no existente');
         }
     }
 
     public function update($request , $id){
-    	$validData = $request->validate([
-        'pais' => 'required|string',
-        'ciudad' => 'required|string',
-        'longitud' => 'required|float',
-        'latitud' => 'requiered|float',
-        ]);
-        $aeropuerto = new Aeropuertos();
-        $aeropuerto->pais = $request->input('pais');
-        $aeropuerto->ciudad = $request->input('ciudad');
-        $aeropuerto->longitud = $request->input('longitud');
-        $aeropuerto->latitud = $request->input('latitud');
-        $aeropuerto->save();
-        echo "Success!";
+        try{
+        	$validData = $request->validate([
+            'pais' => 'required|string',
+            'ciudad' => 'required|string',
+            'longitud' => 'required|float',
+            'latitud' => 'requiered|float',
+            ]);
+            $aeropuerto = new Aeropuertos();
+            $aeropuerto->pais = $request->input('pais');
+            $aeropuerto->ciudad = $request->input('ciudad');
+            $aeropuerto->longitud = $request->input('longitud');
+            $aeropuerto->latitud = $request->input('latitud');
+            $aeropuerto->save();
+            echo "Success!";
+            return redirect("/aeropuertos/".$id)->with('success', 'Aeropuerto editado con éxito');
+        }
+        catch(Exception $e){
+        return redirect("/aeropuertos/".$id)->with('failure', 'Error al editar el aeropuerto');
+        }
     }
 
     public function destroy($id){
-    	$aeroperto = Aeropuertos::find($id);
-    	aeropuerto->delete();
+    	try{
+        $aeropuerto = Aeropuerto::find($id);
+        $aeropuerto->delete();
+        return redirect("/aeropuertos")->with('success', 'aeropuerto eliminado con éxito');
+        }
+        catch(Exception $e){
+            return redirect("/aeropuertos/".$id)->with('success', 'Error al eliminar aeropuerto');
+        }
     }
 }

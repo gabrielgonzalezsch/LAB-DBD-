@@ -16,6 +16,10 @@ Route::get('/', function(){
 
 //Route::post('/usuarios/store', 'ControllerUsuarios@store');
 Route::group(['middleware'=> 'admin'], function (){
+  Route::get('/aeropuertos/create','ControllerAeropuertos@create');
+  Route::get('/aeropuertos/store','ControllerAeropuertos@store');
+  Route::get('/aeropuertos/{id}/edit','ControllerAeropuertos@edit')->name('aeropuerto.edit');
+  Route::post('/aeropuertos/{id}/update','ControllerAeropuertos@update')->name('aeropuerto.update');
   Route::get('/hoteles/create', 'ControllerHoteles@create');
   Route::get('/vuelos/create', 'ControllerVuelos@create');
   Route::get('/autos/create', 'ControllerAutos@create');
@@ -67,8 +71,8 @@ Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
 //Traslados
-Route::get('/traslados', 'ControllerTraslados@index');
-Route::get('/traslados/create', 'ControllerTraslados@create');
+Route::get('/traslados/create_aeropuerto_a_hotel', 'ControllerTraslados@create_aeropuerto_a_hotel');
+Route::get('/traslados/create_hotel_a_aeropuerto', 'ControllerTraslados@create_hotel_a_aeropuerto');
 Route::post('/traslados/store', 'ControllerTraslados@store');
 //Actividades
 Route::get('/actividades', 'ControllerActividades@index');

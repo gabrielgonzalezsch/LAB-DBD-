@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(habitaciones_seeders::class);
         $this->call(usuarios_seeders::class);
         $this->call(vuelos_seeders::class);
+        $this->call(actividades_seeders::class);
 
     }
 }

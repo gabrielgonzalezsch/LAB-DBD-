@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Generator as Faker;
+use Carbon\Carbon;
+
 
 
 class vuelos_seeders extends Seeder
@@ -28,12 +30,12 @@ class vuelos_seeders extends Seeder
         $a = random_int(0,100);
     	  $b = random_int(0,100);
 
-    		$start = strtotime("2019-01-01");
+    		$start = Carbon::create(2018, 1, 25,0,0,0,'America/Santiago');
 			//End point of our date range.
-			$end = strtotime("2019-06-31");
-			//Custom range.
-			$timestampInicial = rand($start, $end);
-			$timestampFinal = rand($timestampInicial, $timestampInicial + rand(3600, 10000));
+
+			$int = random_int(1,6);
+			$end = $start->copy()->addDays($int);
+
 
 
 			DB::table('vuelos')->insert([
@@ -42,8 +44,8 @@ class vuelos_seeders extends Seeder
 	            'nombre_aerolinea'				=> $faker->randomElement(['Latam','AirFrance','American Airlines','Lufthansa','Sky','Low','Airways']),
 	            'aeropuerto_origen'				=> $response[$a]->code,
 	            'aeropuerto_destino'			=> $response[$b]->code,
-	            'hora_salida'					=> date("Y/m/d H:i", $timestampInicial),
-	            'hora_llegada'					=> date("Y/m/d H:i", $timestampFinal),
+	            'hora_salida'					=> date("Y-m-d H:i", $start),
+	            'hora_llegada'					=> date("Y-m-d H:i", $end),
 	            'cap_turista'					=> random_int(150,200),
 	            'cap_ejecutivo'					=> random_int(50,100),
 	            'cap_primera_clase'				=> random_int(10,30),

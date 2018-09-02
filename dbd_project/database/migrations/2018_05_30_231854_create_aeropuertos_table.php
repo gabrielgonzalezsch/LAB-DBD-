@@ -17,6 +17,8 @@ class CreateAeropuertosTable extends Migration
             $table->string('cod_aeropuerto', 5)->unique()->primary();
             $table->string('ciudad', 50);
             $table->string('pais', 50);
+            $table->decimal('latitud', 10, 7);
+            $table->decimal('longitud', 10, 7);
             $table->timestamps();
         });
     }

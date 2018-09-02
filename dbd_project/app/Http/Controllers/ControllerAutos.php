@@ -74,9 +74,14 @@ class ControllerAutos extends Controller
      */
     public function show($id)
     {
+      try{
         $auto = Auto::find($id);
         return view('autos.detalle-auto')->with('auto', $auto);
-    }
+      }
+      catch(Exception $e){
+        echo "Error";
+        return redirect('/actividades')->with('failure','auto no existente');
+      }
 
     /**
      * Show the form for editing the specified resource.
@@ -91,7 +96,7 @@ class ControllerAutos extends Controller
           return view('autos.modificar-auto')->with('auto', $auto);
         }
         catch(Exception $e){
-          echo "fail";
+          echo "Error, auto no encontrado";
         }
     }
 
@@ -105,7 +110,18 @@ class ControllerAutos extends Controller
     public function update(Request $request, $id)
     {
       try{
-      $auto = Auto::findOrFail($id);
+      $auto = Auto::find($id);
+      $validData = $request->validate([
+          'mod-auto' => 'required|alpha_num',
+          'comp' => 'required|alpha_num',
+          'pat' => 'required|alpha_num',
+          'pais-arr' => 'required|string',
+          'ciudad-arr' => 'required|string',
+          'calle-arr' => 'required|string',
+          'precio-por-dia' => 'required|numeric',
+          'descuento' => 'required|numeric',
+          'cap-pasajeros' => 'required|digits_between:0,100',
+      ]);
       $auto->modelo_auto = $request->input('mod-auto');
       $auto->compañia = $request->input('comp');
       $auto->patente = $request->input('pat');

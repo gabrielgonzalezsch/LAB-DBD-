@@ -11,9 +11,9 @@
     <title>{{ config('app.name', 'DBD') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery.min.js')}}"></script>
-    
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script language="JavaScript" type="text/javascript" src="{{ asset('js/jquery.min.js')}}"></script>
+    <script language="JavaScript" type="text/javascript" src="{{ asset('js/jquery-ui.min.js')}}"></script>
+    <script language="JavaScript" type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 </head>

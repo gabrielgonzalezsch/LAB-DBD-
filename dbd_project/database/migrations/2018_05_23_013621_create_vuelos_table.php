@@ -19,8 +19,8 @@ class CreateVuelosTable extends Migration
             $table->string('nombre_aerolinea', 30);
             $table->string('aeropuerto_origen', 5);
             $table->string('aeropuerto_destino', 5);
-            $table->DateTime('hora_salida');
-            $table->DateTime('hora_llegada');
+            $table->DateTime('hora_salida')->format('Y-m-d H:i');
+            $table->DateTime('hora_llegada')->format('Y-m-d H:i');
             $table->smallInteger('cap_turista')->default(0);
             $table->smallInteger('cap_ejecutivo')->default(0);
             $table->smallInteger('cap_primera_clase')->default(0);

@@ -14,7 +14,6 @@ Route::get('/', function(){
     return view('homepage');
 });
 
-
 //Route::post('/usuarios/store', 'ControllerUsuarios@store');
 Route::group(['middleware'=> 'admin'], function (){
   Route::get('/aeropuertos/create','ControllerAeropuertos@create');
@@ -40,6 +39,11 @@ Route::group(['middleware'=> 'admin'], function (){
   //});
   Route::get('/hoteles/{id_hotel}/create', 'ControllerHabitaciones@create');
 });
+
+Route::get('/paquetes', 'ControllerPaquete@index');
+Route::post('/paquetes', 'ControllerPaquete@nuevoPaquete');
+Route::post('/paquetes/1/{id}', 'ControllerPaquete@addVueloPaquete');
+Route::post('/paquetes/2/{id}', 'ControllerPaquete@addVueloPaquete');
 
 Route::get('/admin', ['middleware' => 'auth', 'uses' => 'ControllerRoles@administrar']);
 

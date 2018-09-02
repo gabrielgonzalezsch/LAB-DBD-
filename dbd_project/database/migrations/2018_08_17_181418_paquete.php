@@ -15,12 +15,13 @@ class Paquete extends Migration
     {
       Schema::create('paquetes', function (Blueprint $table) {
           $table->increments('id_paquete');
-          $table->integer('id_vuelo')->references('id_vuelo')->on('vuelos');
-          $table->integer('id_habitacion')->references('id_habitacion')->on('habitaciones');
-          $table->integer('id_auto')->references('id_auto')->on('autos');
+          $table->integer('id_vuelo')->references('id_vuelo')->on('vuelos')->nullable();
+          $table->integer('id_habitacion')->references('id_habitacion')->on('habitaciones')->nullable();
+          $table->integer('id_auto')->references('id_auto')->on('autos')->nullable();
+          $table->smallInteger('tipo_paquete');
           $table->integer('descuento_paquete')->default(0);
           $table->text('descripcion');
-          $table->bigInteger('monto');
+          $table->bigInteger('monto')->nullable();
       });
     }
 

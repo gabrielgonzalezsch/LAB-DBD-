@@ -14,7 +14,7 @@ class ControllerHabitaciones extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-      $habitaciones = Habitacion::orderBy('id_habitacion', 'asc')->paginate(5); 
+      $habitaciones = Habitacion::orderBy('id_habitacion', 'asc')->paginate(5);
       return view('habitaciones.buscar-habitaciones')->with('habitaciones', $habitaciones);
     }
 
@@ -59,7 +59,6 @@ class ControllerHabitaciones extends Controller
       $hab->ya_reservado = false;
       $hab->valoracion = 0;
       $hab->descripcion = $request->input('descripcion');
-      $hab->tag_habitacion = NULL;
       $hab->incluye_desayuno = $request->input('inc_desayuno');
       $hab->incluye_aire_acondicionado = $request->input('inc_aircon');
       $hab->incluye_servicio = $request->input('inc_servicio');

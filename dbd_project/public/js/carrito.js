@@ -10,8 +10,7 @@ function addHabitacionAlCarrito(id_habitacion, nombre, num_dias){
           alert("Se ha agregado "+nombre+" al carrito de compras!");
         },
         error: function (data, textStatus, errorThrown) {
-          console.log(data);
-          console.log(textStatus);
+          alert('Ha ocurrido un error, compruebe si ha ingresado a su cuenta correctamente');
           console.log(errorThrown);
         }
       });

@@ -32,8 +32,8 @@
                  <h6><input type="text" name="a_destino" value=""></h6>
                </div>
                <div class="form-group">
-                 <h6>Hora salida: </h6><h6><input type="text" name="hora_salida" value="" placeholder="Formato: dd/mm/yy H:m ..."></h6>
-                  <h6>Hora llegada: </h6><h6><input type="text" name="hora_llegada" value="" placeholder="Formato: dd/mm/yy H:m ..."></h6>
+                 <h6>Hora salida: </h6><h6><input type="date" name="hora_salida" value="" placeholder="Formato: yy-mm-dd H:m ..."></h6>
+                  <h6>Hora llegada: </h6><h6><input type="date" name="hora_llegada" value="" placeholder="Formato: dd/mm/yy H:m ..."></h6>
                </div>
                <div class="form-group">
                    <h6>Capacidad equipaje: </h6> <h6><input type="text" name="c_equipaje" value=""></h6>

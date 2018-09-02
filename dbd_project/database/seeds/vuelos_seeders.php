@@ -25,8 +25,10 @@ class vuelos_seeders extends Seeder
 
     	for ($i=0; $i < 300 ; $i++) {
 
-    		$a = random_int(0,3884);
-    		$b = random_int(0,3884);
+    		// $a = random_int(0,3884);
+    		// $b = random_int(0,3884);
+        $a = random_int(0,100);
+    	  $b = random_int(0,100);
 
     		$start = Carbon::create(2018, 1, 25,0,0,0,'America/Santiago');
 			//End point of our date range.
@@ -54,7 +56,7 @@ class vuelos_seeders extends Seeder
 	            'valor_ejecutivo'				=> random_int(110000,200000),
 	            'valor_primera_clase'			=> random_int(220000,500000),
 	            'created_at'					=> now(),
-				'updated_at'					=> now()
+				       'updated_at'					=> now()
 
 		   ]);
     	}

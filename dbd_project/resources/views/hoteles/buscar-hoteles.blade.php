@@ -1,19 +1,37 @@
 @extends('layouts.app')
 @section('content')
+<style>
+  .ui.fluid.card *{
+    margin: 0;
+  }
+</style>
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Hoteles</h1>
-    <p class="lead"></p>
-    <div class="ui fluid category search">
-      {!! Form::open(['route'=>'hoteles.buscar', 'method' => 'GET']) !!}
-        <div class="ui icon input">
-        {{Form::text('filtro', '', ['class' => 'form-control promt', 'placeholder' => 'Busca tu hotel según país...'])}}
-        <i class="search icon"></i>
-        </div>
-       {{Form::submit('Buscar', ['class' => 'btn btn-primary'])}}
-      {!! Form::close() !!}
-      <div id="resultados" class="results"></div>
+ <div class="container">
+  <h1 class="display-4">Hoteles</h1>
+  <p class="lead"></p>
+  <div class="ui two column grid">
+    <div class="column">
+    <div class="ui fluid card">
+      <h2 class="ui centered header" for="ciudad">Busca tu hotel según ciudad</h2>
+      <div class="content">
+        {!! Form::open(['route'=> 'hoteles.buscarPorCiudad', 'method' => 'GET', 'class' => 'card-body']) !!}
+        {{Form::text('ciudad', '', ['class' => 'form-control', 'placeholder' => 'Escribe una ciudad...'])}}
+      </div>
+        {{Form::submit('Buscar', ['class' => 'ui bottom attached blue button'])}}
+        {!! Form::close() !!}
     </div>
+    </div>
+    <div class="column">
+    <div class="ui fluid card">
+      <h2 class="ui centered header" for="pais">...O busca tu hotel según país</h2>
+        <div class="content">
+          {!! Form::open(['route'=> 'hoteles.buscarPorPais', 'method' => 'GET', 'class' => 'card-body']) !!}
+          {{Form::text('pais', '', ['class' => 'form-control', 'placeholder' => 'Escribe un país...'])}}
+        </div>
+          {{Form::submit('Buscar', ['class' => 'ui bottom attached blue button'])}}
+          {!! Form::close() !!}
+    </div>
+   </div>
   </div>
 </div>
 <div class="ui segment">
@@ -23,12 +41,12 @@
   <div class="ui three stackable cards">
     @foreach($hoteles as $hotel)
       @if($hotel->habitaciones_disponibles >= 0)
-      <div class="ui fluid raised card">
+      <div class="ui fluid raised card" data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
         <div class="content">
           <div style="padding: 5px; width: 70%;" class="ui huge orange ribbon label">
             Precios desde: {{$hotel->precio_min_habitacion}}
           </div>
-          <div class="ui star rating" data-rating={{$hotel->valoracion + 5}}></div>
+          <div class="ui star rating" data-rating="3"></div>
           <div class="ui horizontal divider header">{{$hotel->nombre_hotel}}</div>
           <div class="image">
             <img src="{{asset('storage/hoteles/foto-hotel-default.jpg')}}" alt="Card image cap">
@@ -93,10 +111,11 @@
 </style>
 <script>
   $(document).ready(function(){
-      $('ui.star.rating').rating({
-        maxRating: 5
-      });
-      $("ui.star.rating").rating('enable');
+    // $('.ui.star.rating').rating();
+      // var cards = document.getElementsByName('hotel-card');
+      // for(i = 0; i < cards.lenght; i++){
+      //   cards[i].rating();
+      // }
     // $('#buscador').submit(function(){
     //     var filtro = document.getElementById('#filtro').value();
     //     alert(filtro);

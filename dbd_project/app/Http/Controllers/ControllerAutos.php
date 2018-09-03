@@ -82,6 +82,7 @@ class ControllerAutos extends Controller
         echo "Error";
         return redirect('/actividades')->with('failure','auto no existente');
       }
+    }
 
     /**
      * Show the form for editing the specified resource.

@@ -21,16 +21,16 @@
                  <h6>Seleccione país Origen</h6>
                   <select>
 
-                  
+
                           <option value="0">Seleccione:</option>
-                        
+
                             @foreach($paises as $pais)
 
-                            <option value=$pais>{{$pais->pais}}</option>
+                            <option name="option" value=$pais>{{$pais->pais}}</option>
 
                             @endforeach
-                      
-                        
+
+
                   </select>
 
                  <!--<h6><input type="text" name="n_avion" value=""></h6>-->
@@ -40,18 +40,18 @@
 
                  <select>
 
-                  
+
                           <option value="0">Seleccione:</option>
-                        
+
                             @foreach($paises as $pais)
 
                             <option value=$pais>{{$pais->pais}}</option>
 
                             @endforeach
-                      
-                        
+
+
                   </select>
-                 
+
                </div>
                <div class="form-group">
                  <h6>Aeropuerto origen: </h6>
@@ -86,10 +86,5 @@
                  <a href="/" class="btn btn-danger" role="button"> Volver </a>
         </table>
     </form>
-
-
-
-
-
   </div>
 @endsection

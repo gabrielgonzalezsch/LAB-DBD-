@@ -8,7 +8,12 @@ use App\Models\Traslado;
 
 class ControllerTraslados extends Controller{
 
-  
+
+  public function getCiudades(Request $request){
+    $pais = $request->input('pais');
+    $ciudades = \App\Models\Aeropuerto::select('ciudad')->where('pais', '=', $pais)->get();
+    return json_encode($ciudades);
+  }
 
   public function create_aeropuerto_a_hotel(){
 
@@ -18,7 +23,7 @@ class ControllerTraslados extends Controller{
 
     return view('traslados.create-aeropuerto-a-hotel',['paises' => $paises]);
   }
- 
+
   public function create_hotel_a_aeropuerto(){
 
 
@@ -29,8 +34,3 @@ class ControllerTraslados extends Controller{
 
   }
 }
-
-	
-
-  	
-

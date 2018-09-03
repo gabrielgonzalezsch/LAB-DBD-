@@ -62,8 +62,9 @@ Route::get('/autos/{id_auto}', 'ControllerAutos@show');
 Route::post('/autos/store', 'ControllerAutos@store');
 Route::post('/hoteles/store', 'ControllerHoteles@store');
 
-Route::get('/hoteles/buscar', 'ControllerHoteles@buscarHoteles')->name('hoteles.buscar');
-Route::get('/vuelos/buscar', 'ControllerVuelos@buscarVuelos')->name('vuelos.buscar');
+Route::get('/hoteles/buscarCiudad', 'ControllerHoteles@buscarHotelesPorCiudad')->name('hoteles.buscarPorCiudad');
+Route::get('/hoteles/buscarPais', 'ControllerHoteles@buscarHotelesPorPais')->name('hoteles.buscarPorPais');
+//Route::get('/vuelos/buscar', 'ControllerVuelos@buscarVuelos')->name('vuelos.buscar');
 Route::get('/vuelos/{id_vuelo}', 'ControllerVuelos@show');
 Route::get('/hoteles/{id_hotel}', 'ControllerHoteles@show');
 
@@ -87,6 +88,7 @@ Route::get('/carrito/agregarVuelo', ['middleware' => 'auth', 'uses' => 'Controll
 Route::post('/carrito/agregarAuto', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addAutoAlCarrito']);
 Route::post('/carrito/agregarActividad', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addActividadAlCarrito']);
 
+Route::get('/traslados/CiudadesDelPais', 'ControllerTraslados@getCiudades');
 
 Route::get('/carrito/eliminar', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@eliminarDelCarrito']);
 Route::get('/comprar', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@comprar']);

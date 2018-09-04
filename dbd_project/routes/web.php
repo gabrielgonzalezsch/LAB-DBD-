@@ -71,9 +71,9 @@ Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
 //Traslados
-Route::get('/traslados/create_aeropuerto_a_hotel', 'ControllerTraslados@create_aeropuerto_a_hotel');
-Route::get('/traslados/create_hotel_a_aeropuerto', 'ControllerTraslados@create_hotel_a_aeropuerto');
-Route::post('/traslados/store', 'ControllerTraslados@store');
+Route::get('/create-traslado-aeropuertoHotel', 'ControllerTraslados@index_aeropuertoHotel');
+Route::get('/create-traslado-hotelAeropuerto', 'ControllerTraslados@index_hotelAeropuerto');
+
 //Actividades
 Route::get('/actividades', 'ControllerActividades@index');
 Route::get('/actividades/{id}', 'ControllerActividades@show');
@@ -87,10 +87,13 @@ Route::get('/carrito/agregarVuelo', ['middleware' => 'auth', 'uses' => 'Controll
 Route::post('/carrito/agregarAuto', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addAutoAlCarrito']);
 Route::post('/carrito/agregarActividad', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addActividadAlCarrito']);
 
-
 Route::get('/carrito/eliminar', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@eliminarDelCarrito']);
 Route::get('/comprar', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@comprar']);
 
 Route::get('/historial', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@verHistorial']);
 
 Auth::routes();
+
+//Query Traslados
+Route::get('/traslados/queryCiudad', 'ControllerTraslados@queryCiudad');
+Route::get('/traslados/queryAeropuerto', 'ControllerTraslados@queryAeropuerto');

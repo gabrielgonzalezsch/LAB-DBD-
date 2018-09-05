@@ -5,11 +5,18 @@
     margin-left: 5px;
     margin-right: 5px;
   }
+  .container{
+    background-color: orange
+    
+  }
+  .jumbotron{
+    background-color:orange;
+  }
 </style>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Vuelos</h1>
-    <p class="lead">Aqui se muestran los vuelos</p>
+    <h1 class="display-4">Elige tu vuelo</h1>
+    <p class="lead">Ingresa los datos y escogeremos ¡los mejores vuelos para ti!</p>
     <div class="container">
       {!! Form::open(['route'=>'vuelos.buscar', 'method' => 'GET', 'id' => 'busqueda']) !!}
       <div class="form-row">
@@ -37,11 +44,11 @@
         </div>
       </div>
       <div class="form-row">
-        <div id="fecha_ida" class="form-group col-lg-2 col-md-6 col-sm-12">
+        <div id="fecha_ida" class="form-group col-md-3">
           <label for="fechaPartida" class="ui input label"> Elige la fecha de partida... </label>
           {{Form::date('fechaPartida', '', ['id' => 'fechaIda', 'class' => 'form-control promt'])}}
         </div>
-        <div id="fecha_vuelta" class="form-group col-lg-2 col-md-6 col-sm-12">
+        <div id="fecha_vuelta" class="form-group col-md-3">
           <label for="fechaLlegada" class="ui input label"> Elige la fecha de regreso... </label>
           {{Form::date('fechaLlegada', '', ['id' => 'fechaVuelta', 'class' => 'form-control promt'])}}
         </div>
@@ -59,7 +66,7 @@
 @if(isset($vuelos))
 <div class="ui fluid container">
   <div class="ui segment">
-    <h1 class="ui horizontal divider header">Todos los vuelos: </h1>
+    <h1 class="ui horizontal divider header">Todos lo vuelos: </h1>
     @if(count($vuelos) > 0)
     <div class="ui three stackable cards">
     @foreach($vuelos as $vuelo)
@@ -69,6 +76,7 @@
             Precios desde: {{$vuelo->valor_turista}}
           </div>
           <div class="ui horizontal divider header">{{$vuelo->nombre_avion}}</div>
+          <center><img src="images/{{$vuelo->nombre_aerolinea}}.png" width="100%" height = 220px></center>
           <small>De {{$vuelo->aeropuerto_origen}} hasta {{$vuelo->aeropuerto_destino}} !!</small>
         </div>
         <div style="padding: 20px;" class="ui relaxed divided list">
@@ -156,6 +164,23 @@
     @endif
   </div>
 </div>
+
+<style>
+
+  .container{
+    display: none;
+    font-size: 16px;
+    margin: 10px 30px 0px 0px;
+    max-width: 50px;
+  }
+  .categoria i{
+    margin-top: -10px;
+    padding-top: 0;
+  }
+
+</style>
+
+
 @endif
 <script>
   var fechaIda = document.getElementById('fechaIda');

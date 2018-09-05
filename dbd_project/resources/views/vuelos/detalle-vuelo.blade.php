@@ -5,12 +5,12 @@
   <ul>
     <li><h3> Aerolinea: {{$vuelo->aerolinea}} </h3></li>
     <li><h3> Viaje: {{$vuelo->aeropuerto_origen}} >>>>> {{$vuelo->aeropuerto_destino}} </h3></li>
-    <li><h4> Salida: {{$vuelo->fecha_salida}}, {{$vuelo->hora_salida}}</h4></li>
-    <li><h4> Llegada: {{$vuelo->fecha_llegada}}, {{$vuelo->hora_llegada}}</h4></li>
-    <li> Tiempo de viaje: {{$horas}}</li>
-    <li>Valor turista: {{$vuelo->valor_turista}}</li>
-    <li>Valor ejecutivo: {{$vuelo->valor_ejecutivo}}</li>
-    <li>Valor primera clase: {{$vuelo->valor_primera_clase}}</li>
+    <li><h3> Salida: {{$vuelo->fecha_salida}}, {{$vuelo->hora_salida}}</h3></li>
+    <li><h3> Llegada: {{$vuelo->fecha_llegada}}, {{$vuelo->hora_llegada}}</h3></li>
+    <li><h3>Tiempo de viaje: {{$horas}}></h3></li>
+    <li><h3>Valor turista: {{$vuelo->valor_turista}}</h3></li>
+    <li><h3>Valor ejecutivo: {{$vuelo->valor_ejecutivo}}</h3></li>
+    <li><h3>Valor primera clase: {{$vuelo->valor_primera_clase}}</h3></li>
   </ul>
   <div class="float-left container">
     <div class="row">

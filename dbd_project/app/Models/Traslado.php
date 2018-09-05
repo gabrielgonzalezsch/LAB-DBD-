@@ -10,4 +10,9 @@ class Traslado extends Model implements Auditable
 
     protected $primaryKey = 'id_traslado';
     protected $table = 'traslados';
+
+    public function chofer(){
+    	return $this->hasOne(\App\Models\Chofer::class, 'id_chofer');
+    }
+
 }

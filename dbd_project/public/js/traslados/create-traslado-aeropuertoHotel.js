@@ -1,5 +1,8 @@
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 function getCiudades() {
 	var pais = $('#pais').val();
 	$.ajax({
@@ -12,13 +15,21 @@ function getCiudades() {
 			var ciudades = response;
 			console.log(ciudades);
 			console.log(ciudades.length);
+<<<<<<< Updated upstream
         	var $ciudadesSelect = $("#ciudad");
+=======
+        	var $ciudadesSelect = $("#ciudades");
+>>>>>>> Stashed changes
         	$ciudadesSelect.empty(); // remove old options
         	$ciudadesSelect.append($("<option></option>")
             .attr("value", '').text('Elegir Ciudad'));
 	        // for each set of data, add a new option
 	        for (var i = 0; i < ciudades.length; i++) {
+<<<<<<< Updated upstream
 	        	$ciudadesSelect.append('<option value='+ciudades[i].cod_aeropuerto+'>'+ciudades[i].ciudad+'</option>');
+=======
+	        	$ciudadesSelect.append('<option value='+ciudades[i].ciudad+'>'+ciudades[i].ciudad+'</option>');
+>>>>>>> Stashed changes
 	        }
 		},
 		error: function(error, a, b){
@@ -32,6 +43,7 @@ function getCiudades() {
 }
 
 
+<<<<<<< Updated upstream
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,6 +54,10 @@ function getAeropuertos(aeropuerto_coordenadas) {
 	//console.log(ciudad);
 
 	
+=======
+function getAeropuertos() {
+	var ciudad = $('#ciudad').val();
+>>>>>>> Stashed changes
 	$.ajax({
 		url: '/traslados/queryAeropuerto',
 		dataType: "json",
@@ -49,6 +65,7 @@ function getAeropuertos(aeropuerto_coordenadas) {
 		method: 'GET',
 		success: 
 		function(response){
+<<<<<<< Updated upstream
 			var aeropuerto = response;
 			console.log(aeropuerto);
 			console.log(aeropuerto.length);
@@ -65,6 +82,19 @@ function getAeropuertos(aeropuerto_coordenadas) {
 	        console.log(aeropuerto[0].longitud);
 
 
+=======
+			var aeropuertos = response;
+			console.log(aeropuertos);
+			console.log(aeropuertos.length);
+        	var $aeropuertosSelect = $("#aeropuertos");
+        	$aeropuertosSelect.empty(); // remove old options
+        	$aeropuertosSelect.append($("<option></option>")
+            .attr("value", '').text('Elegir Aeropuerto'));
+	        // for each set of data, add a new option
+	        for (var i = 0; i < aeropuertos.length; i++) {
+	        	$aeropuertosSelect.append('<option value='+aeropuertos[i].cod_aeropuerto+'>'+aeropuertos[i].cod_aeropuerto+'</option>');
+	        }
+>>>>>>> Stashed changes
 		},
 		error: function(error, a, b){
 			console.log(error);
@@ -77,6 +107,7 @@ function getAeropuertos(aeropuerto_coordenadas) {
 }
 
 
+<<<<<<< Updated upstream
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,3 +187,5 @@ function getCoordenadas() {
 }
 
 
+=======
+>>>>>>> Stashed changes

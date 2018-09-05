@@ -7,11 +7,15 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Traslado;
 use App\Models\Aeropuerto;
 use App\Models\Autos;
+<<<<<<< Updated upstream
 use App\Models\Hotel;
+=======
+>>>>>>> Stashed changes
 
 
 class ControllerTraslados extends Controller{
 
+<<<<<<< Updated upstream
   
   public function index_aeropuertoHotel(){
     
@@ -21,12 +25,16 @@ class ControllerTraslados extends Controller{
   }
 
   // REQUESTS AeropuertoHotel
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 
   public function queryCiudad(Request $request){
         
     $ciudades = Aeropuerto::where('pais', '=', $request['pais'])->orderBy('ciudad','asc')->get();
     return json_encode($ciudades);
   }
+<<<<<<< Updated upstream
 //################################
   //############ ERROR buenos aires por tomar solo buenos o los paises en la primera palabraa
 
@@ -76,11 +84,54 @@ class ControllerTraslados extends Controller{
 
   
     return json_encode($coordenadas);
+=======
+=======
+  
+  public function index_aeropuertoHotel(){
+    
+
+    $paises = Aeropuerto::select('pais')->distinct('pais')->orderBy('pais','asc')->get();
+
+    return view('traslados.create-traslado-aeropuertoHotel')->with('paises',$paises);
+  }
+
+  // REQUESTS AeropuertoHotel
+>>>>>>> 4535e3ad78f3f3e767a8bbdc38294dcc0b1ac869
+
+  public function queryCiudad(Request $request){
+        
+    $ciudades = Aeropuerto::select('ciudad')->where('pais', '=', $request['pais'])->get();
+    return json_encode($ciudades);
   }
 
 
+  public function queryAeropuerto(Request $request){
+    
+    
+    $cod_aeropuertos = Aeropuerto::select('cod_aeropuerto')->get();//->where('ciudad', '=', $request['ciudad'])->get();
+
+    $json_string = json_encode($request, JSON_PRETTY_PRINT);
 
 
+    return json_encode($cod_aeropuertos);
+>>>>>>> Stashed changes
+  }
+<<<<<<< HEAD
+
+<<<<<<< Updated upstream
+=======
+  public function create_hotel_a_aeropuerto(){
+=======
+>>>>>>> 4535e3ad78f3f3e767a8bbdc38294dcc0b1ac869
+>>>>>>> Stashed changes
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+
+
+<<<<<<< Updated upstream
 
 
   public function crear_traslado(Request $request){
@@ -183,6 +234,19 @@ class ControllerTraslados extends Controller{
 
   
   /*public function crear_traslado(Request $request){
+=======
+  public function index_hotelAeropuerto(){
+    
+    $lista_paises = DB::table('aeropuertos')->select('pais')->distinct()->get();
+
+    return view('traslados.create-traslado-hotelAeropuerto')->with('lista_paises',$lista_paises);
+  }
+
+  
+
+
+ /* public function crear_traslado(Request $request){
+>>>>>>> Stashed changes
 
 
     $validate = $request->validate({
@@ -216,4 +280,20 @@ class ControllerTraslados extends Controller{
 
   }*/
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 }

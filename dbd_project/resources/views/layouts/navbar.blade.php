@@ -39,8 +39,18 @@
     
 
     <ul tabindex="3" class="categoria">
+<<<<<<< Updated upstream
       <div class="titulo-categoria"><i class="angle down icon"></i>Solicitar Traslado<i class="fa fa-map-marker"></i>
       <i class="point map icon"></i>
+=======
+<<<<<<< HEAD
+      <div class="titulo-categoria"> <i class="angle down icon"></i>Solicitar Traslados
+        <i class="taxi icon"></i>
+=======
+      <div class="titulo-categoria"><i class="angle down icon"></i>Solicitar Traslado<i class="fa fa-map-marker"></i>
+      <i class="point map icon"></i>
+>>>>>>> 4535e3ad78f3f3e767a8bbdc38294dcc0b1ac869
+>>>>>>> Stashed changes
       </div>
       <div class="contenido-categoria">
         <a href="/create-traslado-aeropuertoHotel">Aeropuerto -> Hotel</a>

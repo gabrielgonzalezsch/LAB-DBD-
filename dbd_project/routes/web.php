@@ -97,3 +97,8 @@ Auth::routes();
 //Query Traslados
 Route::get('/traslados/queryCiudad', 'ControllerTraslados@queryCiudad');
 Route::get('/traslados/queryAeropuerto', 'ControllerTraslados@queryAeropuerto');
+Route::get('/traslados/queryHotel', 'ControllerTraslados@queryHotel');
+Route::get('/traslados/queryCoordenadas', 'ControllerTraslados@queryCoordenadas');
+//Route::get('/traslados/calculoTraslado', 'ControllerTraslados@crear_traslado');
+
+

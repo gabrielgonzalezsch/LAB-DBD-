@@ -38,16 +38,9 @@ class hoteles_seeders extends Seeder{
   	$response = file_get_contents(storage_path() . "/airports.json");
   	$response = json_decode($response);
 
-  	/*$client = new Client();
-  	$latlong = $response[$i]->lat+$response[$i]->lon;
-    $res = $client->get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$latlong+'&sensor=true');
-    echo $res->getStatusCode(); // 200
-    return $res->getBody();
-    echo $res->getBody();*/
+  	for ($i=0; $i < 100 ; $i++) {
 
-  	for ($i=0; $i < count($response) ; $i++) {
-
-      for($j=0; $j < random_int(3,6) ; $j++){
+      for($j=0; $j < 3  ; $j++){
 
         $parte_entera_lat = intval($response[$i]->lat);
         $parte_entera_lon = intval($response[$i]->lon);
@@ -71,10 +64,10 @@ class hoteles_seeders extends Seeder{
 	            'num_comentarios'				    => random_int(0,50),
 	            'latitud'						        => $lat_random,
 	            'longitud'						      => $lon_random,
-	            'habitaciones_disponibles'	=> 0,
+	            'habitaciones_disponibles'	=> 100,
 	            'precio_min_habitacion'			=> random_int(50000,300000),
 	            'created_at'					      => now(),
-   				'updated_at'					          => now()
+   				     'updated_at'					      => now()
 
    			]);
       }

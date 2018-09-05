@@ -64,7 +64,7 @@ function getAeropuertos(aeropuerto_coordenadas) {
 	        console.log(aeropuerto[0].latitud);
 	        console.log(aeropuerto[0].longitud);
 
-	        
+
 		},
 		error: function(error, a, b){
 			console.log(error);
@@ -103,6 +103,9 @@ function getHoteles() {
 	        for (var i = 0; i < hotel.length; i++) {
 	        	$hotelSelect.append('<option value='+hotel[i].id_hotel+'>'+hotel[i].nombre_hotel+'</option>');
 	        }
+
+
+
 	            
 		},
 		error: function(error, a, b){

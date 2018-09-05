@@ -2,7 +2,7 @@
 @section('content')
 
 
-<script> var aeropuerto_coordenadas;</script>
+<script></script>
 <div class="loginTable">
   <div class="title-logo">
     <h1>Traslado: Aeropuerto -> Hotel</h1>   <!-- NOMBRE CATEGORIA -->

@@ -35,6 +35,7 @@ class vuelos_seeders extends Seeder
 
 			$int = random_int(1,6);
 			$end = $start->copy()->addDays($int);
+			
 
 
 
@@ -44,8 +45,8 @@ class vuelos_seeders extends Seeder
 	            'nombre_aerolinea'				=> $faker->randomElement(['Latam','AirFrance','American Airlines','Lufthansa','Sky','Low','Airways']),
 	            'aeropuerto_origen'				=> $response[$a]->code,
 	            'aeropuerto_destino'			=> $response[$b]->code,
-	            'hora_salida'					=> "2020-02-01 21:05",
-	            'hora_llegada'					=> "2020-02-02 21:05",
+	            'hora_salida'					=> $start,
+	            'hora_llegada'					=> $end,
 	            'cap_turista'					=> random_int(150,200),
 	            'cap_ejecutivo'					=> random_int(50,100),
 	            'cap_primera_clase'				=> random_int(10,30),

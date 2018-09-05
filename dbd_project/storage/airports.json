@@ -16560,26 +16560,6 @@
     "carriers": "1"
   },
   {
-    "code": "EKS",
-    "lat": "45.2681",
-    "lon": "-111.65",
-    "name": "Ennis Big Sky Airport",
-    "city": "",
-    "state": "",
-    "country": "",
-    "woeid": "29387875",
-    "tz": "America\/Boise",
-    "phone": "",
-    "type": "Military Airport",
-    "email": "",
-    "url": "",
-    "runway_length": null,
-    "elev": "5383",
-    "icao": "",
-    "direct_flights": "1",
-    "carriers": "1"
-  },
-  {
     "code": "ELC",
     "lat": "-11.9149",
     "lon": "135.803",

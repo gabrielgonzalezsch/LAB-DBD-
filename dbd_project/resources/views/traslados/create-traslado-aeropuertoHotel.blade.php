@@ -1,11 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<<<<<<< Updated upstream
 
 
 <script></script>
-=======
->>>>>>> Stashed changes
 <div class="loginTable">
   <div class="title-logo">
     <h1>Traslado: Aeropuerto -> Hotel</h1>   <!-- NOMBRE CATEGORIA -->
@@ -24,16 +21,10 @@
   </style>
 
 
-<<<<<<< Updated upstream
 <!--<form method="GET" action= "/traslados/calculoTraslado" >-->
   <div class="row">
      <div class="col-md-6">
        <h5>País del Traslado:</h5>
-=======
-  <div class="row">
-     <div class="col-md-4">
-       <h5>Seleccion País del Traslado:</h5>
->>>>>>> Stashed changes
         <select name="pais" onchange="getCiudades()" id="pais" class="form-control">
                 <option value="">Elegir País</option>
               
@@ -46,21 +37,12 @@
               
         </select>
       </div>
-<<<<<<< Updated upstream
 
      <div class="col-md-6">
        <h5>Ciudad del Traslado: </h5>
 
        <select name="ciudad" onchange="getAeropuertos()" id="ciudad" class="form-control">
                 <option value="">Elegir Ciudad</option>
-=======
-  
-     <div class="col-md-4">
-       <h5>Seleccione Ciudad del Traslado: </h5>
-
-       <select name="ciudades" onchange="getAeropuertos()" id="ciudades" class="form-control">
-                <option value="0">Elegir Ciudad</option>
->>>>>>> Stashed changes
               
               
                    
@@ -73,7 +55,6 @@
 
 
 <div class="row">
-<<<<<<< Updated upstream
      <div class="col-md-6">
        <h5>Aeropuerto Origen (A):</h5>
         
@@ -89,30 +70,6 @@
 
        <select name="hotel" onchange="getCoordenadas()" id="hotel" class="form-control">
                 <option value="0">Elegir Hotel</option>   
-=======
-     <div class="col-md-4">
-       <h5>Seleccion Aeropuerto Origen:</h5>
-        
-        <select name="aeropuerto" id="aeropuertos" class="form-control">
-                <option value="0">Aeropuerto</option>
-              
-
-                
-            
-              
-        </select>
-      </div>
-  
-     <div class="col-md-4">
-       <h5>Seleccione Hotel Destino: </h5>
-
-       <select name="" class="form-control">
-                <option value="0">Hotel</option>
-              
-               
-            
-              
->>>>>>> Stashed changes
         </select>
      </div>
  </div>
@@ -122,17 +79,10 @@
 
 
 <div class="row">
-<<<<<<< Updated upstream
     <div class="col-md-2">
          <h5>Cantidad de Personas: </h5>
 
          <select name="cantidad" id="cantidad" class="form-control">
-=======
-    <div class="col-md-4">
-         <h5>Seleccione Cantidad de Personas a Trasladar: </h5>
-
-         <select name="" class="form-control">
->>>>>>> Stashed changes
                   <option value="0">Cantidad</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -142,7 +92,6 @@
                   <option value="6">6</option>
             
           </select>
-<<<<<<< Updated upstream
   
 
     </div>
@@ -304,97 +253,13 @@
 
 
 <!--</form>-->
-=======
-         
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
- /*<div class="form-group">
-   <h5>Seleccione el Aeropuerto Origen: </h5>
-   <select>
-    
-            <option value="0">Hotel</option>
-          
-              @foreach($lista_paises as $pais)
-
-              <option value=$pais>{{$pais->pais}}</option>
-
-              @endforeach
-        
-          
-    </select>
- </div>
-
- <div class="form-group">
-   <h5>Seleccione el Hotel Destino: </h5>
-   <select>
-    
-            <option value="0">Aeropuerto</option>
-          
-              @foreach($lista_paises as $pais)
-
-              <option value=$pais>{{$pais->pais}}</option>
-
-              @endforeach
-        
-          
-    </select>
- </div>
-
-   <div class="form-group">
-     <h5>Seleccione Cantidad de Personas a Trasladar: </h5>
-
-     <select>
-              <option value="0">Cantidad</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-        
-      </select>
-     
-   </div>
-<div class="form-row">
-<div id="fecha_traslado" class="form-group col-lg-2 col-md-6 col-sm-12">
-<label for="fechaTraslado" class="ui input label">Elige fecha del traslado... </label>
-{{Form::date('fechaTraslado', '', ['id' => 'fechaTraslado', 'class' => 'form-control promt'])}}
-</div>
-</div>
- <h6><input class="btn btn-primary"type="submit" name="submit" value="Ingresar"></h6>
- <a href="/" class="btn btn-danger" role="button"> Volver </a>
-</div> */?>
-
-
->>>>>>> Stashed changes
 
 <script src="/js/traslados/create-traslado-aeropuertoHotel.js"></script>
 
 
 
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 @endsection
 
 

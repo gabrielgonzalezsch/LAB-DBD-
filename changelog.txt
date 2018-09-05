@@ -1,15 +1,11 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-<<<<<<< HEAD
 Version actual 0.2.6
 
 << Version 0.2.6 >> 03/09/18
 Contribuyentes: Vicente Rivera
 - Se termina la busqueda de hoteles
-=======
-Version actual 0.2.5.1
->>>>>>> 4535e3ad78f3f3e767a8bbdc38294dcc0b1ac869
 
 << Version 0.2.5.1 >> 01/09/18
 Contribuyentes: Vicente Rivera, Felipe Sanchez (commit pendiente)

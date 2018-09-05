@@ -86,14 +86,6 @@ Route::get('/carrito/agregarVuelo', ['middleware' => 'auth', 'uses' => 'Controll
 Route::post('/carrito/agregarAuto', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addAutoAlCarrito']);
 Route::post('/carrito/agregarActividad', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addActividadAlCarrito']);
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-Route::get('/traslados/CiudadesDelPais', 'ControllerTraslados@getCiudades');
-
-=======
->>>>>>> 4535e3ad78f3f3e767a8bbdc38294dcc0b1ac869
->>>>>>> Stashed changes
 Route::get('/carrito/eliminar', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@eliminarDelCarrito']);
 Route::get('/comprar', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@comprar']);
 
@@ -104,11 +96,8 @@ Auth::routes();
 //Query Traslados
 Route::get('/traslados/queryCiudad', 'ControllerTraslados@queryCiudad');
 Route::get('/traslados/queryAeropuerto', 'ControllerTraslados@queryAeropuerto');
-<<<<<<< Updated upstream
 Route::get('/traslados/queryHotel', 'ControllerTraslados@queryHotel');
 Route::get('/traslados/queryCoordenadas', 'ControllerTraslados@queryCoordenadas');
 //Route::get('/traslados/calculoTraslado', 'ControllerTraslados@crear_traslado');
 
 
-=======
->>>>>>> Stashed changes

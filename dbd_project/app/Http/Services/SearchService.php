@@ -37,7 +37,13 @@ class SearchService {
 
   public function buscarHotelesPorCiudad($ciudad){
     $hoteles = Hotel::orderBy('precio_min_habitacion')->where('ciudad', '=', $ciudad)
-    ->where('habitaciones_disponibles', '>', 0);
+    ->where('habitaciones_disponibles', '>=', 0)->paginate(6);
+    return $hoteles;
+  }
+
+  public function buscarHotelesPorPais($pais){
+    $hoteles = Hotel::orderBy('precio_min_habitacion')->where('pais', '=', $pais)
+    ->where('habitaciones_disponibles', '>=', 0)->paginate(6);
     return $hoteles;
   }
 

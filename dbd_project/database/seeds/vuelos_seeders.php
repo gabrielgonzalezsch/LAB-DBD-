@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Generator as Faker;
-use Carbon\Carbon; 
+use Carbon\Carbon;
 
 
 
@@ -36,6 +36,7 @@ class vuelos_seeders extends Seeder
 			$int = random_int(1,6);
 			$end = $start->copy()->addDays($int);
 			
+
 
 
 			DB::table('vuelos')->insert([

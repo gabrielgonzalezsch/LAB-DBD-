@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use Illuminate\Support\Facades\DB;
+use App\Services\SearchService;
 
 class ControllerHoteles extends Controller{
     /**
@@ -121,13 +122,30 @@ class ControllerHoteles extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-      $hotel = Hotel::find($id);
+      try{
+      $hotel = Hotel::findOrFail($id);
       $hotel->delete();
+      return redirect('/hoteles')->with('success', 'Hotel eliminado con éxito (faltan borrar sus hoteles...)');
+      }catch(Exception $e){
+        return redirect('/hoteles')->with('failure', 'Hubo un error al eliminar el hotel');
+      }
     }
 
-    public function buscarHoteles(Request $request){
-      //$hoteles = DB::select('SELECT * from hoteles WHERE pais = :pais ORDER BY ;', ['pais' => $request->input('filtro')])
-      $hoteles = Hotel::where('pais', '=', $request['filtro'])->paginate(6);
+    public function buscarHotelesPorCiudad(Request $request){
+      $validate = $request->validate([
+        'ciudad' => 'required|string'
+      ]);
+      $this->searchService = \App::make(SearchService::class);
+      $hoteles = $this->searchService->buscarHotelesPorCiudad($request['ciudad']);
+      return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles);
+    }
+
+    public function buscarHotelesPorPais(Request $request){
+      $validate = $request->validate([
+        'pais' => 'required|string'
+      ]);
+      $this->searchService = \App::make(SearchService::class);
+      $hoteles = $this->searchService->buscarHotelesPorPais($request['pais']);
       return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles);
     }
 }

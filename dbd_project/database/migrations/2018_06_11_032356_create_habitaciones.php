@@ -20,7 +20,7 @@ class CreateHabitaciones extends Migration
           $table->Integer('precio_por_noche');
           $table->boolean('ya_reservado')->default(false);
           $table->float('valoracion')->default(0.0);
-          $table->text('descripcion')->nullable()->default("No hay descripción adicional para esta habitación");
+          $table->text('descripcion')->nullable();
           $table->boolean('incluye_desayuno')->nullable()->default(false);
           $table->boolean('incluye_aire_acondicionado')->nullable()->default(false);
           $table->boolean('incluye_servicio')->nullable()->default(false);

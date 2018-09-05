@@ -217,8 +217,3 @@ class ControllerTraslados extends Controller{
   }*/
 
 }
-
-	
-
-  	
-

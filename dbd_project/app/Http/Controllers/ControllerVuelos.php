@@ -10,7 +10,7 @@ use App\Services\SearchService;
 class ControllerVuelos extends Controller
 {
   public function index(){
-      $vuelos = Vuelo::orderBy('valor_turista', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
+      $vuelos = Vuelo::orderBy('valor_turista', 'asc')->paginate(6); //Cambiar a ordenarlos segun criterios
       return view('vuelos.buscar-vuelos')->with('vuelos', $vuelos);
   }
 

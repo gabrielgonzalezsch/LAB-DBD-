@@ -26,6 +26,9 @@ class CreateHabitaciones extends Migration
           $table->boolean('incluye_servicio')->nullable()->default(false);
           $table->smallInteger('num_camas_dobles');
           $table->smallInteger('num_camas_simples');
+          $table->smallInteger('capacidad_total')->nullable();
+          $table->date('fecha_inicio_reserva')->nullable();
+          $table->date('fecha_fin_reserva')->nullable();
           $table->smallInteger('room_size');
           $table->Integer('descuento')->nullable()->default(0);
           $table->timestamps();

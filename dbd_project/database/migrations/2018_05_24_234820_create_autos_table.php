@@ -22,6 +22,8 @@ class CreateAutosTable extends Migration
             $table->string('ciudad_arriendo', 30);
             $table->string('calle_arriendo', 100);
             $table->integer('precio_por_dia');
+            $table->date('inicio_arriendo')->nullable();
+            $table->date('fin_arriendo')->nullable();
             $table->smallInteger('cap_pasajeros')->default(4)->nullable();
             $table->string('descripcion_auto', 100)->nullable()->default('No descripción');
             $table->integer('descuento')->nullable()->default(0);

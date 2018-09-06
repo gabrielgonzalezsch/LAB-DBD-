@@ -17,7 +17,7 @@ class aeropuertos_seeders extends Seeder
     	$response = json_decode($response);
     	$fecha = new DateTime();
 
-    	for ($i=0; $i < 100 ; $i++) { 
+    	for ($i=0; $i < 11 ; $i++) { 
 
     		DB::table('aeropuertos')->insert([
 

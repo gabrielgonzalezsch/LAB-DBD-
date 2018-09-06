@@ -11,7 +11,7 @@
     <div class="container">
       <h1 class="display-4">Paquetes para viajes</h1>
       <p class="lead">Escribe aca tu destino y elige el tipo de paquete que quieras comprar</p>
-      <form id="formPaquete" action="#" method="post" onsubmit="return check()">
+      <form id="formPaquete" action="#" method="get" onsubmit="return check()">
         @csrf
       <div class="ui fluid huge icon input">
           <input type="text" name="origen" id="origen" placeholder="Ingresa tu país de origen..."/>
@@ -62,22 +62,30 @@
         </div>
       </div>
       </div>
-      </form>
       <div class="ui relaxed grid">
-        <div class="one column row">
+        <div class="three column row">
         <div class="column">
-
+          <label for="fecha_inicio">Escoje la fecha inicial</label>
+          <input id="fecha_inicio" required type="date" name="fecha_inicio" class="form-control"/>
+        </div>
+        <div class="column">
+          <label for="fecha_fin">Escoje la fecha final</label>
+          <input id="fecha_fin" required type="date" name="fecha_fin" class="form-control"/>
+        </div>
+        <div class="column">
+          <label for="num_personas">Escoje la fecha final</label>
+          <input type="number" name="num_personas" min="1" value="1" class="form-control"/>
         </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
 </div>
-@if(isset($paquete))
+@if(isset($vuelos) || isset($autos) || isset($hoteles))
    <div class="ui divider"></div>
    <div class="ui segment">
      <div class="ui four top attached steps">
-       @if($paquete->tipo_paquete == 1)
        <div class="active step">
          <i class="plane icon"></i>
          <div class="content">
@@ -92,22 +100,6 @@
            <div class="description"> Escoje el hotel y habitación que prefieras </div>
          </div>
        </div>
-       @elseif($paquete->tipo_paquete == 2)
-     <div class="active step">
-       <i class="plane icon"></i>
-       <div class="content">
-         <div class="title"> Buscar un vuelo </div>
-         <div class="description"> Elige un vuelo a tu destino </div>
-       </div>
-     </div>
-     <div class="disabled step">
-       <i class="car icon"></i>
-       <div class="content">
-         <div class="title"> Auto </div>
-         <div class="description"> Escoje el auto que prefieras arrendar </div>
-       </div>
-     </div>
-     @endif
        <div class="disabled step">
          <i class="cart icon"></i>
          <div class="content">
@@ -124,7 +116,7 @@
        </div>
      </div>
    </div>
-   @endif
+@endif
 @if(isset($vuelos))
 <div class="ui fluid container">
   <div class="ui segment">
@@ -158,9 +150,9 @@
             <div class="header">Este vuelo tiene {{$vuelo->descuento}}% de descuento!!</div>
           </div>
           @endif
-          <a href="/vuelos/{{$vuelo->id_vuelo}}" class="ui bottom attached blue button">
+          <a onclick="addVuelo({{$vuelo->id_vuelo}})" class="ui bottom attached blue button">
           <i class="fas fa-search"></i>
-          Ver detalles del vuelo
+          Elegir este vuelo
           </a>
         </div>
       </div>
@@ -182,10 +174,22 @@
     var origen = document.getElementById('origen').value;
     var destino = document.getElementById('destino').value;
     var tipos = document.getElementsByName('tipo_paquete');
+    var fechaFin = document.getElementById('fecha_fin').value;
+    var fechaInicio = document.getElementById('fecha_inicio').value;
     var tipo_paquete = 0;
     var enviar = document.getElementById('enviar');
     if(origen == ''){
       alert('Por favor ingrese un pais de origen');
+      enviar.classList.add('disabled');
+      return false;
+    }
+    if(fechaInicio == ''){
+      alert('Seleccione la fecha de inicio');
+      enviar.classList.add('disabled');
+      return false;
+    }
+    if(fechaFin == ''){
+      alert('Seleccione la fecha de término');
       enviar.classList.add('disabled');
       return false;
     }
@@ -213,11 +217,30 @@
   function enviar(){
     if(check()){
       var tipo = $("input[type='radio'][name='tipo_paquete']:checked").val();
-      alert(tipo);
-      document.getElementById('formPaquete').action = '/paquetes';
+            document.getElementById('formPaquete').action = '/paquetes/'+tipo;
       document.getElementById('formPaquete').submit();
     }
-
   }
+
+  // function agregarVuelo(id){
+  //   var confirmar = confirm('Desea elegir este vuelo?');
+  //   var id_paquete = 0;
+  //   alert(id_paquete);
+  //   if(confirmar){
+  //     $.ajax({
+  //       url: '/paquete/addVuelo',
+  //       method: 'POST',
+  //       data: {id_paquete: id_paquete, id_vuelo: id},
+  //       success: function(){
+  //
+  //       },
+  //       error: function(a,b,c){
+  //         console.log(a);
+  //         console.log(b);
+  //         console.log(c);
+  //       }
+  //     });
+  //   }
+  // }
 </script>
 @endsection

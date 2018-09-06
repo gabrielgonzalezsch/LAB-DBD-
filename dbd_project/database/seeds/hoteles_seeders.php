@@ -45,7 +45,7 @@ class hoteles_seeders extends Seeder{
     return $res->getBody();
     echo $res->getBody();*/
 
-  	for ($i=0; $i < count($response) ; $i++) {
+  	for ($i=0; $i < 100 ; $i++) {
 
       for($j=0; $j < random_int(3,6) ; $j++){
 

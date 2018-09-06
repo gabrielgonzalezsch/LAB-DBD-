@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Auto;
+use App\Services\SearchService;
 
 class ControllerAutos extends Controller
 {
@@ -75,13 +76,41 @@ class ControllerAutos extends Controller
     public function show($id)
     {
       try{
-        $auto = Auto::find($id);
+        $auto = Auto::findOrFail($id);
         return view('autos.detalle-auto')->with('auto', $auto);
       }
       catch(Exception $e){
         echo "Error";
         return redirect('/actividades')->with('failure','auto no existente');
       }
+    }
+
+    public function checkDisponible(Request $req){
+      try{
+      $fecha_inicio = $req['inicio'];
+      $fecha_fin = $req['fin'];
+      $auto = Auto::findOrFail($req['id_auto']);
+      if($auto->ya_reservado == true){
+        return json_encode(false);//'{"disponible": false}';
+      }
+      if($auto->inicio_arriendo < $fecha_inicio && $auto->fin_arriendo < $fecha_fin){
+        return json_encode(true);//'{"disponible": true}';
+      }else if($auto->inicio_arriendo > $fecha_inicio){
+        return json_encode(true); //'{"disponible": true}';
+      }else return json_encode(false);//'{"disponible": false}';
+      }catch(Exception $e){
+        return json_encode(false);//'{"disponible": false}';
+      }
+    }
+
+    public function buscarAutos(Request $request){
+      $validate = $request->validate([
+        'ciudad' => 'required|string',
+      ]);
+      $ciudad = $request->input('ciudad');
+      $this->searchService = \App::make(SearchService::class);
+      $autos = $this->searchService->buscarAutosPorCiudad($ciudad);
+      return view('autos.buscar-autos')->with('autos', $autos);
     }
 
     /**
@@ -113,8 +142,8 @@ class ControllerAutos extends Controller
       try{
       $auto = Auto::find($id);
       $validData = $request->validate([
-          'mod-auto' => 'required|alpha_num',
-          'comp' => 'required|alpha_num',
+          'mod-auto' => 'required|string',
+          'comp' => 'required|string',
           'pat' => 'required|alpha_num',
           'pais-arr' => 'required|string',
           'ciudad-arr' => 'required|string',
@@ -132,6 +161,9 @@ class ControllerAutos extends Controller
       $auto->precio_por_dia = $request->input('precio-por-dia');
       $auto->cap_pasajeros = $request->input('cap-pasajeros');
       $auto->descripcion_auto = $request->input('desc-auto');
+      if(!empty($request->input('ya_reservado'))){
+          $auto->ya_reservado = $request->input('ya_reservado');
+      }
       $auto->descuento = $request->input('descuento');
       $auto->updated_at = date('Y-m-d H:i:s');
       $auto->save();
@@ -151,11 +183,11 @@ class ControllerAutos extends Controller
     public function destroy($id)
     {
       try{
-        $auto = Auto::find($id);
+        $auto = Auto::findOrFail($id);
         $auto->delete();
-        return redirect("/autos")->with('success', 'Auto eliminado con éxito');
+        return;
       }catch(Exception $e){
-        return redirect("/autos/".$id)->with('success', 'Error al eliminar auto');
+        return;
       }
     }
 }

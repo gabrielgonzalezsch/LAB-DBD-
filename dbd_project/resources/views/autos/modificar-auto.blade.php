@@ -26,7 +26,7 @@
   {{Form::label('descuento', 'Descuento auto:')}}
   {{Form::text('descuento', $auto->descuento, ['class' => 'form-control'])}}
   {{Form::label('ya_reservado', 'Ya reservado ')}}
-  {{Form::checkbox('ya_reservado', true, $auto->ya_reservado, ['class' => 'ui checkbox'])}}
+  {{Form::checkbox('ya_reservado', true, $auto->ya_reservado,  ['class' => 'ui checkbox'])}}
 </div>
   {{Form::submit('Confirmar edición', ['class' => 'btn btn-primary'])}}
   <a class='btn btn-primary' href='/autos'> Cancelar </a>

@@ -35,11 +35,11 @@ function addActividadAlCarrito(id_actividad, nombre, num_entradas){
       });
 }
 
-function addAutoAlCarrito(id_auto, nombre, num_dias){
+function addAutoAlCarrito(id_auto, nombre, inicio, fin, num_dias){
       $.ajax({
         url : "../../carrito/agregarAuto",
         method : "POST",
-        data: {id: id_auto, nombre: nombre, cantidad: num_dias},
+        data: {id: id_auto, nombre: nombre, inicio: inicio, fin: fin, cantidad: num_dias},
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },

@@ -59,13 +59,18 @@ class ControllerTransacciones extends Controller
                break;
              case 'Habitación':
               $habitacion = \App\Models\Habitacion::findOrFail($item->id);
-              $transaccion->habitaciones()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_noches' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
+              $fecha_inicio = new Carbon($item->fecha_inicio);
+              $transaccion->habitaciones()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_noches' => $item->cantidad, 'inicio_reserva' => $fecha_inicio, 'fin_reserva' => $fecha_inicio->addDays($item->cantidad)]);
               $habitacion->ya_reservado = true;
+              $habitacion->fecha_inicio_reserva = $fecha_inicio;
+              $habitacion->fecha_fin_reserva = $fecha_inicio->addDays($item->cantidad);
               $habitacion->save();
               break;
              case 'Auto':
               $auto = \App\Models\Auto::findOrFail($item->id);
-              $transaccion->autos()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
+              $transaccion->autos()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $item->cantidad, 'inicio_reserva' => $item->inicio_reserva, 'fin_reserva' => $item->fin_reserva]);
+              $auto->inicio_reserva = $inicio_reserva;
+              $auto->inicio_reserva = $fin_reserva;
               $auto->ya_reservado = true;
               $auto->save();
               break;

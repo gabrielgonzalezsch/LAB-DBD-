@@ -14,7 +14,7 @@
   {{Form::label('direccion', 'Dirección:')}}
   {{Form::text('direccion', '', ['class' => 'form-control', 'placeholder' => $hotel->direccion])}}
   {{Form::submit('Crear', ['class' => 'btn btn-primary'])}}
-  <a class='btn btn-primary' href='/'> Volver</a>
+  <a class='btn btn-primary' href='/hoteles/{{$hotel->id_hotel}}'> Volver</a>
 </div>
 {!! Form::close() !!}
 

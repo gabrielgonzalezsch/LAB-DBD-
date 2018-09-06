@@ -6,22 +6,22 @@ use Illuminate\Http\Request;
 use App\Models\Actividad;
 
 class ControllerActividades extends Controller{
-	
+
 	public function index(){
 		$actividades = Actividad::orderBy('id_actividad', 'asc')->paginate(5);
 		return view('actividades.buscar-actividad')->with('actividades', $actividades);
 	}
 
 	public function create(){
-		return view('actividades.insertar-actividad');
+		return view('actividades.crear-actividad');
 	}
 
 	public function store(Request $request){
 		$validData = $request->validate([
 			'nombre_actividad' => 'required|string',
 			'descripcion_actividad' => 'required',
-			'fecha_inicio' => 'required|date(Y-m-d)',
-			'fecha_termino' => 'required|date(Y-m-d)',
+			'fecha_inicio' => 'required|date:Y-m-d',
+			'fecha_termino' => 'required|date:Y-m-d',
 			'pais' => 'required|string',
 			'ciudad' => 'required|string',
 			'calle' => 'required|string',

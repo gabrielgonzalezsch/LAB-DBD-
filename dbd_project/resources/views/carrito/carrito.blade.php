@@ -15,13 +15,14 @@
 	      <ul class="description">
 					@if($item->categoria == 'Vuelo')
 					<li>Tipo pasaje: {{$item->tipo_pasaje}}</li>
+					@elseif($item->categoria == 'Habitación')
+						<li>Número de noches: {{$item->cantidad}}</li>
+					@elseif($item->categoria == 'Auto')
+					<li>Inicio arriendo: {{$item->inicio_arriendo}}</li>
+					<li>Fin arriendo: {{$item->fin_arriendo}}</li>
 					@endif
 					<li>Valor: {{$item->precio}}</li>
-					@if($item->categoria == 'Habitación')
-						<li>Número de noches: {{$item->cantidad}}</li>
-					@else
 					<li>Cantidad: {{$item->cantidad}}</li>
-					@endif
 					<li>Descuento: {{$item->descuento}}%</li>
 					<li>Subtotal: $ {{$item->subtotal}}</li>
 	      </ul>

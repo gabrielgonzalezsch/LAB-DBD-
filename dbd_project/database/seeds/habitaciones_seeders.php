@@ -29,7 +29,7 @@ class habitaciones_seeders extends Seeder
 
 		   		'id_hotel'						=> $i+1,
 	            'num_habitacion'				=> random_int(100,1000),
-	            'precio_por_noche'				=> random_int(70000,300000),
+	            'precio_por_noche'				=> random_int(7,30)*10000,
 	            'ya_reservado'					=> $faker->randomElement(['Y','N']),
 	            'valoracion'					=> frand1(1, 5, 1),
 	            'descripcion'					=> '-',

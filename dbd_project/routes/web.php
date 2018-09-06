@@ -29,42 +29,52 @@ Route::group(['middleware'=> 'admin'], function (){
   Route::patch('/hoteles/{id}/update', 'ControllerHoteles@update')->name('hotel.update');
   Route::get('/autos/{id}/edit', 'ControllerAutos@edit')->name('autos.edit');
   Route::patch('/autos/{id}/update', 'ControllerAutos@update')->name('autos.update');
-  Route::get('/autos/{id}/destroy', 'ControllerAutos@destroy')->name('autos.destroy');
+  Route::delete('/autos/{id}/destroy', 'ControllerAutos@destroy')->name('autos.destroy');
   Route::get('/auditoria', 'ControllerAuditoria@mostrarTablaAuditoria');
   Route::get('/actividades/create', 'ControllerActividades@create');
   Route::get('/fondos', 'ControllerTransacciones@fondos');
   Route::post('/fondos', 'ControllerTransacciones@addFondos')->name('fondos');
-  //Route::get('/hoteles/{id_hotel}/create', function($id_hotel){
-    //return view('habitaciones.insertar-habitacion')->with('id', $id_hotel);
-  //});
+  Route::delete('/usuarios/{id}/destroy', 'ControllerUsuario@eliminarUsuario')->name('usuarios.eliminar');
   Route::get('/hoteles/{id_hotel}/create', 'ControllerHabitaciones@create');
+  Route::get('/paquetes/create', 'ControllerPaquetes@create')->name('paquetes.create');
+  Route::post('/paquetes/store', 'ControllerPaquetes@store')->name('paquetes.store');
+  Route::get('/paquetes/getHoteles', 'ControllerPaquetes@getHoteles');
+  Route::get('/paquetes/getAutos', 'ControllerPaquetes@getAutos');
 });
 
-Route::get('/paquetes', 'ControllerPaquete@index');
-Route::post('/paquetes', 'ControllerPaquete@nuevoPaquete');
-Route::post('/paquetes/1/{id}', 'ControllerPaquete@addVueloPaquete');
-Route::post('/paquetes/2/{id}', 'ControllerPaquete@addVueloPaquete');
+Route::get('/paquetes', 'ControllerPaquetes@index');
+//Route::post('/paquetes', 'ControllerPaquete@buscarPaquetesVueloAuto');
+//Route::post('/paquetes/2/{id}', 'ControllerPaquete@addVueloPaquete');
 
+//Paquete Vuelo + Auto
+Route::get('/paquetes/vuelos', 'ControllerPaquetes@buscarVuelosPaquete')->name('paquete.vuelos');
+Route::get('/paquetes/autos/{id_vuelo}', 'ControllerPaquetes@seleccionarAutoPaquete');
+Route::get('/paquetes/vuelo/auto/{id_auto}', 'ControllerPaquetes@completarPaquete');
+Route::get('/paquetes/{tipo_paquete}', 'ControllerPaquetes@seleccionarPaquete');
+
+
+//Hay que cambiarlo a middleware administrador
 Route::get('/admin', ['middleware' => 'auth', 'uses' => 'ControllerRoles@administrar']);
+Route::get('/usuario/{username}', ['middleware' => 'validUser', 'uses' => 'ControllerUsuario@perfilUsuario']);
 
 //ROLES. Usar middleware para bloquear entrada despues de otorgarse el rol
 Route::post('/admin/otorgar', 'ControllerRoles@otorgarRol');
 Route::post('/admin/revocar', 'ControllerRoles@revocarRol');
-
 //View methods
 Route::get('/hoteles', 'ControllerHoteles@index');
 Route::get('/vuelos', 'ControllerVuelos@index');
 
+Route::get('/autos/buscar', 'ControllerAutos@buscarAutos')->name('autos.buscar');
 Route::get('/autos', 'ControllerAutos@index');
+Route::get('/autos/disponibilidad', 'ControllerAutos@checkDisponible');
 Route::get('/autos/{id_auto}', 'ControllerAutos@show');
-
 //Post methods
 Route::post('/autos/store', 'ControllerAutos@store');
 Route::post('/hoteles/store', 'ControllerHoteles@store');
 
 Route::get('/hoteles/buscarCiudad', 'ControllerHoteles@buscarHotelesPorCiudad')->name('hoteles.buscarPorCiudad');
 Route::get('/hoteles/buscarPais', 'ControllerHoteles@buscarHotelesPorPais')->name('hoteles.buscarPorPais');
-//Route::get('/vuelos/buscar', 'ControllerVuelos@buscarVuelos')->name('vuelos.buscar');
+Route::get('/vuelos/buscar', 'ControllerVuelos@buscarVuelos')->name('vuelos.buscar');
 Route::get('/vuelos/{id_vuelo}', 'ControllerVuelos@show');
 Route::get('/hoteles/{id_hotel}', 'ControllerHoteles@show');
 

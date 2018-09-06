@@ -4,34 +4,126 @@
   .ui.fluid.card *{
     margin: 0;
   }
+  body {
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  height: 100vh;
+  }
+  #busqueda .container #busqueda-row #busqueda-column #busqueda-box {
+  max-width: 600px;
+  height: auto;
+  display:inline-block;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+  overflow: auto;
+  }
+  .btn-lg{
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  .centered{
+    text-align: center;
+  }
 </style>
 <div class="jumbotron jumbotron-fluid">
  <div class="container">
   <h1 class="display-4">Hoteles</h1>
   <p class="lead"></p>
-  <div class="ui two column grid">
-    <div class="column">
-    <div class="ui fluid card">
-      <h2 class="ui centered header" for="ciudad">Busca tu hotel según ciudad</h2>
-      <div class="content">
-        {!! Form::open(['route'=> 'hoteles.buscarPorCiudad', 'method' => 'GET', 'class' => 'card-body']) !!}
-        {{Form::text('ciudad', '', ['class' => 'form-control', 'placeholder' => 'Escribe una ciudad...'])}}
-      </div>
-        {{Form::submit('Buscar', ['class' => 'ui bottom attached blue button'])}}
-        {!! Form::close() !!}
-    </div>
-    </div>
-    <div class="column">
-    <div class="ui fluid card">
-      <h2 class="ui centered header" for="pais">...O busca tu hotel según país</h2>
-        <div class="content">
-          {!! Form::open(['route'=> 'hoteles.buscarPorPais', 'method' => 'GET', 'class' => 'card-body']) !!}
-          {{Form::text('pais', '', ['class' => 'form-control', 'placeholder' => 'Escribe un país...'])}}
+  <div class="row">
+    <div class="column col-md-6 col-sm-12">
+      <div id="busqueda">
+        <div class="container">
+            <div id="busqueda-row" class="row justify-content-center align-items-center">
+                <div id="busqueda-column" class="col-md-12">
+                    <div id="busqueda-box" class="col-md-12">
+                        {!! Form::open(['route'=> 'hoteles.buscarPorCiudad', 'method' => 'GET', 'id' => 'busqueda-form', 'class' => 'form']) !!}
+                            <h1 style="margin-top: 8px;" class="text-center text-info">Busca tu hotel por ciudad</h1>
+                            <div class="form-group">
+                                <label for="pais" class="text-info">Pais:</label><br>
+                                <input type="text" name="pais" placeholder="Escribe un país..." class="form-control">
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-sm-12 col-md-6">
+                                <label for="fecha_inicio" class="text-info">Fecha inicio alojamiento:</label>
+                                <input type="date" name="fecha_inicio" class="form-control">
+                              </div>
+                              <div class="form-group col-sm-12 col-md-6">
+                                <label for="fecha_fin" class="text-info">Fecha término alojamiento:</label>
+                                <input type="date" name="fecha_fin" class="form-control">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-sm-12 col-md-4">
+                                <label for="num_habitaciones" class="text-info">Número habitaciones:</label>
+                                <input type="number" name="num_habitaciones" min=1 value=1 class="form-control"/>
+                              </div>
+                              <div class="form-group col-sm-12 col-md-4">
+                                <label for="num_adultos" class="text-info">Número adultos</label>
+                                <input type="number" name="num_adultos" min=1 value=1 class="form-control"/>
+                              </div>
+                              <div class="form-group col-sm-12 col-md-4">
+                                <label for="num_menores" class="text-info">Número menores:</label>
+                                <input type="number" name="num_menores" min=0 value=0 class="form-control"/>
+                              </div>
+                            </div>
+                            <div class="centered">
+                            {{Form::submit('Buscar Hoteles', ['class' => 'btn btn-info btn-lg'])}}
+                            </div>
+                          {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-          {{Form::submit('Buscar', ['class' => 'ui bottom attached blue button'])}}
-          {!! Form::close() !!}
-    </div>
    </div>
+    <div class="column col-md-6 col-sm-12">
+      <div id="busqueda">
+        <div class="container">
+            <div id="busqueda-row" class="row justify-content-center align-items-center">
+                <div id="busqueda-column" class="col-md-12">
+                    <div id="busqueda-box" class="col-md-12">
+                        {!! Form::open(['route'=> 'hoteles.buscarPorPais', 'method' => 'GET', 'id' => 'busqueda-form', 'class' => 'form']) !!}
+                            <h1 style="margin-top: 8px;" class="text-center text-info">...O busca tu hotel por país</h1>
+                            <div class="form-group">
+                                <label for="pais" class="text-info">Pais:</label><br>
+                                <input type="text" name="pais" placeholder="Escribe una ciudad..." class="form-control">
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-sm-12 col-md-6">
+                                <label for="fecha_inicio" class="text-info">Fecha inicio alojamiento:</label>
+                                <input type="date" name="fecha_inicio" class="form-control">
+                              </div>
+                              <div class="form-group col-sm-12 col-md-6">
+                                <label for="fecha_fin" class="text-info">Fecha término alojamiento:</label>
+                                <input type="date" name="fecha_fin" class="form-control">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-sm-12 col-md-4">
+                                <label for="num_habitaciones" class="text-info">Número habitaciones:</label>
+                                <input type="number" name="num_habitaciones" min=1 value=1 class="form-control"/>
+                              </div>
+                              <div class="form-group col-sm-12 col-md-4">
+                                <label for="num_adultos" class="text-info">Número adultos</label>
+                                <input type="number" name="num_adultos" min=1 value=1 class="form-control"/>
+                              </div>
+                              <div class="form-group col-sm-12 col-md-4">
+                                <label for="num_menores" class="text-info">Número menores:</label>
+                                <input type="number" name="num_menores" min=0 value=0 class="form-control"/>
+                              </div>
+                            </div>
+                            <div class="centered">
+                              {{Form::submit('Buscar Hoteles', ['class' => 'btn btn-info btn-lg'])}}
+                            </div>
+                          {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+  </div>
   </div>
 </div>
 <div class="ui segment">

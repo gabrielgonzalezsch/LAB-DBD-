@@ -1,7 +1,13 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.2.6
+Version actual 0.2.8
+
+<< Version 0.2.8 >> 05/09/18 >>
+Contribuyentes: Vicente Rivera (proxima version se integran los otros cambios)
+- Se completa el despliegue de paquete vuelo + auto, falta agregar a carrito y compra. Falta replicarlo para hoteles...
+- Busqueda de autos mejorada (con validacion de fecha* y todo)
+
 
 << Version 0.2.6 >> 03/09/18
 Contribuyentes: Vicente Rivera

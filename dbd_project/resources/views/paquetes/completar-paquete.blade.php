@@ -129,10 +129,18 @@ function updateTotal(){
   var num_dias = Math.ceil(dif / (1000 * 3600 * 24));
   var precioTotal = {{$auto->precio_por_dia}}*num_dias + turista.value*{{$vuelo->valor_turista}}  + ejecutivo.value*{{$vuelo->valor_ejecutivo}} + pc.value*{{$vuelo->valor_primera_clase}};
   total.innerHTML = '$ '+ precioTotal + ' CLP';
+  if(num_dias <= 0){
+    document.getElementById('botonComprar').disabled = true;
+    //document.getElementById('alertFecha').style.display = "block";
+  }else{
+    document.getElementById('botonComprar').disabled = false;
+    //document.getElementById('alertFecha').style.display = "none";
+  }
 }
 
 function addCarrito(id_vuelo, id_auto){
-  var nombre = document.getElementById("auto").innerHTML;
+  var auto = document.getElementById("auto").innerHTML;
+  var vuelo = document.getElementById("vuelo").innerHTML;
   if(num_dias <= 0){
     document.getElementById('botonComprar').disabled = true;
     document.getElementById('alertFecha').style.display = "block";
@@ -140,7 +148,7 @@ function addCarrito(id_vuelo, id_auto){
     document.getElementById('botonComprar').disabled = false;
     document.getElementById('alertFecha').style.display = "none";
     //if(checkDisponible() == true){
-     addAutoAlCarrito(id, nombre, inicio, fin, num_dias);
+    //addPaqueteAlCarrito(id_paquete, id_auto, id_vuelo, nombre, inicio, fin, num_dias);
     //}
   }
 }

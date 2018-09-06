@@ -1,9 +1,14 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.2.8
+Version actual 0.3.2
 
-<< Version 0.2.8 >> 05/09/18 >>
+<< Version 0.3.2 >> 05/09/18 
+Contribuyentes: Gabriel Gonzalez, Felipe Sanchez, Nicolas Vieras
+- Se despliega la ventana principal
+- Se crea traslados, implementa google api utilizando las latitudes y longitudes de aeropuertos y hoteles
+
+<< Version 0.2.8 >> 05/09/18
 Contribuyentes: Vicente Rivera (proxima version se integran los otros cambios)
 - Se completa el despliegue de paquete vuelo + auto, falta agregar a carrito y compra. Falta replicarlo para hoteles...
 - Busqueda de autos mejorada (con validacion de fecha* y todo)

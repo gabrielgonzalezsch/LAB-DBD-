@@ -21,14 +21,15 @@ class habitaciones_seeders extends Seeder
 
 
 
-
 		for ($i=0; $i < 400 ; $i++) {
 
+			for($j=0; $j < 20; $j++){
 
-	        DB::table('habitaciones')->insert([
+
+		        DB::table('habitaciones')->insert([
 
 		   		'id_hotel'						=> $i+1,
-	            'num_habitacion'				=> random_int(100,1000),
+	            'num_habitacion'				=> random_int(1, 20)*100,
 	            'precio_por_noche'				=> random_int(7,30)*10000,
 	            'ya_reservado'					=> $faker->randomElement(['Y','N']),
 	            'valoracion'					=> frand1(1, 5, 1),
@@ -43,7 +44,8 @@ class habitaciones_seeders extends Seeder
 	            'created_at'					=> now(),
 				'updated_at'					=> now()
 
-		   ]);
-	    }
+			   	]);
+		    }
+		}
 	}
 }

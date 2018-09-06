@@ -35,17 +35,20 @@
         <a href="/autos"> Ver autos</a>
       </div>
     </ul>
+    
+
     <ul tabindex="3" class="categoria">
-      <div class="titulo-categoria"> <i class="angle down icon"></i>Solicitar Traslados
-        <i class="taxi icon"></i>
+      <div class="titulo-categoria"><i class="angle down icon"></i>Solicitar Traslado<i class="fa fa-map-marker"></i>
+      <i class="point map icon"></i>
       </div>
       <div class="contenido-categoria">
-        @if(!empty(Auth::user()))
-          <a href="/traslados/create_aeropuerto_a_hotel">Aeropuerto a Hotel</a>
-        @endif
-        <a href="/traslados/create_hotel_a_aeropuerto">Hotel a Aeropuerto</a>
+        <a href="/create-traslado-aeropuertoHotel">Aeropuerto -> Hotel</a>
+        <a href="/create-traslado-hotelAeropuerto">Hotel -> Aeropuerto</a>
       </div>
     </ul>
+
+
+
    <ul tabindex="5" class="categoria">
      <div class="titulo-categoria"><i class="angle down icon"></i>Actividades <i class="calendar alternate outline icon"> </i>
      </div>

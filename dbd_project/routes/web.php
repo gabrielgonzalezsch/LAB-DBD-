@@ -61,6 +61,7 @@ Route::post('/autos/store', 'ControllerAutos@store');
 Route::post('/hoteles/store', 'ControllerHoteles@store');
 
 Route::get('/hoteles/buscarCiudad', 'ControllerHoteles@buscarHotelesPorCiudad')->name('hoteles.buscarPorCiudad');
+Route::get('/actividad/buscarCiudad', 'ControllerActividades@ActividadesCiudad')->name('actividades.buscarPorCiudad');
 Route::get('/hoteles/buscarPais', 'ControllerHoteles@buscarHotelesPorPais')->name('hoteles.buscarPorPais');
 Route::get('/vuelos/buscar', 'ControllerVuelos@buscarVuelos')->name('vuelos.buscar');
 Route::get('/vuelos/{id_vuelo}', 'ControllerVuelos@show');

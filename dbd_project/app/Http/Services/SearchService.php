@@ -52,8 +52,9 @@ class SearchService {
     return $autos;
   }
 
-  public function buscarActividadPorCiudad($ciudad){
-    $actividades = Actividad::orderBy('valor_entrada')->where('ciudad', '=', $ciudad);
+  public function actividadesCiudad($ciudad){
+    $actividades = Actividad::orderBy('valor_entrada')->where('ciudad', '=', $ciudad)
+    ->paginate(6);
     return $actividades;
   }
 

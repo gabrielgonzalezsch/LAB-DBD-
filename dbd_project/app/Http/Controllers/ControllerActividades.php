@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Actividad;
+use Illuminate\Support\Facades\DB;
+use App\Services\SearchService;
 
 class ControllerActividades extends Controller{
 	
 	public function index(){
-		$actividades = Actividad::orderBy('id_actividad', 'asc')->paginate(5);
-		return view('actividades.buscar-actividad')->with('actividades', $actividades);
+		$actividades = Actividad::orderBy('id_actividad', 'asc')->paginate(6);
+		$array = [1,2,3,4];
+		return view('actividades.buscar-actividad')->with(['actividades' => $actividades,'array'=> $array]);
 	}
 
 	public function create(){
@@ -50,7 +53,8 @@ class ControllerActividades extends Controller{
 	public function show($id){
 		try{
 			$actividad = Actividad::find($id);
-			return view('actividades.detalle-actividad')->with('actividad', $actividad);
+			$array = [1,2,3,4];
+			return view('actividades.detalle-actividad')->with(['actividad' => $actividad,'array'=> $array]);
 		}
 		catch(Exception $e){
 			echo "Error";
@@ -61,6 +65,7 @@ class ControllerActividades extends Controller{
 	public function edit($id){
 		try{
 			$actividad = Actividad::find($id);
+
 			return view('actividades.modificar-actividad')->with('actividad',$actividad);
 		}
 		catch(Exception $e){
@@ -113,5 +118,16 @@ class ControllerActividades extends Controller{
 		catch(Exception $e){
 			return redirect("/actividades/".$id)->with('success','Error al eliminar actividad');
 		}
+	}
+
+
+	public function actividadesCiudad(Request $req){
+		$validate = $req->validate([
+        'ciudad' => 'required|string'
+      ]);
+      $this->searchService = \App::make(SearchService::class);
+      $actividades = $this->searchService->actividadesCiudad($req['ciudad']);
+      $array = [1,2,3,4];
+      return view("actividades.buscar-actividad")->with(['actividades' => $actividades,'array'=> $array]);
 	}
 }

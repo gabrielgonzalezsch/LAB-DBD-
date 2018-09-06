@@ -12,11 +12,18 @@ use App\Models\Hotel;
 
 class ControllerTraslados extends Controller{
 
+
+
+//############################################################################################################################
+//############################################################################################################################
+//############################################################################################################################
+//############################################################################################################################
+
+  // PRIMERA VISTA AEROPUERTO -> HOTEL
   
   public function index_aeropuertoHotel(){
     
     $paises = Aeropuerto::select('pais')->distinct('pais')->orderBy('pais','asc')->get();
-
     return view('traslados.create-traslado-aeropuertoHotel')->with('paises',$paises);
   }
 
@@ -27,55 +34,49 @@ class ControllerTraslados extends Controller{
     $ciudades = Aeropuerto::where('pais', '=', $request['pais'])->orderBy('ciudad','asc')->get();
     return json_encode($ciudades);
   }
-//################################
-  //############ ERROR buenos aires por tomar solo buenos o los paises en la primera palabraa
 
   public function queryAeropuerto(Request $request){
        
-    $cod_aeropuertos = Aeropuerto::where('cod_aeropuerto','=', $request['ciudad'])->get();////where('ciudad', '=', $request['ciudad'])->get();
-
+    $cod_aeropuertos = Aeropuerto::where('cod_aeropuerto','=', $request['ciudad'])->get(); 
     return($cod_aeropuertos);
   }
 
 
   public function queryHotel(Request $request){
     
-
     $ciudad_aeropuerto=Aeropuerto::select('ciudad')->where('cod_aeropuerto','=',$request['cod_aeropuerto'])->get();
     $hoteles = Hotel::where('ciudad','=',$ciudad_aeropuerto[0]['ciudad'])->get();
-
     return  $hoteles;
   }
 
+  public function queryOrigenAeropuerto(Request $request){
+
+    $aero_lat = Aeropuerto::select('latitud')->where('cod_aeropuerto','=',$request['cod_aeropuerto'])->get();
+    $aero_lon = Aeropuerto::select('longitud')->where('cod_aeropuerto','=',$request['cod_aeropuerto'])->get();
+    $coordenadas = array('aero_lat' => $aero_lat, 'aero_lon' => $aero_lon);
+    return $coordenadas;
+  }
 
 
+  public function queryDestinoHotel(Request $request){
+
+    $h_lat = Hotel::select('latitud')->where('id_hotel','=',$request['hotel'])->get();
+    $h_lon = Hotel::select('longitud')->where('id_hotel','=',$request['hotel'])->get();
+
+    $coordenadas = array('h_lat'=> $h_lat, 'h_lon' => $h_lon);
+
+    return $coordenadas;
+  }
 
 
+  public function queryChoferes(Request $request){
 
+    $ciudad = Aeropuerto::select('ciudad')->where('cod_aeropuerto','=',$request['ciudad'])->first();
 
+    $drivers = \App\Models\Chofer::where('ciudad', '=', $ciudad['ciudad'])->get();
 
-
-
-
-  public function queryCoordenadas(Request $request){
-
-
-    $lat_hotel =  Hotel::select('latitud')->where('id_hotel','=',$request['hotel'])->get();
-    $lon_hotel =  Hotel::select('longitud')->where('id_hotel','=',$request['hotel'])->get();
-
-
-    $pais_hotel = Hotel::select('ciudad')->where('id_hotel','=',$request['hotel'])->get();
-
-    $lat_aeropuerto = Aeropuerto::select('latitud')->where('ciudad','=',$pais_hotel[0]['ciudad'])->get(); 
-    $lon_aeropeurto = Aeropuerto::select('longitud')->where('ciudado','=',$pais_hotel[0]['ciudad'])->get();
-
-  
-    $coordenadas = array('lat_hotel' => $lat_hotel, 'lon_hotel' => $lon_hotel, 'lat_aeropuerto' => $lat_aeropuerto, 'lon_aeropuerto' => lon_aeropuerto);
-
-
-
-  
-    return json_encode($coordenadas);
+    
+    return json_encode($drivers);
   }
 
 
@@ -83,7 +84,11 @@ class ControllerTraslados extends Controller{
 
 
 
-  public function crear_traslado(Request $request){
+
+
+
+
+ public function crear_traslado(Request $request){
 
     $validate = $request->validate([
       'pais'        => 'required|string',
@@ -99,10 +104,6 @@ class ControllerTraslados extends Controller{
 
     $aeropuerto = Aeropuerto::select();
     $hotel = Hotel::select();
-
-
-    
-
 
 
 
@@ -131,16 +132,12 @@ class ControllerTraslados extends Controller{
     return;
   }
 
+//############################################################################################################################
+//############################################################################################################################
+//############################################################################################################################
+//############################################################################################################################
 
-  
-
-
-
-
-
-
-
-
+  // SEGUNDA VISTA HOTEL -> AEROPUERTO
 
 
 

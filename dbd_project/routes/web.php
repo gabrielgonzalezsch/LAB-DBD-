@@ -93,11 +93,12 @@ Route::get('/historial', ['middleware' => 'auth', 'uses' => 'ControllerTransacci
 
 Auth::routes();
 
-//Query Traslados
+//Query Traslados Primera Vista
 Route::get('/traslados/queryCiudad', 'ControllerTraslados@queryCiudad');
 Route::get('/traslados/queryAeropuerto', 'ControllerTraslados@queryAeropuerto');
 Route::get('/traslados/queryHotel', 'ControllerTraslados@queryHotel');
-Route::get('/traslados/queryCoordenadas', 'ControllerTraslados@queryCoordenadas');
-//Route::get('/traslados/calculoTraslado', 'ControllerTraslados@crear_traslado');
+Route::get('/traslados/queryOrigenAeropuerto','ControllerTraslados@queryOrigenAeropuerto');
+Route::get('/traslados/queryDestinoHotel','ControllerTraslados@queryDestinoHotel');
+Route::get('/traslados/queryChoferes','ControllerTraslados@queryChoferes');
 
 

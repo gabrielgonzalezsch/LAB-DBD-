@@ -16,6 +16,25 @@ function addHabitacionAlCarrito(id_habitacion, nombre, inicio, fin, num_dias){
       });
 }
 
+function addTrasladoAlCarrito(id_chofer, ft, d, np, p, c, a, h, formato, ht, mt){
+  $.ajax({
+    url : "../../carrito/agregarTraslado",
+    method : "POST",
+    data: {id_chofer: id_chofer, fecha_traslado: ft, distancia: d, pasajeros: np, pais: p, ciudad: c, aeropuerto: a, hotel: h, formato_traslado: formato, hora_traslado: ht, minutos_traslado: mt},
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function(){
+      alert("Se ha agregado el traslado al carrito de compras!");
+    },
+    error: function (data, textStatus, errorThrown) {
+      console.log(data);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+  });
+}
+
 function addActividadAlCarrito(id_actividad, nombre, num_entradas){
       $.ajax({
         url : "../../carrito/agregarActividad",

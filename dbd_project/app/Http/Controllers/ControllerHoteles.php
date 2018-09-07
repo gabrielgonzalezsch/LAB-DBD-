@@ -133,43 +133,46 @@ class ControllerHoteles extends Controller{
 
     public function buscarHotelesPorCiudad(Request $request){
       $validate = $request->validate([
-        'ciudad' => 'required|string'
-      ]);
-      //   'fecha_inicio' => 'required|date',
-      //   'fecha_fin' => 'required|date|after:fecha_inicio'
-      //   'num_habitaciones' => 'required|numeric',
-      //   'num_adultos' => 'required|numeric'
-      // ]);
-      $this->searchService = \App::make(SearchService::class);
-      $hoteles = $this->searchService->buscarHotelesPorCiudad($request['ciudad']);
-      return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles);
-    }
-
-    public function buscarHoteles(Request $request){
-      $validate = $request->validate([
         'ciudad' => 'required|string',
         'fecha_inicio' => 'required|date',
         'fecha_fin' => 'required|date|after:fecha_inicio',
         'num_habitaciones' => 'required|numeric',
         'num_adultos' => 'required|numeric'
       ]);
-      if(!empty($request['num_menores'])){
-          $num_habitaciones = $request['num_adultos'] + $request['num_menores'];
-      }else
-        $num_personas = $request['num_adultos'];
       $this->searchService = \App::make(SearchService::class);
-      $hoteles = $this->searchService->buscarHotelesPorCiudad(
-        $request['ciudad'], $request['fecha_inicio'], $request['fecha_fin'],
-        $request['num_habitaciones'], $num_personas
-      );
-      return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles)
-      ->with('fecha_inicio', $fecha_inicio)
-      ->with('fecha_fin', $fecha_fin);
+      $hoteles = $this->searchService->buscarHotelesPorCiudad($request['ciudad']);
+      return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles);
     }
+
+    // public function buscarHoteles(Request $request){
+    //   $validate = $request->validate([
+    //     'ciudad' => 'required|string',
+    //     'fecha_inicio' => 'required|date',
+    //     'fecha_fin' => 'required|date|after:fecha_inicio',
+    //     'num_habitaciones' => 'required|numeric',
+    //     'num_adultos' => 'required|numeric'
+    //   ]);
+    //   if(!empty($request['num_menores'])){
+    //       $num_habitaciones = $request['num_adultos'] + $request['num_menores'];
+    //   }else
+    //     $num_personas = $request['num_adultos'];
+    //   $this->searchService = \App::make(SearchService::class);
+    //   $hoteles = $this->searchService->buscarHotelesPorCiudad(
+    //     $request['ciudad'], $request['fecha_inicio'], $request['fecha_fin'],
+    //     $request['num_habitaciones'], $num_personas
+    //   );
+    //   return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles)
+    //   ->with('fecha_inicio', $fecha_inicio)
+    //   ->with('fecha_fin', $fecha_fin);
+    // }
 
     public function buscarHotelesPorPais(Request $request){
       $validate = $request->validate([
-        'pais' => 'required|string'
+        'pais' => 'required|string',
+        'fecha_inicio' => 'required|date',
+        'fecha_fin' => 'required|date|after:fecha_inicio',
+        'num_habitaciones' => 'required|numeric',
+        'num_adultos' => 'required|numeric'
       ]);
       $this->searchService = \App::make(SearchService::class);
       $hoteles = $this->searchService->buscarHotelesPorPais($request['pais']);

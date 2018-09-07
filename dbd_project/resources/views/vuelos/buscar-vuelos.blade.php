@@ -7,7 +7,7 @@
   }
   .container{
     background-color: orange
-    
+
   }
   .jumbotron{
     background-color:orange;
@@ -25,15 +25,15 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-      <form name="busqueda" id="busqueda" action="/vuelos/buscar" method="get">
+      {!! Form::open(['route'=> 'vuelos.buscar', 'method' => 'GET', 'id' => 'busqueda']) !!}
       <div class="form-row">
         <div class="form-group col-md-3">
           <label for="inicio">Escribe la ciudad de origen...</label>
-          <input name="origen" id="origen" class="form-control prompt" type="text" placeholder="Escribe la ciudad de origen..." />
+          {{Form::text('origen', '', ['class' => 'form-control promt', 'placeholder' => 'Escribe la ciudad de origen...'])}}
         </div>
         <div class="form-group col-md-3">
           <label for="destino">Escribe la ciudad de destino...</label>
-          <input name="destino" id="destino" class="form-control prompt" type="text" placeholder="Escribe la ciudad de destino..." />
+          {{Form::text('destino', '', ['class' => 'form-control promt', 'placeholder' => 'Escribe la ciudad de destino...'])}}
         </div>
         <div class="form-group col">
           <div class="form-check">
@@ -53,16 +53,17 @@
       <div class="form-row">
         <div id="fecha_ida" class="form-group col-md-3">
           <label for="fechaPartida" class="ui input label"> Elige la fecha de partida... </label>
-          <input name="fechaPartida" id="fechaIda" type="date" class="form-control promt"/>
+          {{Form::date('fechaPartida', '', ['id' => 'fechaIda', 'class' => 'form-control promt'])}}
         </div>
         <div id="fecha_vuelta" class="form-group col-md-3">
           <label for="fechaLlegada" class="ui input label"> Elige la fecha de regreso... </label>
-          <input name="fechaLlegada" id="fechaVuelta" type="date" class="form-control promt"/>
+          {{Form::date('fechaLlegada', '', ['id' => 'fechaVuelta', 'class' => 'form-control promt'])}}
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <submit onclick="check()" form="busqueda" name="enviar" id="buscar" class="btn btn-primary"> Buscar Vuelos</submit>
+          {{Form::submit('Buscar', ['onclick' => 'check()', 'class' => 'btn btn-primary'])}}
+          {!! Form::close() !!}
           <div id="resultados" class="results"></div>
         </div>
       </div>

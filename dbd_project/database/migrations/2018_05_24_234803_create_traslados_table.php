@@ -16,13 +16,13 @@ class CreateTrasladosTable extends Migration
         Schema::create('traslados', function (Blueprint $table) {
             $table->increments('id_traslado');
             $table->integer('id_chofer');
-            $table->string('pais', 30);
-            $table->string('ciudad', 30);
-            $table->string('aeropuerto', 30);
-            $table->string('hotel', 30);
-            $table->boolean('aeropuerto_a_hotel');
-            $table->date('fecha_servicio');
-            $table->time('hora_servicio');
+            $table->string('pais', 100);
+            $table->string('ciudad', 100);
+            $table->string('aeropuerto', 100);
+            $table->string('hotel', 100);
+            $table->string('formato_traslado');
+            $table->date('fecha_traslado');
+            $table->time('hora_traslado');
             $table->smallInteger('cap_pasajeros');
             $table->integer('monto');
             $table->decimal('distancia_recorrido');

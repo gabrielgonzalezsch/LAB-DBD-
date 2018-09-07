@@ -20,9 +20,9 @@ class ControllerTraslados extends Controller{
 //############################################################################################################################
 
   // PRIMERA VISTA AEROPUERTO -> HOTEL
-  
+
   public function index_aeropuertoHotel(){
-    
+
     $paises = Aeropuerto::select('pais')->distinct('pais')->orderBy('pais','asc')->get();
     return view('traslados.create-traslado-aeropuertoHotel')->with('paises',$paises);
   }
@@ -30,20 +30,20 @@ class ControllerTraslados extends Controller{
   // REQUESTS AeropuertoHotel
 
   public function queryCiudad(Request $request){
-        
+
     $ciudades = Aeropuerto::where('pais', '=', $request['pais'])->orderBy('ciudad','asc')->get();
     return json_encode($ciudades);
   }
 
   public function queryAeropuerto(Request $request){
-       
-    $cod_aeropuertos = Aeropuerto::where('cod_aeropuerto','=', $request['ciudad'])->get(); 
+
+    $cod_aeropuertos = Aeropuerto::where('cod_aeropuerto','=', $request['ciudad'])->get();
     return($cod_aeropuertos);
   }
 
 
   public function queryHotel(Request $request){
-    
+
     $ciudad_aeropuerto=Aeropuerto::select('ciudad')->where('cod_aeropuerto','=',$request['cod_aeropuerto'])->get();
     $hoteles = Hotel::where('ciudad','=',$ciudad_aeropuerto[0]['ciudad'])->get();
     return  $hoteles;
@@ -75,33 +75,32 @@ class ControllerTraslados extends Controller{
 
     $drivers = \App\Models\Chofer::where('ciudad', '=', $ciudad['ciudad'])->get();
 
-    
+
     return json_encode($drivers);
   }
 
 
 
- public function crear_traslado(Request $request){
-
-    $validate = $request->validate([
-      'pais'        => 'required|string',
-      'ciudad'      => 'required|string',
-      'hotel'       => 'required|string',
-      'aeropuerto'  => 'required|string',
-      'cantidad'   => 'required|integer',
-      'fecha'       => 'required',
-      'horas'       => 'required|integer',
-      'minutos'     => 'required|integer'
-    ]);
-
-
-    $aeropuerto = Aeropuerto::select();
-    $hotel = Hotel::select();
-
-
-
+ // public function crear_traslado(Request $request){
+ //
+ //    $validate = $request->validate([
+ //      'pais'        => 'required|string',
+ //      'ciudad'      => 'required|string',
+ //      'hotel'       => 'required|string',
+ //      'aeropuerto'  => 'required|string',
+ //      'cantidad'   => 'required|integer',
+ //      'fecha'       => 'required',
+ //      'horas'       => 'required|integer',
+ //      'minutos'     => 'required|integer'
+ //    ]);
+ //
+ //    $aeropuerto = Aeropuerto::select();
+ //    $hotel = Hotel::select();
+ //
+ //
+ //
     /*if(($ciudad = $aeropuerto->ciudad) != $hotel->ciudad){
-      error return 
+      error return
     }
 
 
@@ -120,10 +119,8 @@ class ControllerTraslados extends Controller{
     $traslado->distancia = $distancia;
     $traslado->capacidad = request['capacidad']; //$request->input('capacidad') //$_POST('capacidad')*/
 
-    
-
-    return;
-  }
+  //   return;
+  // }
 
 //############################################################################################################################
 //############################################################################################################################
@@ -136,7 +133,7 @@ class ControllerTraslados extends Controller{
 
 
 
-  
+
   /*public function crear_traslado(Request $request){
 
 
@@ -151,7 +148,7 @@ class ControllerTraslados extends Controller{
     //$hotel = Hotel::select()...;
 
     if(($ciudad = $aeropuerto->ciudad) != $hotel->ciudad){
-      error return 
+      error return
     }
     $puntoOrigen = ;
     $puntoDestino = ;

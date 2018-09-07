@@ -23,6 +23,12 @@
 					@elseif($item->categoria == 'Auto' || $item->subcategoria == 'Auto')
 					<li>Inicio arriendo: {{$item->inicio_arriendo}}</li>
 					<li>Fin arriendo: {{$item->fin_arriendo}}</li>
+					@elseif($item->categoria == 'Traslado')
+					<li>Formato traslado: {{$item->formato_traslado}}</li>
+					<li>Aeropuerto: {{$item->aeropuerto}}</li>
+					<li>Distancia: {{$item->distancia}} Kilómetros</li>
+					<li>Hotel: {{$item->hotel}}</li>
+					<li>Fecha traslado: {{$item->fecha_traslado}}</li>
 					@endif
 					@if($item->categoria == 'Paquete')
 					<li>Tipo de paquete: {{$item->tipo_paquete}}</li>

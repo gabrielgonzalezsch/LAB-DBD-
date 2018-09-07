@@ -67,7 +67,7 @@
      <div class="col-md-4">
        <h3 align="center" name="titulo_destino" id="titulo_destino">Hotel</h3>
 
-       <select name="hotel" id="hotel" onchange="" class="form-control">
+       <select name="hotel" id="hotel" class="form-control">
                 <option value="0">Elegir Hotel</option>
         </select>
      </div>
@@ -95,7 +95,7 @@
 
     </div>
 
-    <div name="fecha" id="fecha" class="col-md-2">
+    <div name="fecha" class="col-md-2">
           <h4 align="center">Fecha del Traslado</h4>
           {{Form::date('fecha', '', ['id' => 'fecha', 'class' => 'form-control promt'])}}
     </div>
@@ -233,7 +233,7 @@
      <br><br>   <br><br>
 
     <div class="ui left action input row">
-      <button onclick="addCarrito()" class="ui teal labeled icon button">
+      <button disabled id="bottonCarrito" onclick="addCarrito()" class="ui teal labeled icon button">
       <i class="cart icon"></i>
         Al carrito
       </button>

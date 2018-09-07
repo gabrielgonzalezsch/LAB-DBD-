@@ -80,12 +80,28 @@ class ControllerTransacciones extends Controller
               $actividad->cupos = $actividad->cupos - $item->cantidad;
               $actividad->save();
               break;
+             case 'Traslado':
+              $traslado = new \App\Models\Traslado();
+              $traslado->pais = $item->pais;
+              $traslado->ciudad = $item->ciudad;
+              $traslado->formato_traslado = $item->formato_traslado;
+              $traslado->distancia_recorrido = $item->distancia;
+              $traslado->aeropuerto = $item->aeropuerto;
+              $traslado->hotel = $item->hotel;
+              $traslado->cap_pasajeros = $item->num_pasajeros;
+              $traslado->fecha_traslado = $item->fecha_traslado;
+              $traslado->hora_traslado = $item->hora_traslado;
+              $chofer = \App\Models\Chofer::findOrFail($item->id);
+              $datetime_fecha_traslado = $item->fecha_traslado.' '.$item->hora_traslado;
+              $traslado->chofer()->associate($chofer);
+              $traslado->monto = $item->subtotal;
+              $traslado->save();
+              //Traslado creado
+              $transaccion->traslados()->attach($traslado->id_traslado, ['hora_compra' => \Carbon\Carbon::now(), 'hora_traslado' => $datetime_fecha_traslado, 'formato_traslado' => $item->formato_traslado, 'num_personas' => $item->num_pasajeros]);
+              break;
              case 'Paquete':
               $paquete = \App\Models\Paquete::findOrFail($item->id_paquete);
               $transaccion->paquetes()->syncWithoutDetaching([$item->id_paquete => ['hora_compra' => \Carbon\Carbon::now(), 'tipo_paquete' => $item->tipo_paquete]]);
-              // if($transaccion->paquetes()->where('id_paquete', '=', $item->id_paquete)->count() == 0){
-              //   $transaccion->paquetes()->attach($item_id_paquete, ['hora_compra' => \Carbon\Carbon::now(), 'tipo_paquete' => $item->tipo_paquete]);
-              // }
               switch ($item->subcategoria) {
                 case 'Auto':
                   $auto = \App\Models\Auto::findOrFail($item->id);
@@ -129,7 +145,7 @@ class ControllerTransacciones extends Controller
            }
     	 	}
         Session::forget("carrito");
-        return redirect("/historial");
+        return redirect("/historial")->with('success', 'La compra fue realizada con éxito');
     }
 
     public function verHistorial(){
@@ -172,13 +188,21 @@ class ControllerTransacciones extends Controller
                             FROM paquetes p, compra_paquete cp, transacciones t
                             WHERE p.id_paquete = cp.id_paquete AND cp.id_transaccion = t.id_transaccion) c
                           WHERE c.id_usuario = :id;', ['id' => $id]);//Auth::user()->transacciones()->paquetes();
+      $traslados_comprados = DB::select('
+                          SELECT c.id_transaccion, c.id_chofer, c.formato_traslado, c.hora_traslado, c.num_personas, c.hora_compra, c.monto
+                          FROM
+                            (SELECT t.id_usuario, ct.id_transaccion, tr.id_chofer, tr.formato_traslado, ct.hora_traslado, ct.num_personas, ct.hora_compra, t.monto
+                            FROM traslados tr, compra_traslado ct, transacciones t
+                            WHERE tr.id_traslado = ct.id_traslado AND ct.id_transaccion = t.id_transaccion) c
+                          WHERE c.id_usuario = :id;', ['id' => $id]);//Auth::user()->transacciones()->paquetes();
       if($transacciones != NULL)
         return view('historial')->with('transacciones', $transacciones)
         ->with('vuelos_reservados', $vuelos_reservados)
         ->with('habitaciones_reservadas', $habitaciones_reservadas)
         ->with('autos_arrendados', $autos_arrendados)
         ->with('actividades_compradas', $actividades_compradas)
-        ->with('paquetes_comprados', $paquetes_comprados);
+        ->with('paquetes_comprados', $paquetes_comprados)
+        ->with('traslados_comprados', $traslados_comprados);
       else {
         return redirect('/')->with('failure', 'No hay compras realizadas');
       }

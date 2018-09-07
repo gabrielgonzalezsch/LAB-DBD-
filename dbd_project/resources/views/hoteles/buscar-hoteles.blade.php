@@ -37,7 +37,7 @@
             <div id="busqueda-row" class="row justify-content-center align-items-center">
                 <div id="busqueda-column" class="col-md-12">
                     <div id="busqueda-box" class="col-md-12">
-                        {!! Form::open(['route'=> 'hoteles.buscarPorCiudad', 'method' => 'GET', 'id' => 'busqueda-form', 'class' => 'form']) !!}
+                        {!! Form::open(['route'=> 'hoteles.buscarPorPais', 'method' => 'GET', 'id' => 'busqueda-form', 'class' => 'form']) !!}
                             <h1 style="margin-top: 8px;" class="text-center text-info">Busca tu hotel por ciudad</h1>
                             <div class="form-group">
                                 <label for="pais" class="text-info">Pais:</label><br>
@@ -46,7 +46,7 @@
                             <div class="form-row">
                               <div class="form-group col-sm-12 col-md-6">
                                 <label for="fecha_inicio" class="text-info">Fecha inicio alojamiento:</label>
-                                <input type="date" name="fecha_inicio" class="form-control">
+                                <input id="fecha_inicio" type="date" name="fecha_inicio" class="form-control">
                               </div>
                               <div class="form-group col-sm-12 col-md-6">
                                 <label for="fecha_fin" class="text-info">Fecha término alojamiento:</label>
@@ -83,11 +83,11 @@
             <div id="busqueda-row" class="row justify-content-center align-items-center">
                 <div id="busqueda-column" class="col-md-12">
                     <div id="busqueda-box" class="col-md-12">
-                        {!! Form::open(['route'=> 'hoteles.buscarPorPais', 'method' => 'GET', 'id' => 'busqueda-form', 'class' => 'form']) !!}
+                        {!! Form::open(['route'=> 'hoteles.buscarPorCiudad', 'method' => 'GET', 'id' => 'busqueda-form', 'class' => 'form']) !!}
                             <h1 style="margin-top: 8px;" class="text-center text-info">...O busca tu hotel por país</h1>
                             <div class="form-group">
-                                <label for="pais" class="text-info">Pais:</label><br>
-                                <input type="text" name="pais" placeholder="Escribe una ciudad..." class="form-control">
+                                <label for="ciudad" class="text-info">Ciudad:</label><br>
+                                <input type="text" name="ciudad" placeholder="Escribe una ciudad..." class="form-control">
                             </div>
                             <div class="form-row">
                               <div class="form-group col-sm-12 col-md-6">

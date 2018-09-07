@@ -55,6 +55,35 @@
    </tbody>
  </table>
 </div>
+<div class="ui segment">
+<div class="ui header"> Traslados arrendados</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Id compra</th>
+      <th>Id chofer</th>
+      <th>Fecha compra</th>
+      <th>Fecha traslado</th>
+      <th>Formato traslado</th>
+      <th>Número personas</th>
+      <th>Monto</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($traslados_comprados as $traslado)
+    <tr>
+      <td>{{$traslado->id_transaccion}}</td>
+      <td>{{$traslado->id_chofer}}</td>
+      <td>{{$traslado->hora_compra}}</td>
+      <td>{{$traslado->hora_traslado}}</td>
+      <td>{{$traslado->formato_traslado}}</td>
+      <td>{{$traslado->num_personas}}</td>
+      <td>{{$traslado->monto}}</td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+</div>
   <div class="ui segment">
     <div class="ui header">Vuelos reservados</div>
     <table class="table">

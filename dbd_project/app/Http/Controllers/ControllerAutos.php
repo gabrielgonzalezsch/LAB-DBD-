@@ -15,7 +15,7 @@ class ControllerAutos extends Controller
      */
     public function index()
     {
-      $autos = Auto::orderBy('id_auto', 'asc')->paginate(5); //Cambiar a ordenarlos segun criterios
+      $autos = Auto::orderBy('id_auto', 'asc')->paginate(6); //Cambiar a ordenarlos segun criterios
       return view('autos.buscar-autos')->with('autos', $autos);
     }
 

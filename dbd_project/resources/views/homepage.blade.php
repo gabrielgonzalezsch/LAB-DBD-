@@ -14,6 +14,8 @@
   <ul class="carousel-indicators">
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
   </ul>
 
   <!-- The slideshow -->
@@ -39,6 +41,27 @@
         </div>
       </div>   
     </div>
+    <div class="carousel-item">
+      <center><img src="images/Vehiculo.jpg" style="max-width:100%"></center>
+      <div class="carousel-caption">
+        <div class="col-md-7">
+            <h1 class="pb-2"><strong>Arrienda un vehículo</strong> </h1>
+            <h4>Muevete con la máxima elegancia.</h4>
+            <a href="/autos/" class="btn btn-info">Revisa todos los Vehículos</a>
+        </div>
+      </div>   
+    </div>
+    <div class="carousel-item">
+      <center><img src="images/Actividades.jpg" style="max-width:100%"></center>
+      <div class="carousel-caption">
+        <div class="col-md-7">
+            <h1 class="pb-2"><strong>Realiza actividades</strong> </h1>
+            <h4>Disfruta en familia los encantos de la ciudad.</h4>
+            <a href="/actividades/" class="btn btn-info">Revisa todas las Actividades</a>
+        </div>
+      </div>   
+    </div>
+
 
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo" data-slide="prev">

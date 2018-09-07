@@ -68,7 +68,7 @@
             Precios desde: ${{$auto->precio_por_dia}} por dia
           </div>
           <div class="ui horizontal divider header">{{$auto->compañia}},{{$auto->modelo_auto}}</div>
-          <center><img src="images/{{$auto->compañia}}.png" width="100%" height = 220px></center>
+          <center><img src="/images/{{$auto->compañia}}.png" width="100%" height = 220px></center>
           <small></small>
         </div>
         <div style="padding: 20px;" class="ui relaxed divided list">

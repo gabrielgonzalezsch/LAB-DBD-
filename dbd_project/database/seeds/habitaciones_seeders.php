@@ -28,6 +28,7 @@ class habitaciones_seeders extends Seeder
 
 		        DB::table('habitaciones')->insert([
 
+					
 		   		'id_hotel'						=> $i+1,
 	            'num_habitacion'				=> random_int(1, 20)*100,
 	            'precio_por_noche'				=> random_int(7,30)*10000,
@@ -43,6 +44,7 @@ class habitaciones_seeders extends Seeder
 	            'descuento'						=> random_int(0,20),
 	            'created_at'					=> now(),
 				'updated_at'					=> now()
+				
 
 			   	]);
 		    }

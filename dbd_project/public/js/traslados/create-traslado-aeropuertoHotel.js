@@ -231,7 +231,7 @@ function swap() {
 
 		$('#swap').val('1');
 
-		$('#swap').append('<button></button').text('Hotel(A) ~~~> Aeropuerto(B)');
+		$('#swap').append('<button></button').text('<');
 
 
 
@@ -243,7 +243,7 @@ function swap() {
 
 		$('#swap').val('0');
 
-		$('#swap').append('<button></button').text('Aeropuerto(A) ~~~> Hotel(B)');
+		$('#swap').append('<button></button').text('>');
 
 	}
 }

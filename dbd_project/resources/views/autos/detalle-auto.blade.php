@@ -31,6 +31,7 @@ body {
   margin: auto;
 }
 </style>
+<center>
 <div class="row">
 <div id="busqueda">
   <div class="container">
@@ -84,45 +85,41 @@ body {
     </div>
 </div>
 </div>
+</center>
 <div class="ui fluid container">
-<div class="ui segment column">
+<div class="ui segment column ">
   <h1 class="ui header">Detalles del auto:
-  <span id="auto">{{$auto->modelo_auto}}</span></h1>
+  <span id="auto">{{$auto->modelo}}</span></h1>
+  <div class="content">
+
+          <div style="padding: 5px; width: 100%;" class="ui huge orange ribbon label">
+            Precios desde: ${{$auto->precio_por_dia}} por dia
+          </div>
+          <div class="ui star rating" data-rating="3"></div>
+          <div class="ui horizontal divider header"><h1>{{$auto->modelo_auto}},{{$auto->compañia}}</div></h1>
+          <div class="image">
+            <center><img src="/images/{{$auto->compañia}}.png"  alt="Card image cap" style="width: 20%"></center>
+          </div>
+        </div>
     <ul>
-      <li><h3>Precio por dia: {{$auto->precio_por_dia}} </h3></li>
-      <li><h3>Compañía: {{$auto->compañia}} </h3></li>
-      <li><h4>Descripcion del auto: {{$auto->descripcion_auto}}</h4></li>
-      <li><h4>N° Patente {{$auto->patente}}</h4></li>
+      <dl><h4>  Valor diario de arriendo: {{$auto->precio_por_dia}} </h4></dl>
+      <dl><h4>  Modelo: {{$auto->modelo_auto}} </h4></dl>
+      <dl><h4>  Compañia: {{$auto->compañia}} </h4></dl>
+      <dl><h4>  Patente: {{$auto->patente}} </h4></dl>
+      <dl><h4>  Capacidad: {{$auto->cap_pasajeros}} </h4></dl>
+      <dl><h4>  Descripcion: {{$auto->descripcion_auto}} </h4></dl>
     </ul>
-    <div class="ui horizontal divider"> Detalles del arriendo </div>
-    <div class="ui segment">
+    <div class="ui horizontal divider"><h5> Detalles de ubicación </h5></div>
     <ul>
-      <li><h3>Pais: {{$auto->pais_arriendo}} </h3></li>
-      <li><h3>Ciudad: {{$auto->ciudad_arriendo}} </h3></li>
-      <li><h3>Calle: {{$auto->calle_arriendo}} </h3></li>
-    </ul>
+      <dl><h4>  País: {{$auto->pais_arriendo}} </h4></dl>
+      <dl><h4>  Ciudad: {{$auto->ciudad_arriendo}} </h4></dl>
+      <dl><h4>  Dirección: {{$auto->calle_arriendo}} </h4></dl>
+    </ul>   
     </div>
-    <div class="ui horizontal divider"> Proceso de compra </div>
-    <div class"ui segment centrado">
-      <a href="/autos" class="ui button" role="button"> Volver a Autos </a>
-      <button disabled id="botonComprar" onclick="addCarrito({{$auto->id_auto}})" class="ui teal labeled icon button">
-      <i class="cart icon"></i>
-        Al carrito
-      </button>
-      <label id="total" type="text" class="ui big blue tag label" readonly>$ {{$auto->precio_por_dia}} CLP</label>
-    </div>
-    @if(Auth::check())
-    @if(Auth::user()->esAdmin())
-    <div class="ui divider"></div>
-    <div class="ui segment centrado">
-      <div class="ui header">
-        Panel de administrador
-      </div>
-      <a role="button" class="btn btn-primary" href="{{$auto->id_auto}}/edit"> Editar </a>
-      <a role="button" class="btn btn-danger" onclick="return promptDelete()"> Borrar </a>
-    </div>
-    @endif
-    @endif
+    <center>
+    <a href="/autos" class="btn btn-info" role="button"> Volver a autos </a>
+  </center>
+  
 </div>
 </div>
 <style>

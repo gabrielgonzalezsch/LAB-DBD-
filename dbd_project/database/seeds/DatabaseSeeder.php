@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(vuelos_seeders::class);
         $this->call(actividades_seeders::class);
         $this->call(choferes_seeders::class);
+        $this->call(paquetes_seeders::class);
 
     }
 }

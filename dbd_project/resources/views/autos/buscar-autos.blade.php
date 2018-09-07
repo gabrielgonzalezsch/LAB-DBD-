@@ -28,7 +28,7 @@
 </style>
 <div class="jumbotron jumbotron-fluid">
  <div class="container">
-  <h1 class="display-4">Auto</h1>
+  <center>
   <p class="lead"></p>
   <div class="row">
     <div class="col">
@@ -54,26 +54,57 @@
       </div>
     </div>
   </div>
+</center>
 </div>
 </div>
 <div>
-  <h1>Todos los Autos: </h1>
-@if(isset($autos))
-  @if(count($autos) > 0)
-    <ul>
-      @foreach($autos as $auto)
-      <li>
-        <h3><a href="/autos/{{$auto->id_auto}}">{{$auto->modelo_auto}}</a></h3>
-        <small>Valor por dia: {{$auto->precio_por_dia}}</small>
-      </li>
-      @endforeach
-    </ul>
+  <h1 class="ui horizontal divider header">Todos los autos: </h1>
+    @if(count($autos) > 0)
+    <div class="ui three stackable cards">
+    @foreach($autos as $auto)
+      <div class="ui fluid raised card">
+        <div class="content">
+          <div style="padding: 5px; width: 70%;" class="ui huge orange ribbon label">
+            Precios desde: ${{$auto->precio_por_dia}} por dia
+          </div>
+          <div class="ui horizontal divider header">{{$auto->compañia}},{{$auto->modelo_auto}}</div>
+          <center><img src="/images/{{$auto->compañia}}.png" width="100%" height = 220px></center>
+          <small></small>
+        </div>
+        <div style="padding: 20px;" class="ui relaxed divided list">
+          <div class="item">
+            <div class="header">Disponibilidad en:</div>
+            <div class="content">
+              {{$auto->ciudad_arriendo,$auto->pais_arriendo}}</div>
+          </div>
+          <div class="item">
+            <div class="header">Capacidad: </div>
+            <div class="content">
+              {{$auto->cap_pasajeros}}
+            </div>
+          </div>
+            <div class="item">
+            <div class="header">Descripcion: </div>
+            <div class="content">
+              {{$auto->descripcion_auto}}
+            </div>
+          </div>
+          <a href="/autos/{{$auto->id_auto}}" class="ui bottom attached blue button">
+          <i class="fas fa-search"></i>
+          Ver detalles
+          </a>
+        </div>
+      </div>
+    @endforeach
+    </div>
+  <div style="left: 30%; width: 40%; overflow: auto;"class="ui segment">
     {{$autos->links()}}
-    <a href="/" class="button" role="button"> Volver </a>
+  </div>
+  <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/autos" class="btn btn-primary" role="button"> Volver </a>
   @else
     <p>No se encontraron autos!</p>
-    <a href="/" class="button" role="button"> Volver </a>
-  @endif
-@endif
+    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/" class="btn btn-primary" role="button"> Volver al inicio</a>
+    @endif
+  </div>
 </div>
 @endsection

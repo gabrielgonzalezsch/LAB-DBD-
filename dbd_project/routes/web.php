@@ -10,9 +10,7 @@ use App\Http\Middleware\CheckAdmin;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function(){
-    return view('homepage');
-});
+Route::get('/', 'Homecontroller@index');
 
 //Route::post('/usuarios/store', 'ControllerUsuarios@store');
 Route::group(['middleware'=> 'admin'], function (){

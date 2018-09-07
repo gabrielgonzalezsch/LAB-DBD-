@@ -1,16 +1,29 @@
 @extends('layouts.app')
 @section('content')
 <style>
-  .form-group, .form-control{
-    margin-left: 5px;
-    margin-right: 5px;
+  .ui.fluid.card *{
+    margin: 0;
   }
-  .container{
-    background-color: orange
-
+  body {
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  height: 100vh;
   }
-  .jumbotron{
-    background-color:orange;
+  #busqueda .container #busqueda-row #busqueda-column #busqueda-box {
+  max-width: 600px;
+  height: auto;
+  display:inline-block;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+  overflow: auto;
+  }
+  .btn-lg{
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  .centered{
+    text-align: center;
   }
 </style>
 <div class="jumbotron jumbotron-fluid">

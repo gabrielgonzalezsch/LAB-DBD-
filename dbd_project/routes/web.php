@@ -74,6 +74,7 @@ Route::post('/autos/store', 'ControllerAutos@store');
 Route::post('/hoteles/store', 'ControllerHoteles@store');
 
 Route::get('/hoteles/buscarCiudad', 'ControllerHoteles@buscarHotelesPorCiudad')->name('hoteles.buscarPorCiudad');
+Route::get('/actividad/buscarCiudad', 'ControllerActividades@ActividadesCiudad')->name('actividades.buscarPorCiudad');
 Route::get('/hoteles/buscarPais', 'ControllerHoteles@buscarHotelesPorPais')->name('hoteles.buscarPorPais');
 Route::get('/vuelos/buscar', 'ControllerVuelos@buscarVuelos')->name('vuelos.buscar');
 Route::get('/vuelos/{id_ida}/{id_vuelta}', 'ControllerVuelos@showJointVuelo');
@@ -83,10 +84,13 @@ Route::get('/hoteles/{id_hotel}', 'ControllerHoteles@show');
 Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
-//Traslados
 Route::get('/traslados/create_aeropuerto_a_hotel', 'ControllerTraslados@create_aeropuerto_a_hotel');
 Route::get('/traslados/create_hotel_a_aeropuerto', 'ControllerTraslados@create_hotel_a_aeropuerto');
 Route::post('/traslados/store', 'ControllerTraslados@store');
+
+
+Route::get('/create-traslado-aeropuertoHotel', 'ControllerTraslados@index_aeropuertoHotel');
+
 //Actividades
 Route::get('/actividades', 'ControllerActividades@index');
 Route::get('/actividades/{id}', 'ControllerActividades@show');
@@ -111,3 +115,11 @@ Route::get('/comprar', ['middleware' => 'auth', 'uses' => 'ControllerTransaccion
 Route::get('/historial', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@verHistorial']);
 
 Auth::routes();
+
+//Query Traslados Primera Vista
+Route::get('/traslados/queryCiudad', 'ControllerTraslados@queryCiudad');
+Route::get('/traslados/queryAeropuerto', 'ControllerTraslados@queryAeropuerto');
+Route::get('/traslados/queryHotel', 'ControllerTraslados@queryHotel');
+Route::get('/traslados/queryOrigenAeropuerto','ControllerTraslados@queryOrigenAeropuerto');
+Route::get('/traslados/queryDestinoHotel','ControllerTraslados@queryDestinoHotel');
+Route::get('/traslados/queryChoferes','ControllerTraslados@queryChoferes');

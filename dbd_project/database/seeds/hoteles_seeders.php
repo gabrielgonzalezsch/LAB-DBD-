@@ -45,8 +45,8 @@ class hoteles_seeders extends Seeder{
         $parte_entera_lat = intval($response[$i]->lat);
         $parte_entera_lon = intval($response[$i]->lon);
 
-        $parte_decimal_random_lat = frand(0,1,3);
-        $parte_decimal_random_lon = frand(0,1,3);
+        $parte_decimal_random_lat = frand(0,1,7);
+        $parte_decimal_random_lon = frand(0,1,7);
 
 
         $lat_random = sumarCoordenadas($parte_entera_lat,$parte_decimal_random_lat);

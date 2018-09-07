@@ -12,7 +12,7 @@
       @if(!empty(Auth::user()))
         <a href="/vuelos/create"> Agregar vuelo</a>
       @endif
-      <a href="/vuelos"> Ver vuelos</a>
+      <a href="/vuelos"> Busca tu vuelo</a>
       </div>
     </ul>
     <ul tabindex="4" class="categoria">
@@ -23,7 +23,7 @@
         @if(Auth::check())
         <a href="/hoteles/create"> Agregar hoteles</a>
         @endif
-        <a href="/hoteles"> Ver hoteles</a>
+        <a href="/hoteles"> Busca tu Hotel</a>
       </div>
     </ul>
     <ul tabindex="2" class="categoria">
@@ -33,17 +33,17 @@
       <div class="contenido-categoria">
         <a href="/autos/create"> Agregar auto</a>
         <a href="/autos"> Ver autos</a>
+        <a href="/autos/arrendar"> Arrienda tu Vehículo</a>
       </div>
     </ul>
     
 
     <ul tabindex="3" class="categoria">
-      <div class="titulo-categoria"><i class="angle down icon"></i>Solicitar Traslado<i class="fa fa-map-marker"></i>
+      <div class="titulo-categoria"><i class="angle down icon"></i>Traslados<i class="fa fa-map-marker"></i>
       <i class="point map icon"></i>
       </div>
       <div class="contenido-categoria">
-        <a href="/create-traslado-aeropuertoHotel">Aeropuerto -> Hotel</a>
-        <a href="/create-traslado-hotelAeropuerto">Hotel -> Aeropuerto</a>
+        <a href="/create-traslado-aeropuertoHotel">Solicitar Traslado</a>
       </div>
     </ul>
 

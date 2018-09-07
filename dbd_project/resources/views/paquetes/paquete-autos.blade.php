@@ -87,10 +87,10 @@
   <div style="left: 30%; width: 40%; overflow: auto;"class="ui segment">
     {{$autos->links()}}
   </div>
-  <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/paquetes" class="btn btn-primary" role="button"> Volver </a>
+  <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="javascript:history.back()" class="btn btn-primary" role="button"> Volver </a>
   @else
     <p>No se encontraron Autos!</p>
-    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/paquetes" class="btn btn-primary" role="button"> Volver </a>
+    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="javascript:history.back()" class="btn btn-primary" role="button"> Volver </a>
   @endif
 </div>
 </div>

@@ -33,6 +33,6 @@ class Transaccion extends Model implements Auditable
   }
 
   public function paquetes(){
-     return $this->belongsToMany(\App\Models\Actividad::class, 'compra_paquete', 'id_transaccion', 'id_paquete');
+     return $this->belongsToMany(\App\Models\Paquete::class, 'compra_paquete', 'id_transaccion', 'id_paquete');
   }
 }

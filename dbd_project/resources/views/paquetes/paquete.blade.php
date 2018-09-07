@@ -13,15 +13,6 @@
       <p class="lead">Escribe aca tu destino y elige el tipo de paquete que quieras comprar</p>
       <form id="formPaquete" action="#" method="get" onsubmit="return check()">
         @csrf
-      <div class="ui fluid huge icon input">
-          <input type="text" name="origen" id="origen" placeholder="Ingresa tu país de origen..."/>
-          <i class="search icon"></i>
-      </div>
-      <div class="ui fluid huge icon input">
-          <input type="text" name="destino" id="destino" placeholder="Ingresa tu país de destino..."/>
-          <i class="search icon"></i>
-      </div>
-      </br>
       <div class="ui relaxed grid">
       <div class="ui three column row">
         <div class="left floated column">
@@ -61,22 +52,6 @@
           </div>
         </div>
       </div>
-      </div>
-      <div class="ui relaxed grid">
-        <div class="three column row">
-        <div class="column">
-          <label for="fecha_inicio">Escoje la fecha inicial</label>
-          <input id="fecha_inicio" required type="date" name="fecha_inicio" class="form-control"/>
-        </div>
-        <div class="column">
-          <label for="fecha_fin">Escoje la fecha final</label>
-          <input id="fecha_fin" required type="date" name="fecha_fin" class="form-control"/>
-        </div>
-        <div class="column">
-          <label for="num_personas">Escoje la fecha final</label>
-          <input type="number" name="num_personas" min="1" value="1" class="form-control"/>
-        </div>
-        </div>
       </div>
       </form>
     </div>
@@ -171,39 +146,14 @@
 @endif
 <script>
   function check(){
-    var origen = document.getElementById('origen').value;
-    var destino = document.getElementById('destino').value;
     var tipos = document.getElementsByName('tipo_paquete');
-    var fechaFin = document.getElementById('fecha_fin').value;
-    var fechaInicio = document.getElementById('fecha_inicio').value;
-    var tipo_paquete = 0;
     var enviar = document.getElementById('enviar');
-    if(origen == ''){
-      alert('Por favor ingrese un pais de origen');
-      enviar.classList.add('disabled');
-      return false;
-    }
-    if(fechaInicio == ''){
-      alert('Seleccione la fecha de inicio');
-      enviar.classList.add('disabled');
-      return false;
-    }
-    if(fechaFin == ''){
-      alert('Seleccione la fecha de término');
-      enviar.classList.add('disabled');
-      return false;
-    }
-    if(destino == ''){
-      alert('Por favor ingrese un país de destino');
-      enviar.classList.add('disabled');
-      return false;
-    }
     if(tipos[0].checked){
-      tipo_paquete = tipos[0].value;
+      var tipo_paquete = tipos[0].value;
       tipos[0].parentElement.classList.add('green');
       tipos[1].parentElement.classList.remove('green');
     }else if(tipos[1].checked){
-      tipo_paquete = tipos[1].value;
+      var tipo_paquete = tipos[1].value;
       tipos[0].parentElement.classList.remove('green');
       tipos[1].parentElement.classList.add('green');
     }else{

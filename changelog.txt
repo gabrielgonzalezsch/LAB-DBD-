@@ -1,10 +1,17 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.3.2
+Version actual 0.3.5.2
+
+<< Version 0.3.5.2 >> 06/09/18
+Contribuyentes: Vicente Rivera
+- Se implementa la compra de vuelos de ida y vuelta
+- Se termina la busqueda, carrito, y compra de paquetes
+- Se arreglan problemas de compra de hoteles
+- Se mejora la busqueda de habitaciones (falta el front!) 
 
 << Version 0.3.2 >> 05/09/18 
-Contribuyentes: Gabriel Gonzalez, Felipe Sanchez, Nicolas Vieras
+Contribuyentes: Gabriel Gonzalez, Felipe Sanchez, Nicolas Vieras (?)
 - Se despliega la ventana principal
 - Se crea traslados, implementa google api utilizando las latitudes y longitudes de aeropuertos y hoteles
 

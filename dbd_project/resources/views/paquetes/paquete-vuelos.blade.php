@@ -172,12 +172,11 @@
             <div class="header">Este vuelo tiene {{$vuelo->descuento}}% de descuento!!</div>
           </div>
           @endif
-          <form action="/paquetes/autos/{{$vuelo->id_vuelo}}" method="post">
-          <submit class="ui bottom attached blue button">
+          <a class="btn btn-primary" role="button" href="/vuelos/{{$vuelo->id_vuelo}}">Ver detalles</a>
+          <a class="ui bottom attached blue button" role="button" href="/paquetes/autos/{{$vuelo->id_vuelo}}">
           <i class="fas fa-search"></i>
           Seleccionar vuelo
-          </submit>
-          </form>
+          </a>
         </div>
       </div>
     @endforeach
@@ -185,10 +184,10 @@
   <div style="left: 30%; width: 40%; overflow: auto;"class="ui segment">
     {{$vuelos->links()}}
   </div>
-  <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/" class="btn btn-primary" role="button"> Volver </a>
+  <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="javascript:history.back()" class="btn btn-primary" role="button"> Volver </a>
   @else
     <p>No se encontraron vuelos!</p>
-    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/" class="btn btn-primary" role="button"> Volver </a>
+    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="javascript:history.back()" class="btn btn-primary" role="button"> Volver </a>
   @endif
 </div>
 </div>
@@ -226,6 +225,7 @@
               <div class="header">El vuelo tiene {{$joint_vuelo['ida']['descuento']}}% de descuento!!</div>
             </div>
             @endif
+            <a class="btn btn-primary" role="button" href="/vuelos/{{$joint_vuelo['ida']['id_vuelo']}}/{{$joint_vuelo['vuelta']['id_vuelo']}}">Ver detalles</a>
             <a class="ui bottom attached blue button" role="button" href="/paquetes/autos/{{$joint_vuelo['ida']['id_vuelo']}}">
             <i class="fas fa-search"></i>
             Seleccionar vuelo
@@ -234,20 +234,18 @@
         </div>
       @endforeach
       </div>
-    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/paquetes" class="btn btn-primary" role="button"> Volver </a>
+    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="javascript:history.back()" class="btn btn-primary" role="button"> Volver </a>
     @else
       <p>No se encontraron vuelos!</p>
-      <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/paquetes" class="btn btn-primary" role="button"> Volver </a>
+      <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="javascript:history.back()" class="btn btn-primary" role="button"> Volver </a>
     @endif
   </div>
 </div>
 @endif
 <script>
-  function loadUrl(element){
-    element.action = window.location.href + ''+ window.location.search;
-  }
   var fechaIda = document.getElementById('fechaIda');
   var fechaVuelta = document.getElementById('fechaVuelta');
+  var idaVuelta = document.getElementById('idaVuela');
   var toggle = document.getElementById('sinFecha');
   toggle.addEventListener('click', function(event) {
     fechaIda.disabled = !fechaIda.disabled;

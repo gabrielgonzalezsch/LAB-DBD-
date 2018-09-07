@@ -17,6 +17,7 @@ class CompraPaquete extends Migration
         $table->increments('id_compra_paquete');
         $table->integer('id_transaccion')->references('id_transaccion')->on('transacciones');
         $table->integer('id_paquete')->references('id_paquete')->on('paquetes');
+        $table->string('tipo_paquete', 30);
         $table->dateTime('hora_compra');
       });
     }

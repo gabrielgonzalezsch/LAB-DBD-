@@ -37,7 +37,17 @@
       @endif
       @endif
       <div class="ui left action input">
-        <label class="form-input">Ingresa numero de dias</label>
+        <label class="form-input">Selecciona las fechas de arriendo</label>
+        <div class="form-row">
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="fecha_inicio" class="text-info">Fecha inicio arriendo:</label>
+          <input id="inicio{{$habitacion->id_habitacion}}" type="date" name="fecha_inicio" class="form-control">
+        </div>
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="fecha_fin" class="text-info">Fecha término arriendo:</label>
+          <input id="fin{{$habitacion->id_habitacion}}" type="date" name="fecha_fin" class="form-control">
+        </div>
+        </div>
         <input class="form-input" style="width: 10%; margin-left: 10px;" type="number" value="1">
         <button onclick="addCarrito(this, {{$habitacion->id_habitacion}}, '{{$hotel->nombre_hotel}}')" class="ui teal labeled icon button">
         <i class="cart icon"></i>
@@ -59,13 +69,15 @@
     function addCarrito(elem, id_hab, hotel){
       var id = id_hab;
       var nombre = hotel;//document.getElementById("nombre-curso").innerHTML;
-      var elemDias = elem.previousElementSibling;
-      var num_dias = elemDias.value;
+      var inicio = document.getElementById('inicio'+id).value;
+      var fin = document.getElementById('fin'+id).value;
+      var dif = Math.abs(new Date(fin).getTime() - new Date(inicio).getTime());
+      var num_dias = Math.ceil(dif / (1000 * 3600 * 24));
       if(num_dias < 0){
-        elemDias.style.border = '1px solid red';
+        alert('Por favor ingrese fechas válidas');
+        return false;
       }else{
-         elemDias.style.border = '1px solid teal';
-         addHabitacionAlCarrito(id, nombre, num_dias);
+        addHabitacionAlCarrito(id, nombre, inicio , fin, num_dias);
       }
     }
 </script>

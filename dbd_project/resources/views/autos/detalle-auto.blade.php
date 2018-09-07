@@ -104,10 +104,6 @@ body {
     </div>
     <div class="ui horizontal divider"> Proceso de compra </div>
     <div class"ui segment centrado">
-      <div class="form-group">
-        <label>Ingresa numero de dias para el arriendo</label>
-        <input id="num_dias" class="form-control" style="width: 10%; margin-left: 10px;" type="number" min=1 value="1">
-      </div>
       <a href="/autos" class="ui button" role="button"> Volver a Autos </a>
       <button disabled id="botonComprar" onclick="addCarrito({{$auto->id_auto}})" class="ui teal labeled icon button">
       <i class="cart icon"></i>

@@ -10,7 +10,9 @@ use App\Http\Middleware\CheckAdmin;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/','HomeController@index');
+Route::get('/', function(){
+    return view('homepage');
+});
 
 //Route::post('/usuarios/store', 'ControllerUsuarios@store');
 Route::group(['middleware'=> 'admin'], function (){
@@ -46,6 +48,7 @@ Route::get('/paquetes', 'ControllerPaquetes@index');
 
 //Paquete Vuelo + Auto
 Route::get('/paquetes/vuelos', 'ControllerPaquetes@buscarVuelosPaquete')->name('paquete.vuelos');
+Route::get('/paquetes/autos/{id_vuelo_ida}/{id_vuelo_vuelta}', 'ControllerPaquetes@seleccionarAutoPaquete');
 Route::get('/paquetes/autos/{id_vuelo}', 'ControllerPaquetes@seleccionarAutoPaquete');
 Route::get('/paquetes/vuelo/auto/{id_auto}', 'ControllerPaquetes@completarPaquete');
 Route::get('/paquetes/{tipo_paquete}', 'ControllerPaquetes@seleccionarPaquete');
@@ -73,6 +76,7 @@ Route::post('/hoteles/store', 'ControllerHoteles@store');
 Route::get('/hoteles/buscarCiudad', 'ControllerHoteles@buscarHotelesPorCiudad')->name('hoteles.buscarPorCiudad');
 Route::get('/hoteles/buscarPais', 'ControllerHoteles@buscarHotelesPorPais')->name('hoteles.buscarPorPais');
 Route::get('/vuelos/buscar', 'ControllerVuelos@buscarVuelos')->name('vuelos.buscar');
+Route::get('/vuelos/{id_ida}/{id_vuelta}', 'ControllerVuelos@showJointVuelo');
 Route::get('/vuelos/{id_vuelo}', 'ControllerVuelos@show');
 Route::get('/hoteles/{id_hotel}', 'ControllerHoteles@show');
 
@@ -80,9 +84,9 @@ Route::post('/vuelos/store', 'ControllerVuelos@store');
 Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
 //Traslados
-Route::get('/create-traslado-aeropuertoHotel', 'ControllerTraslados@index_aeropuertoHotel');
-Route::get('/create-traslado-hotelAeropuerto', 'ControllerTraslados@index_hotelAeropuerto');
-
+Route::get('/traslados/create_aeropuerto_a_hotel', 'ControllerTraslados@create_aeropuerto_a_hotel');
+Route::get('/traslados/create_hotel_a_aeropuerto', 'ControllerTraslados@create_hotel_a_aeropuerto');
+Route::post('/traslados/store', 'ControllerTraslados@store');
 //Actividades
 Route::get('/actividades', 'ControllerActividades@index');
 Route::get('/actividades/{id}', 'ControllerActividades@show');
@@ -92,9 +96,14 @@ Route::post('/actividades/store', 'ControllerActividades@store');
 Route::get('/carrito', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@mostrarCarrito']);
 
 Route::post('/carrito/agregarHabitacion', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addHabitacionAlCarrito']);
-Route::get('/carrito/agregarVuelo', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addVueloAlCarrito']);
+Route::post('/carrito/agregarVuelo', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addVueloAlCarrito']);
+Route::post('/carrito/agregarJointVuelo', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addJointVueloAlCarrito']);
 Route::post('/carrito/agregarAuto', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addAutoAlCarrito']);
+Route::post('/carrito/agregarVueloPaquete', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addVueloPaqueteAlCarrito']);
+Route::post('/carrito/agregarAutoPaquete', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addAutoPaqueteAlCarrito']);
 Route::post('/carrito/agregarActividad', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addActividadAlCarrito']);
+
+Route::get('/traslados/CiudadesDelPais', 'ControllerTraslados@getCiudades');
 
 Route::get('/carrito/eliminar', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@eliminarDelCarrito']);
 Route::get('/comprar', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@comprar']);
@@ -102,12 +111,3 @@ Route::get('/comprar', ['middleware' => 'auth', 'uses' => 'ControllerTransaccion
 Route::get('/historial', ['middleware' => 'auth', 'uses' => 'ControllerTransacciones@verHistorial']);
 
 Auth::routes();
-
-//Query Traslados
-Route::get('/traslados/queryCiudad', 'ControllerTraslados@queryCiudad');
-Route::get('/traslados/queryAeropuerto', 'ControllerTraslados@queryAeropuerto');
-Route::get('/traslados/queryHotel', 'ControllerTraslados@queryHotel');
-Route::get('/traslados/queryCoordenadas', 'ControllerTraslados@queryCoordenadas');
-//Route::get('/traslados/calculoTraslado', 'ControllerTraslados@crear_traslado');
-
-

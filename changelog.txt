@@ -1,7 +1,7 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.3.8
+Version actual 0.3.8.2
 
 << Version 0.3.8.2 >> 06/09/18
 - Se arreglan problemas de imagenes en hoteles

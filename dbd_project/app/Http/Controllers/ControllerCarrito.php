@@ -207,6 +207,58 @@ class ControllerCarrito extends Controller
   	 	Session::put("carrito", json_encode($carrito));
     }
 
+    public function addTrasladoAlCarrito(Request $request){
+      if (Session::has("carrito")){
+  	 		$carrito = json_decode(Session::get("carrito"));
+  	 	}else{
+        //Se crea una clase vacia y se llena como el formato de arriba
+    	 	$carrito = new \stdClass();
+    	 	$carrito->precio = 0;
+    	 	$carrito->items = [];
+      }
+
+      $id = $request->input("id_chofer");
+      $pais = $request->input("pais");
+      $ciudad = $request->input("ciudad");
+      $aeropuerto = $request->input("aeropuerto");
+      $hotel = $request->input("hotel");
+      $formato_traslado = $request->input("formato_traslado");
+      $num_pasajeros = $request->input("pasajeros");
+      $distancia = $request->input("distancia");
+      $fecha_traslado = $request->input("fecha_traslado");
+      $hora_traslado = $request->input("hora_traslado");
+      $minutos_traslado = $request->input("minutos_traslado");
+      $hora_formatted = \Carbon\Carbon::createFromTime($hora_traslado, $minutos_traslado,'00')->format('H:i:s');
+      $chofer = \App\Models\Chofer::findOrFail($id);
+
+      $nuevoItem = new \stdClass();
+      $nuevoItem->id = $id;
+      $nuevoItem->categoria = 'Traslado';
+      $nuevoItem->subcategoria = 'Compra';
+      $nuevoItem->formato_traslado = $formato_traslado;
+      $nuevoItem->precio = $chofer->tarifa_por_kilometro;
+      $nuevoItem->pais = $pais;
+      $nuevoItem->ciudad = $ciudad;
+      $nuevoItem->aeropuerto = $aeropuerto;
+      $nuevoItem->hotel = $hotel;
+      $nuevoItem->distancia = $distancia;
+      $nuevoItem->fecha_traslado = $fecha_traslado;
+      $nuevoItem->hora_traslado = $hora_formatted;
+      $nuevoItem->nombre = 'Chofer: '.$chofer->name;
+      $nuevoItem->num_pasajeros = $num_pasajeros;
+	 		$nuevoItem->cantidad = 1;
+      $nuevoItem->descuento = 0;
+	 		$nuevoItem->subtotal= $nuevoItem->precio * $distancia;
+      array_push($carrito->items, $nuevoItem);
+
+      $total = 0;
+  	 	foreach ($carrito->items as $item) {
+  	 		$total = $total + $item->subtotal;
+  	 	}
+  	 	$carrito->total = $total;
+  	 	Session::put("carrito", json_encode($carrito));
+    }
+
     public function addVueloPaqueteAlCarrito(Request $request){
       if (Session::has("carrito")){
   	 		$carrito = json_decode(Session::get("carrito"));

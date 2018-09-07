@@ -99,6 +99,7 @@ Route::post('/carrito/agregarAuto', ['middleware' => 'auth', 'uses' => 'Controll
 Route::post('/carrito/agregarVueloPaquete', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addVueloPaqueteAlCarrito']);
 Route::post('/carrito/agregarAutoPaquete', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addAutoPaqueteAlCarrito']);
 Route::post('/carrito/agregarActividad', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addActividadAlCarrito']);
+Route::post('/carrito/agregarTraslado', ['middleware' => 'auth', 'uses' => 'ControllerCarrito@addTrasladoAlCarrito']);
 
 Route::get('/traslados/CiudadesDelPais', 'ControllerTraslados@getCiudades');
 

@@ -140,11 +140,11 @@ class ControllerVuelos extends Controller
 
   public function buscarVuelos(Request $request){
     $validate = $request->validate([
-      'origen' => 'required|string',
-      'destino' => 'required|string',
-      'fechaPartida' => 'date|required_without:sinFecha',
-      'fechaLlegada' => 'date|required_without:sinFecha'
-    ]);
+       'origen' => 'required|string',
+       'destino' => 'required|string',
+    //   'fechaPartida' => 'date|required_without:sinFecha',
+    //   'fechaLlegada' => 'date|required_without:sinFecha'
+     ]);
     $origen = $request->input('origen');
     $destino = $request->input('destino');
     $fechaPartida = $request->input('fechaPartida');

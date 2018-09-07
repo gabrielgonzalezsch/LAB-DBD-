@@ -188,8 +188,6 @@
                                                   <option value="30">30</option>
                                                   <option value="45">45</option>
 
-                                          </select>
-                                  </div>
 
                          </div>
                   </div>
@@ -289,7 +287,7 @@
      <br><br>   <br><br>
 
     <div class="ui left action input row">
-      <button onclick="addCarrito()" class="ui teal labeled icon button">
+      <button disabled id="bottonCarrito" onclick="addCarrito()" class="ui teal labeled icon button">
       <i class="cart icon"></i>
         Al carrito
       </button>

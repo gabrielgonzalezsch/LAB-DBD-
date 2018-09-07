@@ -12,7 +12,11 @@ class Traslado extends Model implements Auditable
     protected $table = 'traslados';
 
     public function chofer(){
-    	return $this->hasOne(\App\Models\Chofer::class, 'id_chofer');
+    	return $this->belongsTo(\App\Models\Chofer::class, 'id_chofer');
+    }
+
+    public function transacciones(){
+       return $this->belongsToMany(App\Models\Transaccion::class, 'compra_traslado', 'id_traslado', 'id_transaccion');
     }
 
 }

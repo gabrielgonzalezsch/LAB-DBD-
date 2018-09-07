@@ -33,14 +33,30 @@ function getCiudades() {
 }
 
 function addCarrito(){
-		var precio = $('#carrito').val(distancia*tarifa_chofer);
-		var id_chofer = $('#chofer').val();
+		var selectedChofer = document.getElementById('chofer');
+		var chofer = selectedChofer[selectedChofer.selectedIndex];
+		var id_chofer = chofer.id;
+		var tarifa_chofer = parseInt(chofer.value);
+		var distancia = parseInt($('#distancia').text());
 		var fecha_traslado = $('#fecha').val();
+		var hora = $('#horas').val();
+		var minutos = $('#minutos').val();
+		var ciudad = $('#ciudad').val();
+		var pais = $('#pais').val();
+		var aeropuerto = $('#aeropuerto').val();
+		var selectHotel = document.getElementById('hotel');
+		var hotel = selectHotel[selectHotel.selectedIndex].innerHTML;
+		var formato_traslado = ($('#swap').val() == 0) ? 'Aeropuerto -> Hotel' : 'Hotel -> Aeropuerto';
 		var num_pasajeros = $('#cantidad').val();
-		if(!fecha_traslado){
-			alert('Por favor ingrese una fecha válida');
+		if(!fecha_traslado || !hora || !minutos){
+			alert('Por favor ingrese una fecha y hora de traslado válida');
+		}else if(!distancia || !id_chofer){
+			alert('Por favor genere la ruta y elija un chofer');
+			$('#bottonCarrito').prop('disabled', true);
+		}else{
+			$('#bottonCarrito').prop('disabled', false);
 		}
-		addTrasladoAlCarrito(id_chofer, fecha_traslado, num_pasajeros, 1);
+		addTrasladoAlCarrito(id_chofer, fecha_traslado, distancia, num_pasajeros, pais, ciudad, aeropuerto, hotel, formato_traslado, hora, minutos);
 }
 
 
@@ -166,7 +182,7 @@ function getChoferes() {
 
 	        	if(chofer[i].capacidad_auto >= $cantidadSelect){
 
-	        		$choferSelect.append('<option value='+chofer[i].tarifa_por_kilometro+'>'+chofer[i].name+'</option>');
+	        		$choferSelect.append('<option id='+chofer[i].id_chofer+' value='+chofer[i].tarifa_por_kilometro+'>'+chofer[i].name+'</option>');
 	        		$tabla_choferes.append('<tr><td> '+' '+ chofer[i].name+'</td><td> '+'$ '+ chofer[i].tarifa_por_kilometro+'</td><td> '+' '+ chofer[i].valorizacion+'</td></tr>');
 	        	}
 	        }
@@ -188,10 +204,17 @@ function getChoferes() {
 function getDinero() {
 	var distancia = $('#distancia').text();
 	var tarifa_chofer = $('#chofer').val();
-	$('#carrito').val(distancia*tarifa_chofer);
-	// console.log(distancia);
-	// console.log(tarifa_chofer);
-	// console.log(distancia*tarifa_chofer)
+	var carrito = $('#carrito');
+	carrito.val(Math.round(distancia*tarifa_chofer));
+	if(carrito.val() == '' || carrito.val() == 0 || distancia == ''){
+		alert('Por favor genere la ruta y elija un chofer');
+		$('#bottonCarrito').prop('disabled', true);
+	}else{
+		$('#bottonCarrito').prop('disabled', false);
+	}
+	 console.log(distancia);
+	 console.log(tarifa_chofer);
+	 console.log(distancia*tarifa_chofer)
 	return false;
 }
 
@@ -221,10 +244,6 @@ function swap() {
 		$('#swap').val('0');
 
 		$('#swap').append('<button></button').text('>');
-
-
-
-
 
 	}
 }

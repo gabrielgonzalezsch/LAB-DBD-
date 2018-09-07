@@ -32,11 +32,10 @@
       </div>
       <div class="contenido-categoria">
         <a href="/autos/create"> Agregar auto</a>
-        <a href="/autos"> Ver autos</a>
-        <a href="/autos/arrendar"> Arrienda tu Vehículo</a>
+        <a href="/autos"> Arrienda tu Vehículo</a>
       </div>
     </ul>
-    
+
 
     <ul tabindex="3" class="categoria">
       <div class="titulo-categoria"><i class="angle down icon"></i>Traslados<i class="fa fa-map-marker"></i>

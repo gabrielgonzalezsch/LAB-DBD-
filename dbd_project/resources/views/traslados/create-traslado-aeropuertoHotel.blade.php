@@ -24,14 +24,14 @@
        <h3 align="center">País del Traslado</h3>
         <select name="pais" onchange="getCiudades()" id="pais" class="form-control">
                 <option value="">Elegir País</option>
-              
+
                   @foreach($paises as $pais)
 
                    <option value="{{$pais['pais']}}">{{$pais['pais']}}</option>
 
                   @endforeach
-            
-              
+
+
         </select>
       </div>
 
@@ -40,7 +40,7 @@
 
        <select name="ciudad" onchange="getAeropuertos();getHoteles();" id="ciudad" class="form-control">
                 <option value="">Elegir Ciudad</option>
-                              
+
       </select>
      </div>
  </div>
@@ -52,9 +52,9 @@
 <div class="row">
      <div class="col-md-4">
        <h3 align="center" name="titulo_origen" id="titulo_origen">Aeropuerto</h3>
-        
+
         <select name="aeropuerto"  id="aeropuerto" class="form-control">
-                <option value="0">Elegir Aeropuerto</option>                                        
+                <option value="0">Elegir Aeropuerto</option>
         </select>
       </div>
 
@@ -62,13 +62,13 @@
 
         <h3 align="center">Direccion Traslado</h3>
         <button type="Aeropuerto ~> Hotel" onclick="swap()" class="btn btn-danger btn-lg" id="swap" name="swap" value="0">Aeropuerto(A) ~~~~> Hotel(B)</button>
-      
+
       </div>
      <div class="col-md-4">
        <h3 align="center" name="titulo_destino" id="titulo_destino">Hotel</h3>
 
        <select name="hotel" id="hotel" onchange="" class="form-control">
-                <option value="0">Elegir Hotel</option>   
+                <option value="0">Elegir Hotel</option>
         </select>
      </div>
  </div>
@@ -89,9 +89,9 @@
                   <option value="4">4</option>
                   <option value="5">5</option>
                   <option value="6">6</option>
-            
+
           </select>
-  
+
 
     </div>
 
@@ -99,10 +99,10 @@
           <h4 align="center">Fecha del Traslado</h4>
           {{Form::date('fecha', '', ['id' => 'fecha', 'class' => 'form-control promt'])}}
     </div>
- 
+
   <div class="col-md-2">
 
-  <h4 align="center">Hora del Traslado</h4>       
+  <h4 align="center">Hora del Traslado</h4>
     <select name="horas" id="horas" class="form-control">
 
 
@@ -136,14 +136,14 @@
 
 
    <div class="col-md-2">
-   <h4 align="center">.</h4>   
+   <h4 align="center">.</h4>
     <select name="minutos" id="minutos" class="form-control">
                   <option value="99">Elegir Minutos</option>
                   <option value="0">00</option>
                   <option value="15">15</option>
                   <option value="30">30</option>
                   <option value="45">45</option>
-                  
+
           </select>
   </div>
 
@@ -152,7 +152,7 @@
 <br><br>
 
 <div class="row" >
-  
+
 <hr style="border:15px; border-color:red;">
 
 </div>
@@ -185,8 +185,8 @@
   </div>
 
   <div class="col-md-2" style="background-color:#22c4b8; color:white;"><h2>Distancia Km.</h2></div>
-  <div class="col-md-5" "><h2 style="background-color:#22c4b8; color:white;" >Lista Choferes</h2></div>
-  
+  <div class="col-md-5" ><h2 style="background-color:#22c4b8; color:white;" >Lista Choferes</h2></div>
+
 
 </div>
 
@@ -204,7 +204,7 @@
 
 
   </div>
-  
+
 
   <div class="col-md-5">
 
@@ -217,7 +217,7 @@
             </tr>
         </thead>
         <tbody>
-                     
+
        </tbody>
     </table>
 
@@ -226,14 +226,14 @@
 
     <select name="chofer" onchange="getDinero()" id="chofer" class="form-control">
                   <option value="">Elegir Chofer</option>
-                  
-                  
+
+
     </select>
 
      <br><br>   <br><br>
 
     <div class="ui left action input row">
-      <button onclick="addCarrito({})" class="ui teal labeled icon button">
+      <button onclick="addCarrito()" class="ui teal labeled icon button">
       <i class="cart icon"></i>
         Al carrito
       </button>
@@ -247,8 +247,8 @@
     </style>
 
 
-    
-      
+
+
   </div>
 
 
@@ -273,7 +273,7 @@
         <a href="/" class="btn btn-danger" role="button"> Volver </a>
     </div>
     <div class="col-md-4"></div>
-    
+
   </div>
 
 
@@ -286,10 +286,3 @@
 
 
 @endsection
-
-
-
-
-  
-
-

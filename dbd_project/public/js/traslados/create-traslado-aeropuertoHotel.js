@@ -7,7 +7,7 @@ function getCiudades() {
 		dataType: "json",
 		data: { pais: pais},
 		method: 'GET',
-		success: 
+		success:
 		function(response){
 			var ciudades = response;
 			//console.log(ciudades);
@@ -32,6 +32,17 @@ function getCiudades() {
 	return false;
 }
 
+function addCarrito(){
+		var precio = $('#carrito').val(distancia*tarifa_chofer);
+		var id_chofer = $('#chofer').val();
+		var fecha_traslado = $('#fecha').val();
+		var num_pasajeros = $('#cantidad').val();
+		if(!fecha_traslado){
+			alert('Por favor ingrese una fecha válida');
+		}
+		addTrasladoAlCarrito(id_chofer, fecha_traslado, num_pasajeros, 1);
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,7 +58,7 @@ function getAeropuertos() {
 		dataType: "json",
 		data: { ciudad: ciudad},
 		method: 'GET',
-		success: 
+		success:
 		function(response){
 			var aeropuerto = response;
 			//console.log(aeropuerto);
@@ -89,7 +100,7 @@ function getHoteles() {
 		dataType: "json",
 		data: { cod_aeropuerto: cod_aeropuerto},
 		method: 'GET',
-		success: 
+		success:
 		function(response){
 			var hotel = response;
 			//console.log(hotel);
@@ -108,7 +119,7 @@ function getHoteles() {
 			console.log(error);
 			console.log(a);
 			console.log(b);
-		
+
 		}
 	});
 
@@ -130,7 +141,7 @@ function getChoferes() {
 		dataType: "json",
 		data: {ciudad: ciudad},
 		method: 'GET',
-		success: 
+		success:
 		function(response){
 
 
@@ -147,7 +158,7 @@ function getChoferes() {
         	$choferSelect.empty(); // remove old options
         	$choferSelect.append($("<option></option>").attr("value", '').text('Elegir chofer'));
 	        //for each set of data, add a new option
-
+					$tabla_choferes.empty();
 	        $tabla_choferes.append('<tbody>');
 
 	        for (var i = 0; i < chofer.length; i++) {
@@ -156,7 +167,7 @@ function getChoferes() {
 	        	if(chofer[i].capacidad_auto >= $cantidadSelect){
 
 	        		$choferSelect.append('<option value='+chofer[i].tarifa_por_kilometro+'>'+chofer[i].name+'</option>');
-	        		$tabla_choferes.append('<tr><td> '+' '+ chofer[i].name+'</td><td> '+'$ '+ chofer[i].tarifa_por_kilometro+'</td><td> '+' '+ chofer[i].valorizacion+'</td></tr>');    
+	        		$tabla_choferes.append('<tr><td> '+' '+ chofer[i].name+'</td><td> '+'$ '+ chofer[i].tarifa_por_kilometro+'</td><td> '+' '+ chofer[i].valorizacion+'</td></tr>');
 	        	}
 	        }
 
@@ -177,14 +188,10 @@ function getChoferes() {
 function getDinero() {
 	var distancia = $('#distancia').text();
 	var tarifa_chofer = $('#chofer').val();
-	var monto_final = $('#carrito')
-
-
-	console.log(distancia);
-	console.log(tarifa_chofer);
-
-	console.log(distancia*tarifa_chofer)
-
+	$('#carrito').val(distancia*tarifa_chofer);
+	// console.log(distancia);
+	// console.log(tarifa_chofer);
+	// console.log(distancia*tarifa_chofer)
 	return false;
 }
 
@@ -194,19 +201,19 @@ function swap() {
 
 	var indice = $('#swap').val();
 
-	console.log(indice);
+	//console.log(indice);
 
-	
+
 	if(indice == 0){	// significa Del Aeropuerto a Hotel
 
 		$('#swap').val('1');
-					
+
 		$('#swap').append('<button></button').text('Hotel(A) ~~~> Aeropuerto(B)');
-		
 
 
 
-	
+
+
 
 	}else if(indice == 1){	// significa del Hotel a  Aeropuerto
 
@@ -221,4 +228,3 @@ function swap() {
 
 	}
 }
-

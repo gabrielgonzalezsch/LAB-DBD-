@@ -1,7 +1,18 @@
 Log para el projecto de DBD
 Nomenclatura standard (?) 0(version definitiva).0(funcional).0(mejora/avance)0(bugfix)
 
-Version actual 0.3.5.2
+Version actual 0.3.8
+
+<< Version 0.3.8.2 >> 06/09/18
+- Se arreglan problemas de imagenes en hoteles
+- Se arreglan problemas de listar choferes en traslados
+
+<< Version 0.3.8 >> 06/09/18
+Contribuyentes: Gabriel Gonzalez, Felipe Sanchez, Nicolas Vieras
+- Se termina traslados, se implementa tabla de choferes
+- Se mejora el front del homepage y vuelos
+- Se mejora el front de actividades
+- Se mejora el front de hoteles
 
 << Version 0.3.5.2 >> 06/09/18
 Contribuyentes: Vicente Rivera

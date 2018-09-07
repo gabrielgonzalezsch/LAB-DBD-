@@ -4,8 +4,8 @@
   <div>
     <h1>Detalles del hotel: {{$hotel->nombre_hotel}}</h1>
     <ul>
-      <li><h4>Insertar fotos o algo asi, tambien agregar despues comentarios y num valoraciones</h4></li>
-      <li><h4>Valoración: {{$hotel->valoracion}}</h4></li>
+      <li><h3>Insertar fotos o algo asi, tambien agregar despues comentarios y num valoraciones</h3></li>
+      <li><h3>Valoración: {{$hotel->valoracion}}</h3></li>
     </ul>
   </div>
   <div>
@@ -19,16 +19,16 @@
         @if($habitacion->ya_reservado == false)
         <ul>
           <li><h3>{{$habitacion->num_habitacion}}</h3></li>
-          <li><h6>Valoración: {{$habitacion->valoracion}}</li>
-          <li><h6>Numero de valoraciones: {{$habitacion->num_valoraciones}}</small></li>
-          <li><h4>Precio por noche: {{$habitacion->precio_por_noche}}</li></h4>
-          <li><h4>Descripción: {{$habitacion->descripcion}}</h4></li>
-          <li><h5>Número de camas dobles {{$habitacion->num_camas_dobles}}</h5></li>
-          <li><h5>Número de camas simples {{$habitacion->num_camas_simples}}</h5></li>
-          <li><h5>Tamaño de la habitación {{$habitacion->room_size}} m^2</h5></li>
-          <li><h6>Incluye servicio: {{$habitacion->incluye_servicio}}</small></li>
-          <li><h6>Incluye desayuno: {{$habitacion->incluye_desayuno}}</small></li>
-          <li><h6>Incluye aire acondicionado: {{$habitacion->incluye_aire_acondicionado}}</small></li>
+          <li><h3>Valoración: {{$habitacion->valoracion}}</li>
+          <li><h3>Numero de valoraciones: {{$habitacion->num_valoraciones}}</small></li>
+          <li><h3>Precio por noche: {{$habitacion->precio_por_noche}}</li></h3>
+          <li><h3>Descripción: {{$habitacion->descripcion}}</h3></li>
+          <li><h3>Número de camas dobles {{$habitacion->num_camas_dobles}}</h3></li>
+          <li><h3>Número de camas simples {{$habitacion->num_camas_simples}}</h3></li>
+          <li><h3>Tamaño de la habitación {{$habitacion->room_size}} m^2</h3></li>
+          <li><h3>Incluye servicio: {{$habitacion->incluye_servicio}}</small></li>
+          <li><h3>Incluye desayuno: {{$habitacion->incluye_desayuno}}</small></li>
+          <li><h3>Incluye aire acondicionado: {{$habitacion->incluye_aire_acondicionado}}</small></li>
         </ul>
       </li>
       @if(Auth::check())

@@ -25,6 +25,9 @@
   .centered{
     text-align: center;
   }
+  .jumbotron{
+    background-color: #c4d7ff;
+  }
 </style>
 </style>
 <div class="jumbotron jumbotron-fluid">

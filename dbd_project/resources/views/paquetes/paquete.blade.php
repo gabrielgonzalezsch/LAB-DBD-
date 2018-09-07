@@ -5,6 +5,9 @@
   input[type='radio']{
     visibility: hidden;
   }
+  .jumbotron{
+     background-color: #c4d7ff;
+  }
 </style>
 <div class="ui segment">
   <div class="jumbotron jumbotron-fluid">

@@ -15,6 +15,7 @@ header {
 .main-container{
   display: block;
   padding: 70px 20px 20px 20px;
+  background-color: bisque;
   border-style: double;
   border: 3px white;
   border-radius: 4px;

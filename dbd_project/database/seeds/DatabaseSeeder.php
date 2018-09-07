@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(usuarios_seeders::class);
         $this->call(vuelos_seeders::class);
         $this->call(actividades_seeders::class);
+        $this->call(choferes_seeders::class);
 
     }
 }

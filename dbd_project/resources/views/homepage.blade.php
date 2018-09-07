@@ -63,7 +63,11 @@
 		@foreach($hoteles as $hotel)
 		<div class="col-md-3 box border py-4">
 		    <div class="box-carimage">
-		        <img src="https://img0.gaadicdn.com/images/car-images/265x110/Mahindra/Mahindra-XUV500-2018/6334/047.jpg" alt="">
+		    	@if($hotel->valoracion > 4.9)
+		        <img src="/images/{{$hotel->valoracion}}.{{$array[rand(0,7)]}}.jpg"  width="100%" height = 170px>
+		        @else
+		        <img src="/images/{{$hotel->valoracion}}.jpg"  width="100%" height = 170px>
+		        @endif
 		    </div>
 		    <div class="box-cartitle">
 		        <h4>Nombre hotel: {{$hotel->nombre_hotel}}</h4>

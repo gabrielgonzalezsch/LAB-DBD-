@@ -49,7 +49,7 @@
           <div class="ui star rating" data-rating="3"></div>
           <div class="ui horizontal divider header">{{$hotel->nombre_hotel}}</div>
           <div class="image">
-            <img src="{{asset('storage/hoteles/foto-hotel-default.jpg')}}" alt="Card image cap">
+            <img src="/images/{{$hotel->valoracion}}.jpg"  width="100%" height = 170px>
           </div>
         </div>
         <div style="padding: 20px;" class="ui relaxed divided list">

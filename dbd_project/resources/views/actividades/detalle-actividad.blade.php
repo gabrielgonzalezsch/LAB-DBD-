@@ -5,17 +5,6 @@
 <div class="ui segment column ">
   <h1 class="ui header">Detalles de la actividad:
   <span id="actividad">{{$actividad->nombre_actividad}}</span></h1>
-  <div class="content">
-
-          <div style="padding: 5px; width: 70%;" class="ui huge orange ribbon label">
-            Precios desde: {{$actividad->valor_entrada}}
-          </div>
-          <div class="ui star rating" data-rating="3"></div>
-          <div class="ui horizontal divider header">{{$actividad->nombre_actividad}}</div>
-          <div class="image">
-            <img src="images/{{$actividad->nombre_actividad}}{{$array[rand(0,3)]}}.jpg"  alt="Card image cap">
-          </div>
-        </div>
     <ul>
       <li><h3>Valor de la entrada: {{$actividad->valor_entrada}} </h3></li>
       <li><h4>Descripcion de la actividad: {{$actividad->descripcion_actividad}}</h4></li>

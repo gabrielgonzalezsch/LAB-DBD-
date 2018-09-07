@@ -57,20 +57,31 @@ function obtener_origen_aeropuerto(){
 
       obtener_destino_hotel(function(resultado){
 
-          //console.log(resultado.h_lat[0].latitud);
-          //console.log(resultado.h_lon[0].longitud);
-          //console.log(coordenadas_origen_aeropuerto.aero_lat[0].latitud);
-          //console.log(coordenadas_origen_aeropuerto.aero_lon[0].longitud);
 
           h_lat = resultado.h_lat[0].latitud;
           h_lon = resultado.h_lon[0].longitud;
-          ejecutar_mapa(a_lat,a_lon,h_lat,h_lon);
+
+
+          var indice = $('#swap').val();
+          
+
+          if(indice == 0){
+
+            ejecutar_mapa(a_lat,a_lon,h_lat,h_lon);
+
+          }
+
+          else if(indice == 1){
+
+
+            ejecutar_mapa(h_lat,h_lon,a_lat,a_lon);
+
+          }
 
           var distancia = getDistance(a_lat,a_lon,h_lat,h_lon);
+
           distancia = distancia/1000;
           distancia = distancia.toFixed(2);
-
-          //console.log(distancia);
 
           var $distanciaField = $("#distancia");
 

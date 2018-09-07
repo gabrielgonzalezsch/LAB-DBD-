@@ -20,6 +20,7 @@ function getCiudades() {
 	        for (var i = 0; i < ciudades.length; i++) {
 	        	$ciudadesSelect.append('<option value='+ciudades[i].cod_aeropuerto+'>'+ciudades[i].ciudad+'</option>');
 	        }
+
 		},
 		error: function(error, a, b){
 			console.log(error);
@@ -59,6 +60,9 @@ function getAeropuertos() {
 	        	$aeropuertoSelect.append('<option value='+aeropuerto[i].cod_aeropuerto+'>'+'Aeropuerto Principal de '+aeropuerto[i].ciudad+'</option>');
 	        }
 
+
+
+
 		},
 		error: function(error, a, b){
 			console.log(error);
@@ -76,7 +80,7 @@ function getAeropuertos() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function getHoteles() {
-	var cod_aeropuerto = $('#aeropuerto').val();
+	var cod_aeropuerto = $('#ciudad').val();
 
 	//console.log(ciudad);
 
@@ -181,11 +185,40 @@ function getDinero() {
 
 	console.log(distancia*tarifa_chofer)
 
+	return false;
+}
 
 
-    //for each set of data, add a new option
+function swap() {
+
+
+	var indice = $('#swap').val();
+
+	console.log(indice);
+
+	
+	if(indice == 0){	// significa Del Aeropuerto a Hotel
+
+		$('#swap').val('1');
+					
+		$('#swap').append('<button></button').text('Hotel(A) ~~~> Aeropuerto(B)');
+		
+
+
 
 	
 
-	return false;
+	}else if(indice == 1){	// significa del Hotel a  Aeropuerto
+
+
+		$('#swap').val('0');
+
+		$('#swap').append('<button></button').text('Aeropuerto(A) ~~~> Hotel(B)');
+
+
+
+
+
+	}
 }
+

@@ -81,13 +81,6 @@ class ControllerTraslados extends Controller{
 
 
 
-
-
-
-
-
-
-
  public function crear_traslado(Request $request){
 
     $validate = $request->validate([
@@ -137,46 +130,11 @@ class ControllerTraslados extends Controller{
 //############################################################################################################################
 //############################################################################################################################
 
-  // SEGUNDA VISTA HOTEL -> AEROPUERTO
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
-  public function index_hotelAeropuerto(){
-    
-    $lista_paises = DB::table('aeropuertos')->select('pais')->distinct()->get();
-
-    return view('traslados.create-traslado-hotelAeropuerto')->with('lista_paises',$lista_paises);
-  }
 
   
   /*public function crear_traslado(Request $request){

@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="loginTable">
   <div class="title-logo">
-    <h1>Traslado: Aeropuerto -> Hotel</h1>   <!-- NOMBRE CATEGORIA -->
+    <h1>Solicitud Traslado</h1>   <!-- NOMBRE CATEGORIA -->
   </div>
 
 <br>
@@ -22,7 +21,7 @@
 <!--<form method="GET" action= "/traslados/calculoTraslado" >-->
   <div class="row">
      <div class="col-md-6">
-       <h5>País del Traslado:</h5>
+       <h3 align="center">País del Traslado</h3>
         <select name="pais" onchange="getCiudades()" id="pais" class="form-control">
                 <option value="">Elegir País</option>
               
@@ -37,30 +36,36 @@
       </div>
 
      <div class="col-md-6">
-       <h5>Ciudad del Traslado: </h5>
+       <h3 align="center">Ciudad del Traslado</h3>
 
-       <select name="ciudad" onchange="getAeropuertos()" id="ciudad" class="form-control">
+       <select name="ciudad" onchange="getAeropuertos();getHoteles();" id="ciudad" class="form-control">
                 <option value="">Elegir Ciudad</option>
                               
       </select>
      </div>
  </div>
 
-<br><br><br><br>
+<br><br><br><br><br><br>
 
 
 
 <div class="row">
-     <div class="col-md-6">
-       <h5>Aeropuerto Origen (A):</h5>
+     <div class="col-md-4">
+       <h3 align="center" name="titulo_origen" id="titulo_origen">Aeropuerto</h3>
         
-        <select name="aeropuerto" onchange="getHoteles()" id="aeropuerto" class="form-control">
+        <select name="aeropuerto"  id="aeropuerto" class="form-control">
                 <option value="0">Elegir Aeropuerto</option>                                        
         </select>
       </div>
 
-     <div class="col-md-6">
-       <h5>Hotel Destino (B): </h5>
+      <div class="col-md-2">
+
+        <h3 align="center">Direccion Traslado</h3>
+        <button type="Aeropuerto ~> Hotel" onclick="swap()" class="btn btn-danger btn-lg" id="swap" name="swap" value="0">Aeropuerto(A) ~~~~> Hotel(B)</button>
+      
+      </div>
+     <div class="col-md-4">
+       <h3 align="center" name="titulo_destino" id="titulo_destino">Hotel</h3>
 
        <select name="hotel" id="hotel" onchange="" class="form-control">
                 <option value="0">Elegir Hotel</option>   
@@ -69,12 +74,12 @@
  </div>
 
 
-<br><br>
+<br><br><br><br><br><br>
 
 
 <div class="row">
     <div class="col-md-2">
-         <h5>Cantidad de Personas: </h5>
+         <h4 align="center">Cantidad de Personas</h4>
 
          <select name="cantidad" onchange="getChoferes()" id="cantidad" class="form-control">
                   <option value="0">Elegir Cantidad</option>
@@ -91,13 +96,13 @@
     </div>
 
     <div name="fecha" id="fecha" class="col-md-2">
-          <h5>Fecha del Traslado: </h5>
+          <h4 align="center">Fecha del Traslado</h4>
           {{Form::date('fecha', '', ['id' => 'fecha', 'class' => 'form-control promt'])}}
     </div>
  
   <div class="col-md-2">
 
-  <h5>Hora del Traslado: </h5>       
+  <h4 align="center">Hora del Traslado</h4>       
     <select name="horas" id="horas" class="form-control">
 
 
@@ -131,7 +136,7 @@
 
 
    <div class="col-md-2">
-   <h5>.</h5>   
+   <h4 align="center">.</h4>   
     <select name="minutos" id="minutos" class="form-control">
                   <option value="99">Elegir Minutos</option>
                   <option value="0">00</option>
@@ -181,7 +186,6 @@
 
   <div class="col-md-2" style="background-color:#22c4b8; color:white;"><h2>Distancia Km.</h2></div>
   <div class="col-md-5" "><h2 style="background-color:#22c4b8; color:white;" >Lista Choferes</h2></div>
-  
   
 
 </div>
@@ -273,13 +277,11 @@
   </div>
 
 
-<!--</form>-->
+
 
 <script src="/js/traslados/create-traslado-aeropuertoHotel.js"></script>
 <script src="/js/traslados/api-traslados.js"></script>
 <script src="{{ asset('js/carrito.js') }}"></script>
-
-
 
 
 

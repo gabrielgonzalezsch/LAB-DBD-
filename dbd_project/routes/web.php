@@ -71,7 +71,6 @@ Route::post('/habitaciones/store', 'ControllerHabitaciones@store');
 
 //Traslados
 Route::get('/create-traslado-aeropuertoHotel', 'ControllerTraslados@index_aeropuertoHotel');
-Route::get('/create-traslado-hotelAeropuerto', 'ControllerTraslados@index_hotelAeropuerto');
 
 //Actividades
 Route::get('/actividades', 'ControllerActividades@index');

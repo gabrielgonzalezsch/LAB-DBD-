@@ -3,7 +3,7 @@
 
 <div class="loginTable">
   <div class="title-logo">
-    <h1>Traslado: Aeropuerto -> Hotel</h1>   <!-- NOMBRE CATEGORIA -->
+    <h1>Traslado: Hotel -> Aeropuerto</h1>   <!-- NOMBRE CATEGORIA -->
   </div>
 
 <br>
@@ -52,17 +52,17 @@
 
 <div class="row">
      <div class="col-md-6">
-       <h5>Aeropuerto Origen (A):</h5>
+       <h5>Hotel Origen (A):</h5>
         
-        <select name="aeropuerto" onchange="getHoteles()" id="aeropuerto" class="form-control">
+        <select name="hotel" id="hotel" onchange="" class="form-control">
                 <option value="0">Elegir Aeropuerto</option>                                        
         </select>
       </div>
 
      <div class="col-md-6">
-       <h5>Hotel Destino (B): </h5>
+       <h5>Aeropuerto Destino (B): </h5>
 
-       <select name="hotel" id="hotel" onchange="" class="form-control">
+       <select name="aeropuerto" onchange="" id="aeropuerto" class="form-control">
                 <option value="0">Elegir Hotel</option>   
         </select>
      </div>

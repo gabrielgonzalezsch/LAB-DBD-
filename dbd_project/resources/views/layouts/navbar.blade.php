@@ -38,12 +38,11 @@
     
 
     <ul tabindex="3" class="categoria">
-      <div class="titulo-categoria"><i class="angle down icon"></i>Solicitar Traslado<i class="fa fa-map-marker"></i>
+      <div class="titulo-categoria"><i class="angle down icon"></i>Traslados<i class="fa fa-map-marker"></i>
       <i class="point map icon"></i>
       </div>
       <div class="contenido-categoria">
-        <a href="/create-traslado-aeropuertoHotel">Aeropuerto -> Hotel</a>
-        <a href="/create-traslado-hotelAeropuerto">Hotel -> Aeropuerto</a>
+        <a href="/create-traslado-aeropuertoHotel">Solicitar Traslado</a>
       </div>
     </ul>
 

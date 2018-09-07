@@ -28,6 +28,7 @@ class habitaciones_seeders extends Seeder
 
 		        DB::table('habitaciones')->insert([
 
+<<<<<<< Updated upstream
 		   		'id_hotel'						=> $i+1,
 	            'num_habitacion'				=> random_int(1, 20)*100,
 	            'precio_por_noche'				=> random_int(7,30)*10000,
@@ -43,6 +44,19 @@ class habitaciones_seeders extends Seeder
 	            'descuento'						=> random_int(0,20),
 	            'created_at'					=> now(),
 				'updated_at'					=> now()
+=======
+			   		'id_hotel'						=> $i+1,
+		            'num_habitacion'				=> $j+1000,
+		            'precio_por_noche'				=> random_int(70000,300000),
+		            'valoracion'					=> frand1(1, 5, 1),
+		            'descripcion'					=> '-',
+		            'num_camas_dobles'				=> random_int(1,3),
+		            'num_camas_simples'				=> random_int(1,3),
+		            'room_size'						=> random_int(15,40),
+		            'descuento'						=> random_int(0,20),
+		            'created_at'					=> now(),
+					'updated_at'					=> now()
+>>>>>>> Stashed changes
 
 			   	]);
 		    }

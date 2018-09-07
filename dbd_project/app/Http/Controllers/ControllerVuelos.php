@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vuelo;
+use App\Models\Aeropuerto;
 use Carbon\Carbon;
 use App\Services\SearchService;
 
@@ -71,8 +72,16 @@ class ControllerVuelos extends Controller
     $dateTimeLlegada = $vuelo->hora_llegada;
     $tiempoViaje = number_format($this->timeDiff($dateTimeSalida, $dateTimeLlegada), 1);
     $tiempoViaje = $tiempoViaje." horas";
+    $ciudadOrigen = Aeropuerto::where('cod_aeropuerto', '=', $vuelo->aeropuerto_origen)
+                     ->value('ciudad');
+    $paisOrigen = Aeropuerto::where('cod_aeropuerto', '=', $vuelo->aeropuerto_origen)
+                     ->value('pais');                 
+    $ciudadDestino = Aeropuerto::where('cod_aeropuerto', '=', $vuelo->aeropuerto_destino)
+                     ->value('ciudad');
+    $paisDestino = Aeropuerto::where('cod_aeropuerto', '=', $vuelo->aeropuerto_destino)
+                     ->value('pais'); 
     //echo "Horas: ".$tiempoViaje;
-    return view('vuelos.detalle-vuelo')->with('vuelo', $vuelo)->with('horas', $tiempoViaje);
+    return view('vuelos.detalle-vuelo')->with('vuelo', $vuelo)->with('horas', $tiempoViaje)->with('cOri',$ciudadOrigen)->with('cDes',$ciudadDestino)->with('pOri',$paisOrigen)->with('pDes',$paisDestino);
   }
 
   public function showJointVuelo($id_ida, $id_vuelta){

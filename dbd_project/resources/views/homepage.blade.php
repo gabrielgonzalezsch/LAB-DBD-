@@ -25,7 +25,7 @@
         <div class="col-md-7">
             <h1 class="pb-2"><strong>Viaja por el mundo </strong> </h1>
             <h4>Cumple tus sueños</h4>
-            <button type="button" class="btn btn-success mt-4">Revisa los vuelos</button>  
+            <a href="/vuelos/" class="btn btn-info">Revisa todos los vuelos</a>
         </div>
       </div>   
     </div>
@@ -35,7 +35,7 @@
         <div class="col-md-7">
             <h1 class="pb-2"><strong>Elige tu hotel</strong> </h1>
             <h4>Disfruta de una estancia a tu medida.</h4>
-            <button type="button" class="btn btn-success mt-4">Revisa los hoteles</button>
+            <a href="/hoteles/" class="btn btn-info">Revisa todos los hoteles</a>
         </div>
       </div>   
     </div>

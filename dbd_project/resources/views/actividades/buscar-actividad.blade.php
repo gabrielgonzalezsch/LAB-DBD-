@@ -4,25 +4,60 @@
   .ui.fluid.card *{
     margin: 0;
   }
+  body {
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  height: 100vh;
+  }
+  #busqueda .container #busqueda-row #busqueda-column #busqueda-box {
+  max-width: 600px;
+  height: auto;
+  display:inline-block;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+  overflow: auto;
+  }
+  .btn-lg{
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  .centered{
+    text-align: center;
+  }
+</style>
 </style>
 <div class="jumbotron jumbotron-fluid">
  <div class="container">
-  <h1 class="display-4">actividades</h1>
+  <center><h1 class="display-4">Actividades</h1></center>
+  
   <p class="lead"></p>
-  <div class="ui two column grid">
-    <div class="column">
-    <div class="ui fluid card">
-      <h2 class="ui centered header" for="ciudad">Busca las actividades de alguna ciudad</h2>
-      <div class="content">
-        {!! Form::open(['route'=> 'actividades.buscarPorCiudad', 'method' => 'GET', 'class' => 'card-body']) !!}
-        {{Form::text('ciudad', '', ['class' => 'form-control', 'placeholder' => 'Escribe una ciudad...'])}}
+  <div class="row">
+    <div class="column col-md-6 col-sm-12">
+      <div id="busqueda">
+        <div class="container">
+            <div id="busqueda-row" class="row justify-content-center align-items-center">
+                <div id="busqueda-column" class="col-md-12">
+                    <div id="busqueda-box" class="col-md-12">
+                      {!! Form::open(['route'=> 'actividades.buscarPorCiudad', 'method' => 'GET', 'class' => 'card-body']) !!}
+                      <h1 style="margin-top: 8px;" class="text-center text-info">Busca las actividades de cada ciudad</h1>
+                      {{Form::text('ciudad', '', ['class' => 'form-control', 'placeholder' => 'Escribe una ciudad...'])}}
+                    </div>
+                    <center>{{Form::submit('Buscar', ['class' => 'ui bottom attached blue button'])}}
+                    {!! Form::close() !!}</center>
+                </div>
+            </div>
+        </div>
       </div>
-        {{Form::submit('Buscar', ['class' => 'ui bottom attached blue button'])}}
-        {!! Form::close() !!}
-    </div>
     </div>
   </div>
+  </div>
 </div>
+
+
+
+
+
 <div class="ui segment">
   <h1 class="ui header">Todos los actividades: </h1>
   <div class="ui divider"> </div>

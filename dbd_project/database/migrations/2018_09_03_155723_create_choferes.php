@@ -15,12 +15,13 @@ class CreateChoferes extends Migration
     {
         Schema::create('choferes', function (Blueprint $table) {
             $table->increments('id_chofer');
+            $table->string('name');
             $table->string('capacidad_auto', 20);
             $table->string('patente', 10)->nullable();
             $table->string('pais', 30);
             $table->string('ciudad', 30);
             $table->decimal('tarifa_por_kilometro');
-            $table->integer('descuento')->nullable()->default(0);
+            $table->decimal('valorizacion');
             $table->timestamps();
         });
     }

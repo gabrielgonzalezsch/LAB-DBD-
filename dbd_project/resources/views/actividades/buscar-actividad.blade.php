@@ -39,7 +39,7 @@
           <div class="ui star rating" data-rating="3"></div>
           <div class="ui horizontal divider header">{{$actividad->nombre_actividad}}</div>
           <div class="image">
-            <img src="images/{{$actividad->nombre_actividad}}{{$array[rand(0,3)]}}.jpg"  width="100%" height = 170px>
+            <img src="/images/{{$actividad->nombre_actividad}}{{$array[rand(0,3)]}}.jpg"  width="100%" height = 170px>
           </div>
         </div>
         <div style="padding: 20px;" class="ui relaxed divided list">

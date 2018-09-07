@@ -235,6 +235,6 @@ function addCarrito(id_vuelo, id_auto){
     addJointVueloPaqueteAlCarrito(joint_id_ida, joint_id_vuelta, id_paquete, num_turista, num_ejecutivo, num_pc);
     addAutoPaqueteAlCarrito(id_auto, id_paquete, auto, inicio, fin, num_dias);
   }
-  }
+}
 </script>
 @endsection

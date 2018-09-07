@@ -1,11 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-
-<script></script>
 <div class="loginTable">
   <div class="title-logo">
-    <h1>Traslado: Aeropuerto -> Hotel</h1>   <!-- NOMBRE CATEGORIA -->
+    <h1>Traslado: Hotel -> Aeropuerto</h1>   <!-- NOMBRE CATEGORIA -->
   </div>
 
 <br>
@@ -43,10 +41,8 @@
 
        <select name="ciudad" onchange="getAeropuertos()" id="ciudad" class="form-control">
                 <option value="">Elegir Ciudad</option>
-              
-              
-                   
-        </select>
+                              
+      </select>
      </div>
  </div>
 
@@ -56,19 +52,17 @@
 
 <div class="row">
      <div class="col-md-6">
-       <h5>Aeropuerto Origen (A):</h5>
+       <h5>Hotel Origen (A):</h5>
         
-        <select name="aeropuerto" onchange="getHoteles()" id="aeropuerto" class="form-control">
+        <select name="hotel" id="hotel" onchange="" class="form-control">
                 <option value="0">Elegir Aeropuerto</option>                                        
         </select>
       </div>
-  
-
 
      <div class="col-md-6">
-       <h5>Hotel Destino (B): </h5>
+       <h5>Aeropuerto Destino (B): </h5>
 
-       <select name="hotel" onchange="getCoordenadas()" id="hotel" class="form-control">
+       <select name="aeropuerto" onchange="" id="aeropuerto" class="form-control">
                 <option value="0">Elegir Hotel</option>   
         </select>
      </div>
@@ -82,8 +76,8 @@
     <div class="col-md-2">
          <h5>Cantidad de Personas: </h5>
 
-         <select name="cantidad" id="cantidad" class="form-control">
-                  <option value="0">Cantidad</option>
+         <select name="cantidad" onchange="getChoferes()" id="cantidad" class="form-control">
+                  <option value="0">Elegir Cantidad</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -107,7 +101,7 @@
     <select name="horas" id="horas" class="form-control">
 
 
-                  <option value="99">Hora</option>
+                  <option value="99">Elegir Hora</option>
                   <option value="0">00</option>
                   <option value="1">01</option>
                   <option value="2">02</option>
@@ -139,7 +133,7 @@
    <div class="col-md-2">
    <h5>.</h5>   
     <select name="minutos" id="minutos" class="form-control">
-                  <option value="99">Minutos</option>
+                  <option value="99">Elegir Minutos</option>
                   <option value="0">00</option>
                   <option value="15">15</option>
                   <option value="30">30</option>
@@ -151,6 +145,12 @@
 </div>
 
 <br><br>
+
+<div class="row" >
+  
+<hr style="border:15px; border-color:red;">
+
+</div>
 
 
 <!DOCTYPE html>
@@ -173,69 +173,93 @@
 </head>
 <body>
 
-
+<br><br>
+<div class="row">
   <div class="col-md-4">
-  <h6><input onclick="ejecutar_mapa()" class="btn btn-primary" id="get" name="obtener_direccion" value="Obtener Ruta"></h6>
+  <h6><input  onclick="obtener_origen_aeropuerto()" class="btn btn-primary btn-lg" id="get" name="obtener_direccion" value="Click Para Ver Ruta"></h6>
   </div>
 
+  <div class="col-md-2" style="background-color:#22c4b8; color:white;"><h2>Distancia Km.</h2></div>
+  <div class="col-md-5" "><h2 style="background-color:#22c4b8; color:white;" >Lista Choferes</h2></div>
   
-  <div id="map-canvas" style="width: 500px; height: 500px;"></div>
+  
 
-  <br><br>
-
-
-      <script> 
+</div>
 
 
-          function ejecutar_mapa(){
+<div class="row">
+  <div class="col-md-4" id="map-canvas" style="width: 500px; height: 500px;"></div>
 
-            var directionsDisplay = new google.maps.DirectionsRenderer();
-            var directionsService = new google.maps.DirectionsService();
+  <br><br>   <br><br>
 
-            var map;
+  <div class="col-md-2">
 
-            var origen = new google.maps.LatLng(44,44);  
-            var destino  = new google.maps.LatLng(45,45);
 
-            var mapOptions = {
-              zoom: 15,
-              center: origen
-            };
+  <h3 style="color:#cd2020;"name="distancia" id="distancia" ></h3>
 
-            map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
 
-            directionsDisplay.setMap(map);
-                
-            var request = {
 
-              origin: origen,
-              destination: destino,
-              travelMode: 'DRIVING'
+  </div>
+  
 
-            };
+  <div class="col-md-5">
 
-            directionsService.route(request, function(result, status){
+    <table bgcolor="#22c4b8" id="tabla_choferes" name="tabla_choferes" class="display" style="width:100%; color:white;" border="4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tarifa por Km.</th>
+                <th>Valorizacion</th>
+            </tr>
+        </thead>
+        <tbody>
+                     
+       </tbody>
+    </table>
 
-                if(status == "OK"){
 
-                  directionsDisplay.setDirections(result);
+      <br><br>   <br><br>
 
-                }
-        
-            });
-          }
+    <select name="chofer" onchange="getDinero()" id="chofer" class="form-control">
+                  <option value="">Elegir Chofer</option>
+                  
+                  
+    </select>
 
-         
+     <br><br>   <br><br>
+
+    <div class="ui left action input row">
+      <button onclick="addCarrito({})" class="ui teal labeled icon button">
+      <i class="cart icon"></i>
+        Al carrito
+      </button>
+      <input type="text" value="0" name="carrito" id="carrito">
+    </div>
+    <style>
+      .col-2{
+        padding: 10px !important;
+        margin: 0 !important;
+      }
+    </style>
+
 
     
-    </script>
+      
+  </div>
+
+
+
+
+
+</div>
+
 
 
 </body>
 
 </html>
 
-
+<br><br><br><br>
 
 </div>
 
@@ -246,25 +270,19 @@
     </div>
     <div class="col-md-4"></div>
     
-    <div class="col-md-4">
-        <h6><input class="btn btn-primary"type="submit" name="submit" value="Continuar"></h6>
-    </div> 
   </div>
 
 
 <!--</form>-->
 
 <script src="/js/traslados/create-traslado-aeropuertoHotel.js"></script>
+<script src="/js/traslados/api-traslados.js"></script>
+<script src="{{ asset('js/carrito.js') }}"></script>
 
 
 
 
 
 @endsection
-
-
-
-
-  
 
 

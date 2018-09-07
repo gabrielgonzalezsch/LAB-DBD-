@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Services\SearchService;
 
 class ControllerActividades extends Controller{
-	
+
 	public function index(){
 		$actividades = Actividad::orderBy('id_actividad', 'asc')->paginate(6);
 		$array = [1,2,3,4];
@@ -16,15 +16,15 @@ class ControllerActividades extends Controller{
 	}
 
 	public function create(){
-		return view('actividades.insertar-actividad');
+		return view('actividades.crear-actividad');
 	}
 
 	public function store(Request $request){
 		$validData = $request->validate([
 			'nombre_actividad' => 'required|string',
 			'descripcion_actividad' => 'required',
-			'fecha_inicio' => 'required|date(Y-m-d)',
-			'fecha_termino' => 'required|date(Y-m-d)',
+			'fecha_inicio' => 'required|date:Y-m-d',
+			'fecha_termino' => 'required|date:Y-m-d',
 			'pais' => 'required|string',
 			'ciudad' => 'required|string',
 			'calle' => 'required|string',

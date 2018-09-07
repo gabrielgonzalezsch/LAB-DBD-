@@ -9,20 +9,20 @@ class ControllerRoles extends Controller
 {
     public function otorgarRol(Request $req){
       $rol = $_POST['rol'];
-      $nombre = $_POST['usuario']; //Equivale a $req->input('usuario') o $req['usuario']
-      $usuario = Usuario::where('username', $nombre)->first();
+      $id = $_POST['usuario']; //Equivale a $req->input('usuario') o $req['usuario']
+      $usuario = Usuario::where('id_usuario', '=', $id)->first();
       $usuario->tipo_usuario = $rol;
       $usuario->save();
-      return redirect('/admin')->with('success', 'Roles otorgados');
+      return;
     }
 
     public function revocarRol(Request $req){
-      $rol = $_POST('rol');
-      $nombre = $_POST('usuario'); //Equivale a $req->input('usuario') o $req['usuario']
-      $usuario = Usuario::where('username', $nombre)->first();
-      $usuario->tipo_usuario = "";  //Hacer arrays para roles, cuando haya mas roles
+      //$rol = $_POST('rol');
+      $id = $_POST['usuario']; //Equivale a $req->input('usuario') o $req['usuario']
+      $usuario = Usuario::where('id_usuario', '=', $id)->first();
+      $usuario->tipo_usuario = "Invitado";  //Hacer arrays para roles, cuando haya mas roles
       $usuario->save();
-      return redirect('/admin')->with('success', 'Roles revocados');
+      return;
     }
 
     public function administrar(){

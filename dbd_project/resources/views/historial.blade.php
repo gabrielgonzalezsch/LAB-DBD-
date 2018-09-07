@@ -24,6 +24,37 @@
     </tbody>
   </table>
  </div>
+ <div class="ui segment">
+ <div class="ui header"> Paquetes comprados</div>
+ <table class="table">
+   <thead class="thead-dark">
+     <tr>
+       <th>Id compra</th>
+       <th>Id vuelo</th>
+       <th>Id auto</th>
+       <th>Id habitación</th>
+       <th>Fecha compra</th>
+       <th>Tipo paquete</th>
+       <th>Monto</th>
+     </tr>
+   </thead>
+   <tbody>
+     @foreach($paquetes_comprados as $paquete)
+     <tr>
+       <td>{{$paquete->id_transaccion}}</td>
+       @if($paquete->tipo_paquete == 'Vuelo + Auto')
+       <td>{{$paquete->id_vuelo}}</td>
+       <td>{{$paquete->id_auto}}</td>
+       <td> - </td>
+       @endif
+       <td>{{$paquete->hora_compra}}</td>
+       <td>{{$paquete->tipo_paquete}}</td>
+       <td>{{$paquete->monto}}</td>
+     </tr>
+     @endforeach
+   </tbody>
+ </table>
+</div>
   <div class="ui segment">
     <div class="ui header">Vuelos reservados</div>
     <table class="table">

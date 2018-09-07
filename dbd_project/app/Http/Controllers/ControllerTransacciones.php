@@ -59,13 +59,18 @@ class ControllerTransacciones extends Controller
                break;
              case 'Habitación':
               $habitacion = \App\Models\Habitacion::findOrFail($item->id);
-              $transaccion->habitaciones()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_noches' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
+              $fecha_inicio = new \Carbon\Carbon($item->fecha_inicio);
+              $transaccion->habitaciones()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_noches' => $item->cantidad, 'inicio_reserva' => $fecha_inicio, 'fin_reserva' => $fecha_inicio->addDays($item->cantidad)]);
               $habitacion->ya_reservado = true;
+              $habitacion->fecha_inicio_reserva = $fecha_inicio;
+              $habitacion->fecha_fin_reserva = $fecha_inicio->addDays($item->cantidad);
               $habitacion->save();
               break;
              case 'Auto':
               $auto = \App\Models\Auto::findOrFail($item->id);
-              $transaccion->autos()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $item->cantidad, 'inicio_reserva' => \Carbon\Carbon::now(), 'fin_reserva' => \Carbon\Carbon::now()->addDays($item->cantidad)]);
+              $transaccion->autos()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $item->cantidad, 'inicio_reserva' => $item->inicio_arriendo, 'fin_reserva' => $item->fin_arriendo]);
+              $auto->inicio_arriendo = $item->inicio_arriendo;
+              $auto->fin_arriendo = $item->fin_arriendo;
               $auto->ya_reservado = true;
               $auto->save();
               break;
@@ -75,6 +80,52 @@ class ControllerTransacciones extends Controller
               $actividad->cupos = $actividad->cupos - $item->cantidad;
               $actividad->save();
               break;
+             case 'Paquete':
+              $paquete = \App\Models\Paquete::findOrFail($item->id_paquete);
+              $transaccion->paquetes()->syncWithoutDetaching([$item->id_paquete => ['hora_compra' => \Carbon\Carbon::now(), 'tipo_paquete' => $item->tipo_paquete]]);
+              // if($transaccion->paquetes()->where('id_paquete', '=', $item->id_paquete)->count() == 0){
+              //   $transaccion->paquetes()->attach($item_id_paquete, ['hora_compra' => \Carbon\Carbon::now(), 'tipo_paquete' => $item->tipo_paquete]);
+              // }
+              switch ($item->subcategoria) {
+                case 'Auto':
+                  $auto = \App\Models\Auto::findOrFail($item->id);
+                  $transaccion->autos()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_dias' => $item->cantidad, 'inicio_reserva' => $item->inicio_arriendo, 'fin_reserva' => $item->fin_arriendo]);
+                  $auto->inicio_arriendo = $item->inicio_arriendo;
+                  $auto->fin_arriendo = $item->fin_arriendo;
+                  $auto->ya_reservado = true;
+                  $auto->save();
+                  break;
+                case 'Vuelo':
+                  $vuelo = \App\Models\Vuelo::findOrFail($item->id);
+                  switch ($item->tipo_pasaje) {
+                    case 'Turista':
+                      $transaccion->vuelos()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'num_asiento' => rand(1, $vuelo->cap_turista), 'tipo_asiento' => 'Turista']);
+                      $vuelo->cap_turista = $vuelo->cap_turista - 1;
+                      break;
+                    case 'Ejecutivo':
+                      $transaccion->vuelos()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'num_asiento' => rand(1, $vuelo->cap_ejecutivo), 'tipo_asiento' => 'Ejecutivo']);
+                      $vuelo->cap_ejecutivo = $vuelo->cap_ejecutivo - 1;
+                      break;
+                    case 'Primera Clase':
+                      $transaccion->vuelos()->attach($item->id, ['hora_compra' => \Carbon\Carbon::now(), 'num_asiento' => rand(1, $vuelo->cap_primera_clase), 'tipo_asiento' => 'Primera Clase']);
+                      $vuelo->cap_primera_clase = $vuelo->cap_primera_clase - 1;
+                      break;
+                  }
+                  $vuelo->save();
+                  break;
+                case 'Habitación':
+                   $habitacion = \App\Models\Habitacion::findOrFail($item->id);
+                   $fecha_inicio = new \Carbon\Carbon($item->fecha_inicio);
+                   $transaccion->habitaciones()->attach($item->id, ['hora_reserva' => \Carbon\Carbon::now(), 'num_noches' => $item->cantidad, 'inicio_reserva' => $fecha_inicio, 'fin_reserva' => $fecha_inicio->addDays($item->cantidad)]);
+                   $habitacion->ya_reservado = true;
+                   $habitacion->fecha_inicio_reserva = $fecha_inicio;
+                   $habitacion->fecha_fin_reserva = $fecha_inicio->addDays($item->cantidad);
+                   $habitacion->save();
+                   break;
+                default:
+                  // code...
+                  break;
+              }
            }
     	 	}
         Session::forget("carrito");
@@ -114,12 +165,20 @@ class ControllerTransacciones extends Controller
                               WHERE hab.id_habitacion = ch.id_habitacion AND h.id_hotel = hab.id_hotel) r
                             WHERE r.id_transaccion = t.id_transaccion) c
                           WHERE c.id_usuario = :id;', ['id' => $id]);
+      $paquetes_comprados = DB::select('
+                          SELECT c.id_transaccion, c.id_vuelo, c.id_auto, c.id_habitacion, c.tipo_paquete, c.hora_compra, c.monto
+                          FROM
+                            (SELECT t.id_usuario, cp.id_transaccion, p.id_vuelo, p.id_auto, p.id_habitacion, cp.tipo_paquete, cp.hora_compra, t.monto
+                            FROM paquetes p, compra_paquete cp, transacciones t
+                            WHERE p.id_paquete = cp.id_paquete AND cp.id_transaccion = t.id_transaccion) c
+                          WHERE c.id_usuario = :id;', ['id' => $id]);//Auth::user()->transacciones()->paquetes();
       if($transacciones != NULL)
         return view('historial')->with('transacciones', $transacciones)
         ->with('vuelos_reservados', $vuelos_reservados)
         ->with('habitaciones_reservadas', $habitaciones_reservadas)
         ->with('autos_arrendados', $autos_arrendados)
-        ->with('actividades_compradas', $actividades_compradas);
+        ->with('actividades_compradas', $actividades_compradas)
+        ->with('paquetes_comprados', $paquetes_comprados);
       else {
         return redirect('/')->with('failure', 'No hay compras realizadas');
       }

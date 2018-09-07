@@ -23,21 +23,21 @@ class vuelos_seeders extends Seeder
 
 
 
-    	for ($i=0; $i < 300 ; $i++) {
+    	for ($i=0; $i < 500 ; $i++) {
 
     		// $a = random_int(0,3884);
     		// $b = random_int(0,3884);
-        $a = random_int(0,100);
-    	  $b = random_int(0,100);
+        $a = random_int(0,10);
+        $b = random_int(0,10);
+        while($a == $b){
+            $b = random_int(0,10);
+        }
 
     		$start = Carbon::create(2018, 1, 25,0,0,0,'America/Santiago');
 			//End point of our date range.
 
-			$int = random_int(1,6);
-			$end = $start->copy()->addDays($int);
-			
-
-
+			   $int = random_int(1,50);
+			   $end = $start->copy()->addHours($int);
 
 			DB::table('vuelos')->insert([
 

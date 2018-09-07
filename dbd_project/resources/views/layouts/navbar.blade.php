@@ -63,6 +63,7 @@
       <div class="titulo-categoria"><i class="angle down icon"></i>Paquetes <i class="package icon"> </i>
       </div>
       <div class="contenido-categoria">
+        <a href="/paquetes/create"> Crear paquete</a>
         <a href="/paquetes"> Ver paquete</a>
       </div>
      </ul>
@@ -71,6 +72,7 @@
       <div class="titulo-categoria"><i class="angle down icon"></i>{{ Auth::user()->username }}<i class="user icon"></i>
       </div>
       <div class="contenido-categoria">
+        <a href="/usuario/{{Auth::user()->username}}"> Perfil de usuario </a>
         <a href="/historial"> Historial de compra</a>
         <a href="/carrito"> Carrito de compra</a>
         @if(Auth::check())

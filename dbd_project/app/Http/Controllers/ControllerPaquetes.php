@@ -59,8 +59,9 @@ class ControllerPaquetes extends Controller
         case '2':
           $id_vuelo = $req->session()->get('id_vuelo_paquete');
           $vuelo = Vuelo::findOrFail($id_auto);
+          $id_paquete = Paquete::select('id_paquete')->where('id_vuelo', '=', $id_vuelo)->where('id_auto', '=', $id_auto)->first();
           $auto =  Auto::findOrFail($id_vuelo);
-          return view('paquetes.completar-paquete')->with('vuelo', $vuelo)->with('auto', $auto);
+          return view('paquetes.completar-paquete')->with('vuelo', $vuelo)->with('auto', $auto)->with('id_paquete', $id_paquete['id_paquete']);
           break;
         default:
           return redirect('/paquetes')->with('failure', 'Error al completar el paquete, intente nuevamente');

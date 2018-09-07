@@ -46,7 +46,7 @@ class ControllerHoteles extends Controller{
       $hotel->ciudad = $request->input('ciudad');
       $hotel->direccion = $request->input('direccion');
       $hotel->valoracion = 0.0;
-      $hotel->latitud = 0;  //USAR GOOGLE API PARA OBTENER LATITUD Y LONGITUD
+      $hotel->latitud = 0;
       $hotel->longitud = 0;
       $hotel->created_at = date('Y-m-d H:i:s');
       $hotel->updated_at = date('Y-m-d H:i:s');
@@ -135,9 +135,36 @@ class ControllerHoteles extends Controller{
       $validate = $request->validate([
         'ciudad' => 'required|string'
       ]);
+      //   'fecha_inicio' => 'required|date',
+      //   'fecha_fin' => 'required|date|after:fecha_inicio'
+      //   'num_habitaciones' => 'required|numeric',
+      //   'num_adultos' => 'required|numeric'
+      // ]);
       $this->searchService = \App::make(SearchService::class);
       $hoteles = $this->searchService->buscarHotelesPorCiudad($request['ciudad']);
       return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles);
+    }
+
+    public function buscarHoteles(Request $request){
+      $validate = $request->validate([
+        'ciudad' => 'required|string',
+        'fecha_inicio' => 'required|date',
+        'fecha_fin' => 'required|date|after:fecha_inicio',
+        'num_habitaciones' => 'required|numeric',
+        'num_adultos' => 'required|numeric'
+      ]);
+      if(!empty($request['num_menores'])){
+          $num_habitaciones = $request['num_adultos'] + $request['num_menores'];
+      }else
+        $num_personas = $request['num_adultos'];
+      $this->searchService = \App::make(SearchService::class);
+      $hoteles = $this->searchService->buscarHotelesPorCiudad(
+        $request['ciudad'], $request['fecha_inicio'], $request['fecha_fin'],
+        $request['num_habitaciones'], $num_personas
+      );
+      return view("hoteles.buscar-hoteles")->with('hoteles', $hoteles)
+      ->with('fecha_inicio', $fecha_inicio)
+      ->with('fecha_fin', $fecha_fin);
     }
 
     public function buscarHotelesPorPais(Request $request){

@@ -18,19 +18,26 @@
     <h1 class="display-4">Elige tu vuelo</h1>
     <p class="lead">Ingresa los datos y escogeremos ¡los mejores vuelos para ti!</p>
     <div class="container">
-      {!! Form::open(['route'=>'vuelos.buscar', 'method' => 'GET', 'id' => 'busqueda']) !!}
+        <div id="alertFecha" style="display: none;" class="alert alert-warning" role="alert">
+          <h4 class="alert-heading">Fechas no válidas</h4>
+            Por favor ingrese la fecha de salida y retorno correctamente
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      <form name="busqueda" id="busqueda" action="/vuelos/buscar" method="get">
       <div class="form-row">
         <div class="form-group col-md-3">
           <label for="inicio">Escribe la ciudad de origen...</label>
-          {{Form::text('origen', '', ['class' => 'form-control promt', 'placeholder' => 'Escribe la ciudad de origen...'])}}
+          <input name="origen" id="origen" class="form-control prompt" type="text" placeholder="Escribe la ciudad de origen..." />
         </div>
         <div class="form-group col-md-3">
           <label for="destino">Escribe la ciudad de destino...</label>
-            {{Form::text('destino', '', ['class' => 'form-control promt', 'placeholder' => 'Escribe la ciudad de destino...'])}}
+          <input name="destino" id="destino" class="form-control prompt" type="text" placeholder="Escribe la ciudad de destino..." />
         </div>
         <div class="form-group col">
           <div class="form-check">
-              <input onclick="toggleVuelta(this)" class="form-check-input" type="checkbox" name="idaVuelta" id="idaVuela" checked>
+              <input onclick="toggleVuelta(this)" class="form-check-input" type="checkbox" name="idaVuelta" id="idaVuelta" checked>
               <label class="form-check-label" for="idayvuelta">
               Ida y vuelta
               </label>
@@ -46,20 +53,20 @@
       <div class="form-row">
         <div id="fecha_ida" class="form-group col-md-3">
           <label for="fechaPartida" class="ui input label"> Elige la fecha de partida... </label>
-          {{Form::date('fechaPartida', '', ['id' => 'fechaIda', 'class' => 'form-control promt'])}}
+          <input name="fechaPartida" id="fechaIda" type="date" class="form-control promt"/>
         </div>
         <div id="fecha_vuelta" class="form-group col-md-3">
           <label for="fechaLlegada" class="ui input label"> Elige la fecha de regreso... </label>
-          {{Form::date('fechaLlegada', '', ['id' => 'fechaVuelta', 'class' => 'form-control promt'])}}
+          <input name="fechaLlegada" id="fechaVuelta" type="date" class="form-control promt"/>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          {{Form::submit('Buscar', ['class' => 'btn btn-primary'])}}
-          {!! Form::close() !!}
+          <submit onclick="check()" form="busqueda" name="enviar" id="buscar" class="btn btn-primary"> Buscar Vuelos</submit>
           <div id="resultados" class="results"></div>
         </div>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -99,7 +106,7 @@
           @endif
           <a href="/vuelos/{{$vuelo->id_vuelo}}" class="ui bottom attached blue button">
           <i class="fas fa-search"></i>
-          Seleccionar vuelo
+          Ver detalles
           </a>
         </div>
       </div>
@@ -108,10 +115,10 @@
   <div style="left: 30%; width: 40%; overflow: auto;"class="ui segment">
     {{$vuelos->links()}}
   </div>
-  <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/" class="btn btn-primary" role="button"> Volver </a>
+  <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/vuelos" class="btn btn-primary" role="button"> Volver </a>
   @else
     <p>No se encontraron vuelos!</p>
-    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/" class="btn btn-primary" role="button"> Volver </a>
+    <a style="margin-left: 20px; margin-top: 20px; width: 100px;" href="/vuelos" class="btn btn-primary" role="button"> Volver </a>
   @endif
 </div>
 </div>
@@ -149,9 +156,9 @@
               <div class="header">El vuelo tiene {{$joint_vuelo['ida']['descuento']}}% de descuento!!</div>
             </div>
             @endif
-            <a href="/vuelos/{{$joint_vuelo['ida']['id_vuelo']}}" class="ui bottom attached blue button">
+            <a href="/vuelos/{{$joint_vuelo['ida']['id_vuelo']}}/{{$joint_vuelo['vuelta']['id_vuelo']}}" class="ui bottom attached blue button">
             <i class="fas fa-search"></i>
-            Seleccionar vuelo
+            Ver detalles
             </a>
           </div>
         </div>
@@ -183,10 +190,11 @@
 
 @endif
 <script>
+  var alertFecha = document.getElementById('alertFecha');
   var fechaIda = document.getElementById('fechaIda');
   var fechaVuelta = document.getElementById('fechaVuelta');
-  var toggle = document.getElementById('sinFecha');
-  toggle.addEventListener('click', function(event) {
+  var sinFecha = document.getElementById('sinFecha');
+  sinFecha.addEventListener('click', function(event) {
     fechaIda.disabled = !fechaIda.disabled;
     fechaVuelta.disabled = !fechaVuelta.disabled;
   });
@@ -197,6 +205,39 @@
     }else{
       vuelta.style.visibility = "hidden";
     }
+  }
+  function check(){
+    var origen = document.getElementById('origen').value;
+    var destino = document.getElementById('destino').value;
+    var fechaIda = document.getElementById('fechaIda').value;
+    var fechaVuelta = document.getElementById('fechaVuelta').value;
+    var buscar = document.getElementById('buscar');
+    var sinFecha = document.getElementById('sinFecha').checked;
+    var idaVuelta = document.getElementById('idaVuelta').checked;
+    if(origen == ''){
+      alert('Por favor ingrese un pais de origen');
+      buscar.classList.add('disabled');
+      return false;
+    }
+    if(destino == ''){
+      alert('Por favor ingrese un país de destino');
+      buscar.classList.add('disabled');
+      return false;
+    }
+    if((fechaIda==''||fechaIda==null) && !sinFecha){
+    //  buscar.disabled = true;
+      alertFecha.style.display = "block";
+      //return false;
+    }else if((fechaVuelta==''||fechaVuelta==null) && (!sinFecha || idaVuelta)){
+      //buscar.disabled = true;
+      alertFecha.style.display = "block";
+      //return false;
+    }else{
+      //buscar.disabled = false;
+      alertFecha.style.display = "none";
+    }
+    document.getElementById('busqueda').submit();
+    return true;
   }
 </script>
 @endsection

@@ -41,6 +41,13 @@ class SearchService {
     return $hoteles;
   }
 
+  public function buscarHotelesPorCiudadFecha($ciudad, $fecha_inicio, $fecha_fin, $num_habitaciones, $num_personas){
+    $hoteles = Hotel::orderBy('precio_min_habitacion')
+    ->where('ciudad', '=', $ciudad)
+    ->where('habitaciones_disponibles', '>', 0)->paginate(6);
+    return $hoteles;
+  }
+
   public function buscarHotelesPorPais($pais){
     $hoteles = Hotel::orderBy('precio_min_habitacion')->where('pais', '=', $pais)
     ->where('habitaciones_disponibles', '>=', 0)->paginate(6);
@@ -48,7 +55,7 @@ class SearchService {
   }
 
   public function buscarAutosPorCiudad($ciudad){
-    $autos = Auto::orderBy('precio_por_dia')->where('ciudad_arriendo', '=', $ciudad);
+    $autos = Auto::orderBy('precio_por_dia')->where('ciudad_arriendo', '=', $ciudad)->where('ya_reservado', false)->paginate(6);
     return $autos;
   }
 
@@ -83,6 +90,44 @@ class SearchService {
                     })->paginate(6);
     return $vuelos;
   }
+
+  public function getPaquetesVH($origen, $destino, $f_inicio, $f_fin, $num_personas){
+    $aeropuertosOrigen = Aeropuerto::where('ciudad', '=', $origen)->pluck('cod_aeropuerto');
+    $aeropuertosDestino = Aeropuerto::where('ciudad', '=', $destino)->pluck('cod_aeropuerto');
+    $vuelosValidos = Vuelo::select('vuelos.id_vuelo')
+                    ->join('aeropuertos', function($join) use ($aeropuertosOrigen, $aeropuertosDestino, $f_inicio){
+                      $join->on('vuelos.aeropuerto_origen', '=', 'aeropuertos.cod_aeropuerto')
+                      ->whereIn('vuelos.aeropuerto_origen', $aeropuertosOrigen)
+                      ->whereIn('vuelos.aeropuerto_destino', $aeropuertosDestino)
+                      ->whereDate('vuelos.hora_salida', '=', $f_inicio);
+                    })->get();
+    $paquetes = \App\Models\Paquete::whereIn('id_vuelo', $vuelosValidos)->get();
+    return $paquetes;
+  }
+
+  //Se ocupan paises para buscar en paquetes
+  public function getVuelosPaquete($origen, $destino, $f_inicio, $f_fin, $num_personas){
+    $idVuelosEnPaquetes = \App\Models\Paquete::select('id_vuelo')->get();
+    $aeropuertosOrigen = Aeropuerto::where('pais', '=', $origen)->pluck('cod_aeropuerto');
+    $aeropuertosDestino = Aeropuerto::where('pais', '=', $destino)->pluck('cod_aeropuerto');
+    $vuelosValidos = Vuelo::orderBy('vuelos.valor_turista')
+                    ->join('aeropuertos', function($join) use ($aeropuertosOrigen, $aeropuertosDestino, $f_inicio){
+                      $join->on('vuelos.aeropuerto_origen', '=', 'aeropuertos.cod_aeropuerto')
+                      ->whereIn('vuelos.aeropuerto_origen', $aeropuertosOrigen)
+                      ->whereIn('vuelos.aeropuerto_destino', $aeropuertosDestino)
+                      ->whereDate('vuelos.hora_salida', '=', $f_inicio);
+                    })->whereIn('vuelos.id_vuelo', $idVuelosEnPaquetes)->paginate(6);
+    return $vuelosValidos;
+  }
+
+  // public function getAutosPaquete($id_vuelo, $num_personas){
+  //   $autos = Auto::select('id_auto')->where('ciudad_arriendo', '=', $origen)
+  //               ->where('cap_pasajeros', '>=', $num_personas)
+  //               ->where('ya_reservado', '=', false)
+  //               ->whereIn('id_auto')->get();
+  //   $paquetes = \App\Models\Paquete::where();
+  // }
+
 
   public function buscarVuelosIdaSinFecha($inicio, $destino){
     $aeropuertosOrigen = Aeropuerto::where('ciudad', '=', $inicio)->pluck('cod_aeropuerto');

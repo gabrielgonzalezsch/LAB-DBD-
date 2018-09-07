@@ -21,28 +21,28 @@ class habitaciones_seeders extends Seeder
 
 
 
-		for ($i=0; $i < 300 ; $i++) {
+		for ($i=0; $i < 400 ; $i++) {
 
-			for($j=0; $j < 100; $j++){
+			for($j=0; $j < 20; $j++){
 
 
 		        DB::table('habitaciones')->insert([
 
-			   		'id_hotel'						=> $i+1,
-		            'num_habitacion'				=> $j+1000,
-		            'precio_por_noche'				=> random_int(70000,300000),
-		            'ya_reservado'					=> $faker->randomElement(['Y','N']),
-		            'valoracion'					=> frand1(1, 5, 1),
-		            'descripcion'					=> '-',
-		            'incluye_desayuno'				=> $faker->randomElement(['Y','N']),
-		            'incluye_aire_acondicionado'	=> $faker->randomElement(['Y','N']),
-		            'incluye_servicio'				=> $faker->randomElement(['Y','N']),
-		            'num_camas_dobles'				=> random_int(1,3),
-		            'num_camas_simples'				=> random_int(1,3),
-		            'room_size'						=> random_int(15,40),
-		            'descuento'						=> random_int(0,20),
-		            'created_at'					=> now(),
-					'updated_at'					=> now()
+		   		'id_hotel'						=> $i+1,
+	            'num_habitacion'				=> random_int(1, 20)*100,
+	            'precio_por_noche'				=> random_int(7,30)*10000,
+	            'ya_reservado'					=> $faker->randomElement(['Y','N']),
+	            'valoracion'					=> frand1(1, 5, 1),
+	            'descripcion'					=> '-',
+	            'incluye_desayuno'				=> $faker->randomElement(['Y','N']),
+	            'incluye_aire_acondicionado'	=> $faker->randomElement(['Y','N']),
+	            'incluye_servicio'				=> $faker->randomElement(['Y','N']),
+	            'num_camas_dobles'				=> random_int(1,3),
+	            'num_camas_simples'				=> random_int(1,3),
+	            'room_size'						=> random_int(15,40),
+	            'descuento'						=> random_int(0,20),
+	            'created_at'					=> now(),
+				'updated_at'					=> now()
 
 			   	]);
 		    }

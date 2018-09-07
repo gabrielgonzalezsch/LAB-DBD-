@@ -75,6 +75,22 @@ class ControllerVuelos extends Controller
     return view('vuelos.detalle-vuelo')->with('vuelo', $vuelo)->with('horas', $tiempoViaje);
   }
 
+  public function showJointVuelo($id_ida, $id_vuelta){
+    try{
+    $vuelo_ida = Vuelo::findOrFail($id_ida);
+    $vuelo_vuelta = Vuelo::findOrFail($id_vuelta);
+    $dateTimeSalida = $vuelo_ida->hora_salida;
+    $dateTimeLlegada = $vuelo_ida->hora_llegada;
+    $tiempoViaje = number_format($this->timeDiff($dateTimeSalida, $dateTimeLlegada), 1);
+    $tiempoViaje = $tiempoViaje." horas";
+    $joint_vuelo = ['ida' => $vuelo_ida, 'vuelta' => $vuelo_vuelta];
+    //echo "Horas: ".$tiempoViaje;
+    return view('vuelos.detalle-vueloIdaVuelta')->with('joint_vuelo', $joint_vuelo)->with('horas', $tiempoViaje);
+    }catch(Exception $e){
+      return redirect('/vuelos')->with('errors', $e->toArray())->with('failure', 'Error, vuelos no encontrados');
+    }
+  }
+
   function timeDiff($firstTime,$lastTime){
     $firstTime=strtotime($firstTime);
     $lastTime=strtotime($lastTime);

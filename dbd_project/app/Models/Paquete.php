@@ -13,7 +13,7 @@ class Paquete extends Model
     public function transacciones(){
        return $this->belongsToMany(App\Models\Transaccion::class, 'compra_paquete', 'id_paquete', 'id_transaccion');
     }
-
+    
     public function vuelo(){
       return $this->hasOne(App\Models\Vuelo::class. 'id_vuelo');
     }

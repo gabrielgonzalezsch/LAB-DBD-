@@ -13,15 +13,22 @@
 					<span>{{$item->categoria}}</span>
 	      </div>
 	      <ul class="description">
-					@if($item->categoria == 'Vuelo')
+					@if($item->categoria == 'Vuelo' || $item->subcategoria == 'Vuelo')
+					@if(isset($item->subcategoria))
+					<li>Formato vuelo: {{$item->subcategoria}}</li>
+					@endif
 					<li>Tipo pasaje: {{$item->tipo_pasaje}}</li>
+					@elseif($item->categoria == 'Habitación')
+					<li>Número de noches: {{$item->cantidad}}</li>
+					@elseif($item->categoria == 'Auto' || $item->subcategoria == 'Auto')
+					<li>Inicio arriendo: {{$item->inicio_arriendo}}</li>
+					<li>Fin arriendo: {{$item->fin_arriendo}}</li>
 					@endif
-					<li>Valor: {{$item->precio}}</li>
-					@if($item->categoria == 'Habitación')
-						<li>Número de noches: {{$item->cantidad}}</li>
-					@else
+					@if($item->categoria == 'Paquete')
+					<li>Tipo de paquete: {{$item->tipo_paquete}}</li>
+					<li>Descuento del paquete: {{$item->descuento_paquete}}%</li>
+					@endif
 					<li>Cantidad: {{$item->cantidad}}</li>
-					@endif
 					<li>Descuento: {{$item->descuento}}%</li>
 					<li>Subtotal: $ {{$item->subtotal}}</li>
 	      </ul>

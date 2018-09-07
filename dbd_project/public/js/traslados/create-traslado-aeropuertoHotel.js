@@ -10,8 +10,8 @@ function getCiudades() {
 		success: 
 		function(response){
 			var ciudades = response;
-			console.log(ciudades);
-			console.log(ciudades.length);
+			//console.log(ciudades);
+			//console.log(ciudades.length);
         	var $ciudadesSelect = $("#ciudad");
         	$ciudadesSelect.empty(); // remove old options
         	$ciudadesSelect.append($("<option></option>")
@@ -20,6 +20,7 @@ function getCiudades() {
 	        for (var i = 0; i < ciudades.length; i++) {
 	        	$ciudadesSelect.append('<option value='+ciudades[i].cod_aeropuerto+'>'+ciudades[i].ciudad+'</option>');
 	        }
+
 		},
 		error: function(error, a, b){
 			console.log(error);
@@ -36,12 +37,11 @@ function getCiudades() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function getAeropuertos(aeropuerto_coordenadas) {
+function getAeropuertos() {
 	var ciudad = $('#ciudad').val();
 
 	//console.log(ciudad);
 
-	
 	$.ajax({
 		url: '/traslados/queryAeropuerto',
 		dataType: "json",
@@ -50,19 +50,17 @@ function getAeropuertos(aeropuerto_coordenadas) {
 		success: 
 		function(response){
 			var aeropuerto = response;
-			console.log(aeropuerto);
-			console.log(aeropuerto.length);
+			//console.log(aeropuerto);
+			//console.log(aeropuerto.length);
         	var $aeropuertoSelect = $("#aeropuerto");
         	$aeropuertoSelect.empty(); // remove old options
-        	$aeropuertoSelect.append($("<option></option>")
-            .attr("value", '').text('Elegir Aeropuerto'));
+        	$aeropuertoSelect.append($("<option></option>").attr("value", '').text('Elegir Aeropuerto'));
 	        // for each set of data, add a new option
 	        for (var i = 0; i < aeropuerto.length; i++) {
-	        	$aeropuertoSelect.append('<option value='+aeropuerto[i].cod_aeropuerto+'>'+aeropuerto[i].cod_aeropuerto+'</option>');
+	        	$aeropuertoSelect.append('<option value='+aeropuerto[i].cod_aeropuerto+'>'+'Aeropuerto Principal de '+aeropuerto[i].ciudad+'</option>');
 	        }
 
-	        console.log(aeropuerto[0].latitud);
-	        console.log(aeropuerto[0].longitud);
+
 
 
 		},
@@ -82,7 +80,7 @@ function getAeropuertos(aeropuerto_coordenadas) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function getHoteles() {
-	var cod_aeropuerto = $('#aeropuerto').val();
+	var cod_aeropuerto = $('#ciudad').val();
 
 	//console.log(ciudad);
 
@@ -94,8 +92,8 @@ function getHoteles() {
 		success: 
 		function(response){
 			var hotel = response;
-			console.log(hotel);
-			console.log(hotel.length);
+			//console.log(hotel);
+			//console.log(hotel.length);
         	var $hotelSelect = $("#hotel");
         	$hotelSelect.empty(); // remove old options
         	$hotelSelect.append($("<option></option>").attr("value", '').text('Elegir Hotel'));
@@ -105,8 +103,6 @@ function getHoteles() {
 	        }
 
 
-
-	            
 		},
 		error: function(error, a, b){
 			console.log(error);
@@ -123,36 +119,106 @@ function getHoteles() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function getCoordenadas() {
-	//var lat_hotel = $('#lat_hotel').val();
-	//console.log(lat_hotel.toString());
+function getChoferes() {
+	var ciudad = $('#ciudad').val();
 
-	/*$.ajax({
-		url: '/traslados/queryCoordenadas',
+	//console.log(ciudad);
+	//console.log("hola desde antes de ajax")
+
+	$.ajax({
+		url: '/traslados/queryChoferes',
 		dataType: "json",
+		data: {ciudad: ciudad},
 		method: 'GET',
 		success: 
 		function(response){
-			var coordenadas = response;
-			//console.log(coordenadas);
-			//console.log(coordenadas.length);
-        	
-			console.log(coordenadas['lat_hotel']);
 
-	        
-	       
+
+			//console.log("hola despues de ajax");
+			//console.log(response);
+			var chofer = response;
+			//console.log(aeropuerto);
+			//console.log(aeropuerto.length);
+        	var $choferSelect = $("#chofer");
+        	var $cantidadSelect = $("#cantidad").val();
+        	var $tabla_choferes = $("#tabla_choferes");
+
+        	//console.log($cantidadSelect);
+        	$choferSelect.empty(); // remove old options
+        	$choferSelect.append($("<option></option>").attr("value", '').text('Elegir chofer'));
+	        //for each set of data, add a new option
+
+	        $tabla_choferes.append('<tbody>');
+
+	        for (var i = 0; i < chofer.length; i++) {
+
+
+	        	if(chofer[i].capacidad_auto >= $cantidadSelect){
+
+	        		$choferSelect.append('<option value='+chofer[i].tarifa_por_kilometro+'>'+chofer[i].name+'</option>');
+	        		$tabla_choferes.append('<tr><td> '+' '+ chofer[i].name+'</td><td> '+'$ '+ chofer[i].tarifa_por_kilometro+'</td><td> '+' '+ chofer[i].valorizacion+'</td></tr>');    
+	        	}
+	        }
+
+	        $tabla_choferes.append('</tbody>');
+
 		},
 		error: function(error, a, b){
 			console.log(error);
 			console.log(a);
 			console.log(b);
-		
 		}
-	});*/
+	});
 
-
-	
 	return false;
 }
 
+
+function getDinero() {
+	var distancia = $('#distancia').text();
+	var tarifa_chofer = $('#chofer').val();
+	var monto_final = $('#carrito')
+
+
+	console.log(distancia);
+	console.log(tarifa_chofer);
+
+	console.log(distancia*tarifa_chofer)
+
+	return false;
+}
+
+
+function swap() {
+
+
+	var indice = $('#swap').val();
+
+	console.log(indice);
+
+	
+	if(indice == 0){	// significa Del Aeropuerto a Hotel
+
+		$('#swap').val('1');
+					
+		$('#swap').append('<button></button').text('Hotel(A) ~~~> Aeropuerto(B)');
+		
+
+
+
+	
+
+	}else if(indice == 1){	// significa del Hotel a  Aeropuerto
+
+
+		$('#swap').val('0');
+
+		$('#swap').append('<button></button').text('Aeropuerto(A) ~~~> Hotel(B)');
+
+
+
+
+
+	}
+}
 

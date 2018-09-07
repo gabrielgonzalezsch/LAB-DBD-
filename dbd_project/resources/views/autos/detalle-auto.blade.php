@@ -96,24 +96,24 @@ body {
             Precios desde: ${{$auto->precio_por_dia}} por dia
           </div>
           <div class="ui star rating" data-rating="3"></div>
-          <div class="ui horizontal divider header"><h1>{{$auto->modelo}},{{$auto->compañia}}</div></h1>
+          <div class="ui horizontal divider header"><h1>{{$auto->modelo_auto}},{{$auto->compañia}}</div></h1>
           <div class="image">
             <center><img src="/images/{{$auto->compañia}}.png"  alt="Card image cap" style="width: 20%"></center>
           </div>
         </div>
     <ul>
       <dl><h4>  Valor diario de arriendo: {{$auto->precio_por_dia}} </h4></dl>
-      <dl><h4>  Modelo: {{$auto->modelo}} </h4></dl>
+      <dl><h4>  Modelo: {{$auto->modelo_auto}} </h4></dl>
       <dl><h4>  Compañia: {{$auto->compañia}} </h4></dl>
       <dl><h4>  Patente: {{$auto->patente}} </h4></dl>
-      <dl><h4>  Capacidad: {{$auto->capacidad}} </h4></dl>
-      <dl><h4>  Descripcion: {{$auto->descripcion}} </h4></dl>
+      <dl><h4>  Capacidad: {{$auto->cap_pasajeros}} </h4></dl>
+      <dl><h4>  Descripcion: {{$auto->descripcion_auto}} </h4></dl>
     </ul>
     <div class="ui horizontal divider"><h5> Detalles de ubicación </h5></div>
     <ul>
-      <dl><h4>  País: {{$auto->pais}} </h4></dl>
-      <dl><h4>  Ciudad: {{$auto->ciudad}} </h4></dl>
-      <dl><h4>  Dirección: {{$auto->calle}} </h4></dl>
+      <dl><h4>  País: {{$auto->pais_arriendo}} </h4></dl>
+      <dl><h4>  Ciudad: {{$auto->ciudad_arriendo}} </h4></dl>
+      <dl><h4>  Dirección: {{$auto->calle_arriendo}} </h4></dl>
     </ul>   
     </div>
     <center>

@@ -75,18 +75,18 @@
           <div class="item">
             <div class="header">Disponibilidad en:</div>
             <div class="content">
-              {{$auto->ciudad,$auto->pais}}</div>
+              {{$auto->ciudad_arriendo,$auto->pais_arriendo}}</div>
           </div>
           <div class="item">
             <div class="header">Capacidad: </div>
             <div class="content">
-              {{$auto->capacidad}}
+              {{$auto->cap_pasajeros}}
             </div>
           </div>
             <div class="item">
             <div class="header">Descripcion: </div>
             <div class="content">
-              {{$auto->descripcion}}
+              {{$auto->descripcion_auto}}
             </div>
           </div>
           <a href="/autos/{{$auto->id_auto}}" class="ui bottom attached blue button">

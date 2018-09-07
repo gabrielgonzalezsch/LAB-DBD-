@@ -66,7 +66,7 @@
       <div class="ui fluid raised card" data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
         <div class="content">
 
-          <div style="padding: 5px; width: 70%;" class="ui huge orange ribbon label">
+            <div style="padding: 5px; width: 70%;" class="ui huge orange ribbon label">
             Precios desde: {{$actividad->valor_entrada}}
           </div>
           <div class="ui star rating" data-rating="3"></div>

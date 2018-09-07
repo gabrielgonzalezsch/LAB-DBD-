@@ -49,7 +49,7 @@
 					<div class="form-group col-2">
 						<label class="form-input">Ingresa numero pasajes ejecutivo</label>
 						<input id="num_ejecutivo" type="number" min="0" max="{{$vuelo->cap_ejecutivo}}" class="form-control" value=0>
-					</div>
+					</div>	
 					<div class="form-group col-2">
 						<label class="form-input">Ingresa numero pasajes primera clase</label>
 						<input id="num_pc" type="number" min="0" max="{{$vuelo->cap_primera_clase}}" class="form-control" value=0>
